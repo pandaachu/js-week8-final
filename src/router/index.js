@@ -23,6 +23,11 @@ const routes = [
     name: 'Products',
     component: () => import('../views/Products.vue')
   },
+  { // 動態路由，後面加參數
+    path: '/product/:id',
+    name: 'Product',
+    component: () => import('../views/Product.vue')
+  },
   {
     path: '/cart',
     name: 'Cart',
@@ -42,6 +47,11 @@ const routes = [
         component: () => import('../views/dashboard/Coupons.vue')
       }
     ]
+  },
+  // 路徑輸入錯誤導回首頁
+  { // * -> 代表全部
+    path: '*',
+    redirect: '/'
   }
 ]
 
