@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login">
     <form class="form-signin" @submit.prevent="signin">
       <h1 class="h3 mb-3 font-weight-normal">
         請先登入
@@ -46,12 +46,11 @@
 </template>
 
 <style>
-  html,
-  body {
+  login {
     height: 100vh;
     text-align: center;
   }
-  body {
+  login {
     display: flex;
     align-items: center;
     justify-content: center;

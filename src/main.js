@@ -10,23 +10,29 @@ import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 
 // bootstrap
-import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+// import 'bootstrap'
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+// jquery
+import $ from 'jquery'
+// 這一行是關鍵，若不這樣寫是無法在全域下使用唷
 
 import App from './App.vue'
 import router from './router'
 
 Vue.config.productionTip = false
 
+// jquery 全域注冊
+window.$ = $
+// 在使用 jq 的頁面加上： /* global */
+// 解決 Eslint 的錯誤
+
 // 元件，全域注冊
 Vue.component('Loading', Loading)
 
 // 套件加入到 Vue 的藍圖內 (原型內)
 Vue.use(VueAxios, axios)
-Vue.use(BootstrapVue)
-Vue.use(BootstrapVueIcons)
+// Vue.use(BootstrapVue)
+// Vue.use(BootstrapVueIcons)
 
 new Vue({
   router,
