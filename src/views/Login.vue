@@ -45,6 +45,19 @@
   </div>
 </template>
 
+<style>
+  html,
+  body {
+    height: 100vh;
+    text-align: center;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
 <script>
 export default {
   data () {

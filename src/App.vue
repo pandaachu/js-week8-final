@@ -2,13 +2,14 @@
   <div id="app">
     <!-- 把 isLoading 載進 -->
     <loading :active.sync="isLoading"></loading>
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/products">產品列表</router-link> |
       <router-link to="/cart">購物車</router-link> |
       <router-link to="/admin/products">後台產品列表</router-link>
-    </div>
+    </div> -->
+    <!-- <Navbar></Navbar> -->
     <router-view/>
   </div>
 </template>
