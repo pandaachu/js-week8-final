@@ -46,11 +46,11 @@
 </template>
 
 <style>
-  login {
+  .login {
     height: 100vh;
     text-align: center;
   }
-  login {
+  .login {
     display: flex;
     align-items: center;
     justify-content: center;

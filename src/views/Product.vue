@@ -104,6 +104,7 @@ export default {
       })
         .then((res) => {
           this.isLoading = false
+          // $emit 推送資料
           this.$bus.$emit('get-cart') // $bus.$on 定義的方法
         })
     }

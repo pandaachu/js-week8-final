@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>這裡是管理頁面</h2>
+    <!-- <h2>這裡是管理頁面</h2> -->
     <router-view :token="token" v-if="checkSuccess"/>
     <!-- 當驗證沒有問題，checkSuccess = true ，再跑下面的區塊 -->
   </div>

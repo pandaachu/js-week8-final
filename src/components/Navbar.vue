@@ -1,4 +1,5 @@
 <template>
+<div class="bg-white sticky-top">
   <div class="container">
     <nav class="navbar px-0 navbar-expand-lg navbar-light bg-white">
       <router-link to="/" class="navbar-brand position-absolute" href="#" style="left: 50%; transform: translate(-50%, -50%); top: 50%;">Navbar</router-link>
@@ -20,7 +21,14 @@
       </div>
       <div class="d-flex">
         <a href="#"><i class="fas fa-heart mr-5"></i></a>
-        <a href="./cart-2.html">
+        <router-link to="/cart"><i class="fas fa-shopping-cart"></i>
+          <span
+            class="badge badge-pill badge-danger"
+            v-if="carts.length"
+            style="transform: translateX(-9px) translateY(4px)"
+            >{{ carts.length }}
+          </span></router-link>
+        <!-- <a href="./cart-2.html">
           <i class="fas fa-shopping-cart"></i>
           <span
             class="badge badge-pill badge-danger"
@@ -28,10 +36,11 @@
             style="transform: translateX(-9px) translateY(4px)"
             >{{ carts.length }}
           </span>
-        </a>
+        </a> -->
       </div>
     </nav>
   </div>
+</div>
   <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <router-link to="/" class="navbar-brand" href="#">Navbar</router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,8 +89,9 @@ export default {
   },
   created () {
     this.getCart()
+    // $on('自訂義名稱', 要執行的函式) -> 接收資料
     this.$bus.$on('get-cart', () => {
-      this.getCart() // <- 這段不懂
+      this.getCart() // 重新取得購物車資料
     })
   }
 }

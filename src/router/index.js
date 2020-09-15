@@ -7,9 +7,9 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home,
+    path: '/', // 對應的路徑
+    name: 'Home', // 元件呈現的名稱
+    component: Home, // 對應的元件
     children: [ // 巢狀結構
       {
         path: '', // 首頁
@@ -34,6 +34,16 @@ const routes = [
         path: '/cart',
         name: 'Cart',
         component: () => import('../views/Cart.vue')
+      },
+      {
+        path: '/checkout',
+        name: 'Checkout',
+        component: () => import('../views/Checkout.vue')
+      },
+      {
+        path: '/checkout-success',
+        name: 'CheckoutSuccess',
+        component: () => import('../views/CheckoutSuccess.vue')
       },
       {
         path: '/shop',
