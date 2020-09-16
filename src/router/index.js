@@ -61,13 +61,16 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: () => import('../views/admin/Dashboard.vue'),
+    redirect: '/admin/products',
     children: [ // 巢狀結構
       {
         path: 'products',
+        name: 'Products',
         component: () => import('../views/admin/Products.vue')
       },
       {
         path: 'coupons',
+        name: 'Coupons',
         component: () => import('../views/admin/Coupons.vue')
       }
     ]

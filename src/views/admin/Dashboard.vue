@@ -1,12 +1,40 @@
 <template>
   <div>
-    <!-- <h2>這裡是管理頁面</h2> -->
-    <router-view :token="token" v-if="checkSuccess"/>
-    <!-- 當驗證沒有問題，checkSuccess = true ，再跑下面的區塊 -->
+    <div class="bg-white sticky-top">
+      <div class="container">
+        <nav class="navbar px-0 navbar-expand-lg navbar-light bg-white">
+          <router-link to="/admin/" class="navbar-brand position-absolute" href="#" style="left: 50%; transform: translate(-50%, -50%); top: 50%;">Navbar</router-link>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse bg-white custom-header-md-open" id="navbarNavAdimn">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <router-link to="/admin/products" class="nav-link pl-0">產品列表 <span class="sr-only">(current)</span></router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/admin/coupons" class="nav-link">優惠卷</router-link>
+              </li>
+              <!-- <li class="nav-item">
+                <router-link to="/products" class="nav-link">產品列表</router-link>
+              </li> -->
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container">
+      <!-- <h2>這裡是管理頁面</h2> -->
+      <!-- <NavbarAdmin></NavbarAdmin> -->
+      <router-view name="NavbarAdmin"/>
+      <router-view :token="token" v-if="checkSuccess"/>
+      <!-- 當驗證沒有問題，checkSuccess = true ，再跑下面的區塊 -->
+    </div>
   </div>
 </template>
 
 <script>
+// import NavbarAdmin from '../../components/NavbarAdmin.vue'
 // 這裡是後台入口，驗證要做在這
 export default {
   data () {
