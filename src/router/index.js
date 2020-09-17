@@ -53,9 +53,9 @@ const routes = [
     ]
   },
   {
-    path: '/login',
+    path: '/admin/login',
     name: 'Login',
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/admin/Login.vue')
   },
   {
     path: '/admin',
@@ -67,6 +67,16 @@ const routes = [
         path: 'products',
         name: 'Products',
         component: () => import('../views/admin/Products.vue')
+      },
+      {
+        path: 'order',
+        name: 'Order',
+        component: () => import('../views/admin/Order.vue')
+      },
+      {
+        path: 'orders',
+        name: 'Orders',
+        component: () => import('../views/admin/Orders.vue')
       },
       {
         path: 'coupons',

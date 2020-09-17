@@ -11,32 +11,17 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 
 // bootstrap
 import 'bootstrap'
-
 // jquery
 import $ from 'jquery'
 // 這一行是關鍵，若不這樣寫是無法在全域下使用
 
-// //VeeValidate
-// import zh from '../src/assets/js/validation/zh_TW'
+// vee-validate
+import { ValidationObserver, ValidationProvider, configure, extend, localize } from 'vee-validate'
+import zhTW from 'vee-validate/dist/locale/zh_TW.json' // 語系檔案
+import * as rules from 'vee-validate/dist/rules'
 
 import App from './App.vue'
 import router from './router'
-
-// vee-validate
-import { ValidationObserver, ValidationProvider, configure, localize, extend } from 'vee-validate'
-import * as rules from 'vee-validate/dist/rules' // 規則檔案（ex: email...）
-import zhTW from 'vee-validate/dist/locale/zh_TW.json' // 語系檔案
-// vee-validate
-Object.keys(rules).forEach((rule) => {
-  extend(rule, rules[rule])
-})
-configure({
-  classes: {
-    valid: 'is-valid',
-    invalid: 'is-invalid'
-  }
-})
-localize('tw', zhTW)
 
 Vue.config.productionTip = false
 
@@ -45,8 +30,23 @@ window.$ = $
 // 在使用 jq 的頁面加上： /* global $ */
 // 解決 Eslint 的錯誤
 
+// vee-validate
+// Class 設定檔案
+configure({
+  classes: {
+    valid: 'is-valid',
+    invalid: 'is-invalid'
+  }
+})
+// install rules and localization
+Object.keys(rules).forEach(rule => {
+  extend(rule, rules[rule])
+})
+localize('tw', zhTW)
+// Install components globally
 Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('ValidationObserver', ValidationObserver)
+
 // 元件，全域注冊
 Vue.component('Loading', Loading)
 

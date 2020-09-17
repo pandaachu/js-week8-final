@@ -83,7 +83,7 @@ export default {
           // window.location = '/js-week4-homework/product.html'; // for gitHub only
           // 1. $route  2. $router
           // 登入成功後使用 $router 方法轉址
-          this.$router.push('admin/products')
+          this.$router.push('/admin/products')
           // axios 是非同步行為，因此如果要正確儲存 token，轉址的步驟要放在 axios 裡，否則轉址會比 axios 先進行，結果不會進行 axios 的步驟
         })
         .catch(error => {

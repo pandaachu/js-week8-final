@@ -112,7 +112,7 @@ export default {
   created () {
     this.isLoading = true
     // 取得產品 id
-    console.log(this.$route.params.id)
+    // console.log(this.$route.params.id)
     // 屬性 $route
     // 方法 $router
     const id = this.$route.params.id

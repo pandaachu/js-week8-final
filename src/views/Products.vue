@@ -50,12 +50,6 @@ export default {
       // 第二種寫法：
       // 如果 num 不存在，num = 1：
       // if (!num) { num = 1 };
-
-      // console.log(num);
-      // console.log(1);
-      // API
-      // 為什麼不能寫 apiPath & uuid  -> 這兩個變數在 app{} 物件裡
-      // const api = `${this.api.apiPath}${this.api.uuid}/admin/ec/products`;
       // 帶上分頁：
       const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products?page=${num}`
       this.$http.get(api)

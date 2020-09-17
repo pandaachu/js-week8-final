@@ -13,6 +13,9 @@
                 <router-link to="/admin/products" class="nav-link pl-0">產品列表 <span class="sr-only">(current)</span></router-link>
               </li>
               <li class="nav-item">
+                <router-link to="/admin/orders" class="nav-link">訂單列表</router-link>
+              </li>
+              <li class="nav-item">
                 <router-link to="/admin/coupons" class="nav-link">優惠卷</router-link>
               </li>
               <!-- <li class="nav-item">
@@ -26,7 +29,7 @@
     <div class="container">
       <!-- <h2>這裡是管理頁面</h2> -->
       <!-- <NavbarAdmin></NavbarAdmin> -->
-      <router-view name="NavbarAdmin"/>
+      <!-- <router-view name="NavbarAdmin"/> -->
       <router-view :token="token" v-if="checkSuccess"/>
       <!-- 當驗證沒有問題，checkSuccess = true ，再跑下面的區塊 -->
     </div>
