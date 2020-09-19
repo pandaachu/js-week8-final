@@ -31,13 +31,13 @@
         登入
       </button>
       <br />
-      <button class="btn btn-outline-primary btn-block" type="button" @click="signout">
+      <!-- <button class="btn btn-outline-primary btn-block" type="button" @click="signout">
         登出
-      </button>
-      <br />
+      </button> -->
+      <!-- <br />
       <button class="btn btn-outline-primary btn-block" type="button" @click="getData">
         取得資料
-      </button>
+      </button> -->
       <p class="mt-5 mb-3 text-muted">
         © 2020~∞ - 六角學院
       </p>
@@ -90,10 +90,10 @@ export default {
           console.log(error)
         })
     },
-    signout () {
-      // 清除 cookie
-      document.cookie = 'hexToken=; expires=; path=/'
-    },
+    // signout () {
+    //   // 清除 cookie
+    //   document.cookie = 'hexToken=; expires=; path=/'
+    // },
     getData () {
       // 取得 token 的 cookies（注意取得的時間點）
       // hexToken -> 剛剛儲存的 token

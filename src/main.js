@@ -11,6 +11,7 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 
 // bootstrap
 import 'bootstrap'
+
 // jquery
 import $ from 'jquery'
 // 這一行是關鍵，若不這樣寫是無法在全域下使用

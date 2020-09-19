@@ -2,7 +2,7 @@
   <div>
     <div class="bg-white sticky-top">
       <div class="container">
-        <nav class="navbar px-0 navbar-expand-lg navbar-light bg-white">
+        <nav class="navbar px-0 navbar-expand-lg navbar-light bg-white d-flex justify-content-between">
           <router-link to="/admin/" class="navbar-brand position-absolute" href="#" style="left: 50%; transform: translate(-50%, -50%); top: 50%;">Navbar</router-link>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,6 +23,11 @@
               </li> -->
             </ul>
           </div>
+          <!-- <router-link to="/" class="nav-link" @click="signout">登出</router-link> -->
+          <div><button class="btn btn-outline-primary btn-block" type="button" @click="signout">
+            登出
+          </button></div>
+          <!-- <div><a class="nav-link" href="#" @click="signout">登出</a></div> -->
         </nav>
       </div>
     </div>
@@ -45,9 +50,6 @@ export default {
       token: '',
       checkSuccess: false
     }
-  },
-  created () {
-    this.checkLogin()
   },
   methods: {
     checkLogin () {
@@ -72,9 +74,17 @@ export default {
         .catch(error => {
           console.log(error.response)
           // 如果驗證失敗畫面回到 login
-          this.$router.push('/login')
+          this.$router.push('/admin/login')
         })
+    },
+    signout () {
+      // 清除 cookie
+      this.$router.push('/admin/login')
+      document.cookie = 'hexToken=; expires=;'
     }
+  },
+  created () {
+    this.checkLogin()
   }
 }
 </script>

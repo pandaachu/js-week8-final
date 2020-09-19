@@ -1,8 +1,13 @@
 <template>
-  <div id="app">
+  <div id="app" class="wrapper">
     <!-- 把 isLoading 載進 -->
     <loading :active.sync="isLoading"></loading>
-    <!-- router-view 放不一樣的內容 -->
+    <!-- 使用 router-link 組件來導航. -->
+    <!-- 通過傳入 `to` 屬性指定鏈接. -->
+    <!-- <router-link> 默認會被渲染成一個 `<a>` 標籤 -->
+
+    <!-- 路由出口 -->
+    <!-- 路由匹配到的組件將渲染在這裡 -->
     <router-view/>
   </div>
 </template>
@@ -23,7 +28,7 @@ export default {
     this.$http.get(`${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`)
       .then((res) => {
         this.isLoading = false
-        console.log(res)
+        // console.log(res)
       })
   }
 }

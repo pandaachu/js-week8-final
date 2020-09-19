@@ -35,10 +35,9 @@
                 @click="changePaidStatus(true, item.id)">更新為已付款 </button> -->
                 <!-- <button type="button" class="btn btn-outline-danger btn-sm btn-block"
                 @click="test() ">更新為未付款</button> -->
-              <!-- <router-link :to="`/admin/order/${order.id}`"
-                class="btn btn-outline-info btn-sm btn-block">檢視</router-link> -->
-                <button type="button" class="btn btn-outline-success btn-sm btn-block"
-                @click="goOrders (order.id)"> 檢視 </button>
+                <router-link class="btn btn-outline-success btn-sm btn-block" :to="`/admin/order/${order.id}`" >檢視</router-link>
+                <!-- <div type="div" class="btn btn-outline-success btn-sm btn-block"
+                @click="goOrders(order.id)"> 檢視 </div> -->
           </td>
         </tr>
       </tbody>
@@ -57,11 +56,13 @@ export default {
     }
   },
   methods: {
-    goOrders (item) {
-      // 頁面轉換
-      // push 為方法
-      this.$router.push(`/admin/order/${item.id}`)
-    },
+    // goOrders (item) {
+    //   // 頁面轉換
+    //   // push 為方法
+    //   // this.$router.push(`/admin/order/${item.id}`)
+    //   console.log(item)
+    //   // console.log(this.order.id)
+    // },
     getOrders (page = 1) {
       this.isLoading = true
       const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/orders`

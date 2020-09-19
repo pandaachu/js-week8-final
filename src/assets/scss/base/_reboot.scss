@@ -1,0 +1,61 @@
+// remove text-decoration
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+}
+button, button:hover, button:focus, button:active {
+  text-decoration: none;
+  outline: 0;
+}
+
+input:focus, a:focus, a:active {
+  outline: none;
+}
+
+img{
+  max-width: 100%;
+  display: block;
+}
+
+svg {
+  width: 100%;
+}
+
+.user{
+  background-color: $primary;
+}
+
+// loading
+.vld-overlay .vld-background {
+  background: $primary;
+}
+svg{
+  stroke: $gray-400;
+}
+
+.wrapper{
+  max-width: 1920px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// nav
+.navbar-custom-scroll::-webkit-scrollbar {
+  display: none;
+}
+.navbar-custom-scroll {
+  -ms-overflow-style: none;
+}
+
+@include media-breakpoint-down(md) {
+  .custom-header-md-open {
+    position: absolute;
+    top: 100%;
+    right: 0px;
+    left: 0px;
+  }
+}
+
+html,body{
+  color: $white;
+}

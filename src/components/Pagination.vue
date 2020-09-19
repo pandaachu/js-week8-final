@@ -21,6 +21,15 @@
   </nav>
 </template>
 
+<style lang="scss" scoped>
+.page-item.disabled .page-link, .page-link {
+    background-color: transparent;
+}
+.page-item.active .page-link {
+  border: 1px solid #dee2e6;
+}
+</style>
+
 <script>
 
 export default {

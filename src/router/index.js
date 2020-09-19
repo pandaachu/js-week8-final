@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
-import Home from '../views/Shop.vue'
+// import Home from '../views/user/Shop.vue'
 
 Vue.use(VueRouter)
 
@@ -9,46 +9,48 @@ const routes = [
   {
     path: '/', // 對應的路徑
     name: 'Home', // 元件呈現的名稱
-    component: Home, // 對應的元件
+    // component: Home, // 對應的元件
+    component: () => import('../views/user/Shop.vue'),
+    // redirect: '',
     children: [ // 巢狀結構
       {
         path: '', // 首頁
-        component: () => import('../views/Home.vue')
+        component: () => import('../views/user/Home.vue')
       },
       {
         path: '/about',
         name: 'About',
-        component: () => import('../views/About.vue')
+        component: () => import('../views/user/About.vue')
       },
       {
         path: '/products',
         name: 'Products',
-        component: () => import('../views/Products.vue')
+        component: () => import('../views/user/Products.vue')
       },
       { // 動態路由，後面加參數
         path: '/product/:id',
         name: 'Product',
-        component: () => import('../views/Product.vue')
+        component: () => import('../views/user/Product.vue')
       },
       {
         path: '/cart',
         name: 'Cart',
-        component: () => import('../views/Cart.vue')
+        component: () => import('../views/user/Cart.vue')
       },
       {
         path: '/checkout',
         name: 'Checkout',
-        component: () => import('../views/Checkout.vue')
+        component: () => import('../views/user/Checkout.vue')
       },
       {
         path: '/checkout-success',
         name: 'CheckoutSuccess',
-        component: () => import('../views/CheckoutSuccess.vue')
+        component: () => import('../views/user/CheckoutSuccess.vue')
       },
       {
         path: '/shop',
         name: 'Shop',
-        component: () => import('../views/Shop.vue')
+        component: () => import('../views/user/Shop.vue')
       }
     ]
   },
@@ -65,31 +67,31 @@ const routes = [
     children: [ // 巢狀結構
       {
         path: 'products',
-        name: 'Products',
+        name: 'AdminProducts',
         component: () => import('../views/admin/Products.vue')
       },
       {
-        path: 'order',
-        name: 'Order',
+        path: 'order/:id',
+        name: 'AdminOrder',
         component: () => import('../views/admin/Order.vue')
       },
       {
         path: 'orders',
-        name: 'Orders',
+        name: 'AdminOrders',
         component: () => import('../views/admin/Orders.vue')
       },
       {
         path: 'coupons',
-        name: 'Coupons',
+        name: 'AdminCoupons',
         component: () => import('../views/admin/Coupons.vue')
       }
     ]
-  },
-  // 路徑輸入錯誤導回首頁
-  { // * -> 代表全部
-    path: '*',
-    redirect: '/'
   }
+  // 路徑輸入錯誤導回首頁
+  // { // * -> 代表全部
+  //   path: '*',
+  //   redirect: '/'
+  // }
 ]
 
 const router = new VueRouter({

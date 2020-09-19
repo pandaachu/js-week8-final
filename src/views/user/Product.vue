@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="l-product">
     <div class="container">
       <div style="min-height: 400px;
       background-position: center center;"
@@ -11,7 +11,7 @@
           <p class="font-weight-bold">NT$1,200</p>
           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea</p>
           <div class="my-4">
-            <img src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80" alt="" class="img-fluid mt-4">
+            <img :src="product.imageUrl[0]" alt="" class="img-fluid mt-4">
           </div>
           <div class="accordion border border-bottom border-top-0 border-left-0 border-right-0 mb-3" id="accordionExample">
             <div class="card border-0">
@@ -64,14 +64,28 @@
         <div class="col-md-4">
           <div class="input-group mb-3 border mt-3">
             <div class="input-group-prepend">
-              <button class="btn btn-outline-dark rounded-0 border-0 py-3" type="button" id="button-addon1">
+              <!-- <button class="btn btn-outline-dark rounded-0 border-0 py-3 text-gray" type="button" id="button-addon1">
+                <i class="fas fa-minus"></i>
+              </button> -->
+              <button class="btn" id="button-addon1"
+                type="btn btn-outline-dark rounded-0 border-0 py-3 text-gray" :disabled="carts.quantity === 1 "
+                @click="carts.quantity --; updateQuantity(carts.product.id, carts.quantity)"
+                >
                 <i class="fas fa-minus"></i>
               </button>
             </div>
-            <input type="text" class="form-control border-0 text-center my-auto shadow-none" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="1">
+            <!-- <input type="text" class="form-control border-0 text-center my-auto shadow-none bg-transparent text-gray" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="1"> -->
+            <input type="text" class="form-control border-0 text-center my-auto shadow-none bg-light px-0" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="1"
+                v-model="carts.quantity"
+                @change="updateQuantity(carts.product.id, carts.quantity)">
             <div class="input-group-append">
-              <button class="btn btn-outline-dark rounded-0 border-0 py-3" type="button" id="button-addon2">
+              <!-- <button class="btn btn-outline-dark rounded-0 border-0 py-3 text-gray" type="button" id="button-addon2">
                 <i class="fas fa-plus"></i>
+              </button> -->
+              <button class="btn btn-outline-dark rounded-0 border-0 py-3 text-gray" id="button-addon2"
+                  type="button" @click="carts.quantity ++; updateQuantity(carts.product.id, carts.quantity)"
+                  >
+                  <i class="fas fa-plus"></i>
               </button>
             </div>
           </div>
@@ -83,12 +97,25 @@
   </div>
 </template>
 
+<style lang="scss" scoped>
+// .l-product{
+//   .form-control {
+
+//   }
+// }
+</style>
+
 <script>
 export default {
   data () {
     return {
+      carts: [],
       product: {
         imageUrl: []
+      },
+      status: {
+        loadingItem: '', // 要預先定義 loadingItem, 不然會出錯
+        loadingUpdateCart: ''
       }
     }
   },
@@ -98,14 +125,49 @@ export default {
     addToCart () {
       this.isLoading = true
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
-      this.$http.post(url, {
+      this.$http.patch(url, {
         product: this.product.id, // 因為是產品單獨頁面，所以不需要另外把產品 id 帶進來，可以直接在這裡用 this
-        quantity: 1
+        quantity: this.quantity
       })
         .then((res) => {
           this.isLoading = false
           // $emit 推送資料
           this.$bus.$emit('get-cart') // $bus.$on 定義的方法
+        })
+    },
+    getCart () { // 取得購物車資料
+      this.isLoading = true
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
+      this.$http.get(url)
+        .then(res => {
+          // console.log('cart', res)
+          this.isLoading = false
+          this.carts = res.data.data[0]
+          // this.updateTotal()
+        })
+    },
+    updateQuantity (id, quantity) { // 更新數量
+      this.isLoading = true
+      this.status.loadingUpdateCart = id // 當更新購物車的時候把 id 取出
+      // this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
+      const cart = { // 定義資料
+        product: id,
+        quantity: quantity // ES6 的寫法: quantity
+      }
+      // console.log(cart);
+      this.$http
+        .patch(url, cart)
+        .then(res => {
+          this.status.loadingUpdateCart = '' // 執行完時清空
+          this.isLoading = false
+          // console.log(res)
+          this.getCart() // 更新完數量要重新取得購物車資料
+        })
+        .catch(error => {
+          this.isLoading = false
+          // axios 固定的寫法，否則 error 訊息不會出現
+          console.log(error.response)
         })
     }
   },
@@ -122,6 +184,7 @@ export default {
         this.isLoading = false
         this.product = res.data.data
       })
+    this.getCart()
   }
 }
 

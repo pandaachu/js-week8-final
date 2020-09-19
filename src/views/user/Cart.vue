@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6 bg-white py-5" style="min-height: calc(100vh - 56px - 76px);">
+      <div class="row justify-content-center my-5">
+        <div class="col-md-6 bg-transparent py-5 border" style="min-height: calc(100vh - 56px - 76px);">
           <div class="d-flex justify-content-between">
             <h2 class="mt-2">購物車列表</h2>
           </div>
-          <div class="d-flex mt-4 bg-light" v-for="item in carts" :key="item.product.id + 1">
+          <div class="d-flex mt-4 py-5 bg-transparent border-bottom border-top" v-for="item in carts" :key="item.product.id + 1">
             <img :src="item.product.imageUrl" alt="" style="width: 120px; height: 120px; object-fit: cover;">
             <div class="w-100 p-3 position-relative">
               <a href="#" class="position-absolute" style="top: 16px; right: 16px;" @click="removeItem(item.product.id)"><i class="fas fa-times"></i></a>

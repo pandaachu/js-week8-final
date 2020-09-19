@@ -3,4 +3,19 @@
 @import './helpers/variables';
 // @import '~bootstrap/scss/bootstrap';
 
-@import '~bootstrap'
+@import '~bootstrap';
+
+// base
+@import 'base/reboot';
+@import 'base/typography';
+
+// utils
+@import 'utils/animation';
+@import 'utils/mediaQuery';
+@import 'utils/background';
+@import 'utils/position';
+
+// components
+@import 'components/loading';
+// pages
+@import 'pages/home'

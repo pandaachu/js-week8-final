@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="l-checkout">
     <div class="bg-light pt-5 pb-7">
       <div class="container">
         <div class="row justify-content-center flex-md-row flex-column-reverse">
@@ -11,7 +11,7 @@
                   <div class="form-group mb-2">
                     <validation-provider rules="required|email" v-slot="{ errors, classes }">
                       <label for="ContactMail" class="text-muted mb-0">Email</label>
-                      <input id="ContactMail" name="email" v-model="form.email" type="email" class="form-control rounded-0" placeholder="example@gmail.com" :class="classes">
+                      <input id="ContactMail" name="email" v-model="user.email" type="email" class="form-control rounded-0" placeholder="example@gmail.com" :class="classes">
                       <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
                     </validation-provider>
                   </div>
@@ -22,14 +22,14 @@
                   <div class="form-group mb-2">
                     <validation-provider rules="required" v-slot="{ errors, classes }">
                       <label for="ContactName" class="text-muted mb-0">收件人姓名</label>
-                      <input id="ContactName" name="姓名" v-model="form.name" type="text" class="form-control rounded-0" placeholder="王大明" :class="classes">
+                      <input id="ContactName" name="姓名" v-model="user.name" type="text" class="form-control rounded-0" placeholder="王大明" :class="classes">
                       <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
                     </validation-provider>
                   </div>
                   <div class="form-group mb-4">
                     <validation-provider rules="required|min:10" v-slot="{ errors, classes }">
                       <label for="ContactPhone" class="text-muted mb-0">收件人手機號碼</label>
-                      <input id="ContactPhone" name="手機號碼" v-model="form.tel" type="tel" class="form-control rounded-0" placeholder="0933-123-123" :class="classes">
+                      <input id="ContactPhone" name="手機號碼" v-model="user.tel" type="tel" class="form-control rounded-0" placeholder="0933-123-123" :class="classes">
                       <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
                     </validation-provider>
                   </div>
@@ -37,14 +37,14 @@
                   <div class="form-group">
                     <validation-provider rules="required" v-slot="{ errors, classes }">
                       <label for="ContactAddress" class="text-muted mb-0">運送地址</label>
-                      <input id="ContactAddress" name="運送地址" v-model="form.address" type="tel" class="form-control rounded-0" placeholder="地址" :class="classes">
+                      <input id="ContactAddress" name="運送地址" v-model="user.address" type="tel" class="form-control rounded-0" placeholder="地址" :class="classes">
                       <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
                     </validation-provider>
                   </div>
                   <div class="form-group">
                     <validation-provider rules="required" v-slot="{ errors, classes }">
                       <label for="message">購買方式</label>
-                      <select name="付款方式" v-model="form.payment" class="form-control" :class="classes">
+                      <select name="付款方式" v-model="user.payment" class="form-control" :class="classes">
                         <option value="" disabled>
                           請選擇付款方式
                         </option>
@@ -129,7 +129,7 @@ export default {
         loadingItem: '', // 要預先定義 loadingItem, 不然會出錯
         loadingUpdateCart: ''
       },
-      form: {
+      user: {
         name: '',
         email: '',
         tel: '',
@@ -163,7 +163,7 @@ export default {
     createOrder () {
       this.isLoading = true
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders`
-      this.$http.post(url, this.form).then((response) => {
+      this.$http.post(url, this.user).then((response) => {
         if (response.data.data.id) {
           this.isLoading = false
           // 跳出提示訊息

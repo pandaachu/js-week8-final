@@ -1,0 +1,21 @@
+.l-home{
+  &__hero-1{
+    .bg-img {
+      width: 100%;
+      background-image: url(../public/images/heroBanner-1.jpg);
+      &:before {
+        background: url(../public/images/heroBanner-2.jpg);
+        background-size: 100%;
+      }
+    }
+  }
+  &__content{
+    top: 13rem;
+    left: 15%;
+    letter-spacing: 1.5px;
+  }
+  &__carousel{
+    background-image: url(../public/images/homeBg.jpg);
+    background-size: 100%;
+  }
+}

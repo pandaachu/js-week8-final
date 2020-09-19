@@ -1,0 +1,112 @@
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 9000000;
+}
+#loading .load-center {
+  position: absolute;
+  top: 40.5%;
+  left: 50%;
+  margin-left: -56px;
+  margin-top: -93px;
+  width: 113px;
+  height: 186px;
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 30px;
+  width: 25%;
+  height: 140px;
+  .line {
+    position: absolute;
+    top: 50%;
+    margin-left: 10px;
+    width: 60px;
+    height: 3px;
+    background: #cb1b45;
+    -webkit-animation: spin -1.5s infinite ease;
+    -o-animation: spin -1.5s infinite ease;
+    animation: spin 1.5s infinite ease;
+
+    &:nth-of-type(2) {
+      -webkit-animation-delay: -0.1s;
+      -o-animation-delay: -0.1s;
+      animation-delay: -0.1s;
+    }
+    &:nth-of-type(3) {
+      -webkit-animation-delay: -0.2s;
+      -o-animation-delay: -0.2s;
+      animation-delay: -0.2s;
+    }
+    &:nth-of-type(4) {
+      -webkit-animation-delay: -0.3s;
+      -o-animation-delay: -0.3s;
+      animation-delay: -0.3s;
+    }
+  }
+}
+#loading .load-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: 20px;
+  width: 0%;
+  height: 1px;
+  background-color: #cb1b45;
+  -webkit-transition: all 1s 0.5s ease;
+  -o-transition: all 1s 0.5s ease;
+  transition: all 1s 0.5s ease;
+}
+
+@media screen and (max-width: 1600px) {
+}
+@media screen and (max-width: 1440px) {
+}
+@media screen and (max-width: 1366px) {
+}
+// mobile layout
+@media screen and (max-width: 750px) {
+
+
+  #loading .load-center {
+    left: 48%;
+    // .line {
+    //   position: absolute;
+    //   top: 50%;
+    //   margin-left: 10px;
+    //   width: 60px;
+    //   height: 2px;
+    //   background: #cb1b45;
+    //   -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    //   transform: rotate3d(0, 0, 1, 0deg);
+    //   -webkit-animation: spin 1.55s infinite ease;
+    //   animation: spin 1.55s infinite ease;
+  
+    //   &:nth-of-type(2) {
+    //     -webkit-animation-delay: 0.15s;
+    //     -o-animation-delay: 0.15s;
+    //     animation-delay: 0.15s;
+    //   }
+    //   &:nth-of-type(3) {
+    //     -webkit-animation-delay: 0.25s;
+    //     -o-animation-delay: 0.25s;
+    //     animation-delay: 0.25s;
+    //   }
+    //   &:nth-of-type(4) {
+    //     -webkit-animation-delay: 0.35s;
+    //     -o-animation-delay: 0.35s;
+    //     animation-delay: 0.35s;
+    //   }
+    // }
+  }
+}
+// iphone XS Max, Plus
+@media screen and (max-width: 414px) {
+}
+// iphone XS, iphone X
+@media screen and (max-width: 375px) {
+}

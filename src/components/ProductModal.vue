@@ -1,5 +1,6 @@
 <template>
-<div class="modal-dialog modal-xl" role="document">
+  <div class="l-productModal">
+    <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
           <h5 id="exampleModalLabel" class="modal-title">
@@ -131,6 +132,7 @@
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -169,7 +171,7 @@ export default {
       const uploadedfile = document.querySelector('#customFile').files[0]
       // const uploadedfile = this.$refs.file.files[0];
       // files 屬性
-      console.dir(uploadedfile)
+      // console.dir(uploadedfile)
 
       // 轉成 Form Data ( 固定寫法 )
       const formData = new FormData()
