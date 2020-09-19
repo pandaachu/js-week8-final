@@ -1,6 +1,6 @@
 <template>
   <div class="l-products text-light">
-    <loading :active.sync="isLoading"></loading>
+    <Loading :active.sync="isLoading"></Loading>
     <nav class="navbar navbar-expand-lg navbar-dark justify-content-center border border-left-0 border-right-0 border-top border-bottom">
       <div class="navbar-nav flex-row overflow-auto navbar-custom-scroll">
         <a class="nav-item nav-link text-nowrap px-2" href="#">研究中 |</a>

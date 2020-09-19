@@ -1,5 +1,6 @@
 <template>
   <div class="l-checkout">
+    <Loading :active.sync="isLoading"></Loading>
     <div class="bg-light pt-5 pb-7">
       <div class="container">
         <div class="row justify-content-center flex-md-row flex-column-reverse">
@@ -121,6 +122,7 @@
 export default {
   data () {
     return {
+      isLoading: false,
       tempProduct: {},
       products: [],
       carts: [],

@@ -1,5 +1,6 @@
 <template>
   <div class="l-product">
+    <Loading :active.sync="isLoading"></Loading>
     <div class="container">
       <div style="min-height: 400px;
       background-position: center center;"
@@ -109,6 +110,7 @@
 export default {
   data () {
     return {
+      isLoading: false,
       carts: [],
       product: {
         imageUrl: []

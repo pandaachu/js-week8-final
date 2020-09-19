@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <Loading :active.sync="isLoading"></Loading>
     <form class="form-signin" @submit.prevent="signin">
       <h1 class="h3 mb-3 font-weight-normal">
         請先登入
@@ -65,15 +66,18 @@ export default {
         email: '',
         password: ''
       },
-      token: ''
+      token: '',
+      isLoading: false
     }
   },
   methods: {
     signin () {
+      this.isLoading = true
       const api = `${process.env.VUE_APP_APIPATH}/auth/login` // login API
       this.$http
         .post(api, this.user)
         .then(response => {
+          this.isLoading = false
           // console.log(response); // 取得遠端傳回來的 response
           const token = response.data.token // 把 token 存起來
           const expired = response.data.expired // 把 到期日 存起來
@@ -88,6 +92,7 @@ export default {
         })
         .catch(error => {
           console.log(error)
+          this.isLoading = false
         })
     },
     // signout () {
@@ -95,6 +100,7 @@ export default {
     //   document.cookie = 'hexToken=; expires=; path=/'
     // },
     getData () {
+      this.isLoading = true
       // 取得 token 的 cookies（注意取得的時間點）
       // hexToken -> 剛剛儲存的 token
       // this.token -> 把 token 存在 Vue 裡面
@@ -109,6 +115,7 @@ export default {
 
       // 取得遠端資料
       this.$http.get(api).then(response => {
+        this.isLoading = false
         this.products = response.data.data
         this.pagination = response.data.data.meta.pagination
       })

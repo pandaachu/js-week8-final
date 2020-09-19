@@ -1,6 +1,7 @@
 
 <template>
   <div class="container mt-3">
+    <Loading :active.sync="isLoading"></Loading>
     <h2>後台 - 產品列表頁面</h2>
     <div class="text-right mt-4">
         <button @click="openModal('new')" class="btn btn-primary">
@@ -105,6 +106,7 @@ export default {
       status: {
         fileUploading: false
       },
+      isLoading: false,
       pagination: {}, // 存放頁碼
       products: [],
       // openModal 的變數
@@ -125,6 +127,7 @@ export default {
           $('#productModal').modal('show')
           break
         case 'edit':
+          this.isLoading = true
           this.loadingBtn = item.id
           // 列表的資料有缺 description，所以要重新取得單一產品資料
           // 這裡不能用 const
@@ -136,6 +139,7 @@ export default {
               this.temProduct = res.data.data
               $('#productModal').modal('show')
               this.loadingBtn = '' // 清除
+              this.isLoading = false
             })
           this.isNew = false
           // 打開 modal 先 copy 這個產品資料到 temProduct
@@ -151,11 +155,13 @@ export default {
       }
     },
     getProducts (num = 1) {
+      this.isLoading = true
       // 帶上分頁：
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/products?page=${num}`
       this.$http
         .get(url)
         .then(res => {
+          this.isLoading = false
           // console.log(res);
           // 對應遠端傳回來的資料
           this.products = res.data.data
