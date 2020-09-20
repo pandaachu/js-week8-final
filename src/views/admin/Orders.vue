@@ -2,7 +2,7 @@
   <div>
     <Loading :active.sync="isLoading"></Loading>
     <h2 class="h3 m-3 text-left">訂單列表</h2>
-    <table class="table mt-4">
+    <table class="table table-striped text-primary mt-4">
       <thead>
         <tr class="bg-light">
           <th class="text-center" width="175">訂單日期</th>

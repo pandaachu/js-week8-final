@@ -1,37 +1,41 @@
 <template>
   <div>
     <Loading :active.sync="isLoading"></Loading>
-    <h2 class="h3 m-3 text-left">訂單細節</h2>
-    <table class="table mt-4 mb-5">
+    <h2 class="h3 m-3 text-left text-primary">訂單細節</h2>
+    <table class="table table-striped text-primary mt-4 mb-5">
       <thead>
         <tr>
           <!-- <th width="235">訂單日期</th> -->
           <th>產品縮圖</th>
           <th>產品名稱</th>
-          <!-- <th>單價</th> -->
           <th>數量</th>
+          <th>原價</th>
+          <th>單價</th>
         </tr>
       </thead>
       <tbody v-for="product in order.products" :key="product.id">
-        <!-- <td>{{ order.created.datetime }}</td> -->
         <td> <div style="height: 100px; width: 80px;
       background-position: center center;background-size:cover" :style="{ backgroundImage: `url(${product.product.imageUrl[0]})`}"></div></td>
         <td>{{ product.product.title }}</td>
         <td>{{ product.product.unit }}</td>
+        <td>{{ product.product.origin_price }}</td>
+        <td>{{ product.product.price }}</td>
       </tbody>
       <thead>
         <tr>
           <th>總計</th>
           <th></th>
+          <th></th>
+          <th></th>
           <th>{{order.amount}}</th>
         </tr>
       </thead>
     </table>
-    <h2 class="h3 m-3 text-left">訂購者資料</h2>
-    <table class="table mt-4">
+    <h2 class="h3 m-3 text-left text-primary">訂購者資料</h2>
+    <table class="table table-striped text-primary mt-4">
       <thead>
         <tr>
-          <!-- <th width="235">訂單日期</th> -->
+          <th width="235">訂單日期</th>
           <th>姓名</th>
           <th>電話</th>
           <th>地址</th>
@@ -39,7 +43,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- <td>{{ order.created.datetime }}</td> -->
+        <td>{{ order.created.datetime }}</td>
         <td>{{ order.user.name }}</td>
         <td>{{ order.user.tel }}</td>
         <td>{{ order.user.address }}</td>
@@ -53,7 +57,10 @@
 export default {
   data () {
     return {
-      order: {},
+      order: { // 定義資料
+        created: [],
+        user: []
+      },
       isLoading: false
     }
   },

@@ -145,13 +145,18 @@ export default {
       },
       delay: 0.5
     })
-
-    tl.to('.splitText', 2, {
-      text: {
-        value: 'World'
-      },
-      delay: 0
-    })
+      .to('.splitText', 2, {
+        text: {
+          value: 'Fun'
+        },
+        delay: 0
+      })
+      .to('.splitText', 2, {
+        text: {
+          value: 'Peace'
+        },
+        delay: 0
+      })
   }
 
 // export default {

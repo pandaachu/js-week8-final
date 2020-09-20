@@ -3,7 +3,7 @@
     <div class="bg-white sticky-top">
       <div class="container">
         <nav class="navbar px-0 navbar-expand-lg navbar-light bg-white d-flex justify-content-between">
-          <router-link to="/admin/" class="navbar-brand position-absolute" href="#" style="left: 50%; transform: translate(-50%, -50%); top: 50%;">Navbar</router-link>
+          <router-link to="/admin/" class="navbar-brand position-absolute" href="#" style="left: 50%; transform: translate(-50%, -50%); top: 50%;">FOREST</router-link>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

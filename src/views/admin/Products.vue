@@ -2,13 +2,13 @@
 <template>
   <div class="container mt-3">
     <Loading :active.sync="isLoading"></Loading>
-    <h2>後台 - 產品列表頁面</h2>
+    <h2 class="text-primary">產品列表</h2>
     <div class="text-right mt-4">
         <button @click="openModal('new')" class="btn btn-primary">
           建立新的產品
         </button>
       </div>
-      <table class="table mt-4">
+      <table class="table table-striped text-primary mt-4">
         <thead>
           <tr>
             <th width="120">
