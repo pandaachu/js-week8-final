@@ -3,16 +3,17 @@
     <!-- hero banner -->
     <section class="l-home__hero-1 p-relative">
       <div class="bg-img l-bg-no-repeat-tc l-bg-no-repeat-tc--shine">
-        <img
+        <img style="width:100vw "
           src="../../../public/images/heroBannerHeight.gif"
           alt=""
         />
       </div>
       <div class="l-content l-home__content p-absolute">
-        <h2 class="color-text font-weight-bold">
-            生活，從美好開始
-            <br>
-            Life is getting better with Forest
+        <h2 class="l-home__subtitle color-text mb-4">
+          生活，從美好開始
+        </h2>
+        <h2 class="l-home__title color-text">
+          Life is Getting <span class="splitText"></span><br> with Forest
         </h2>
       </div>
     </section>
@@ -122,15 +123,37 @@
     </div>
   </div>
 </template>
+<style lang="scss" scoped>
+</style>
 
 <script>
-// import Loading from '../components/Loading.vue'
 // /* global $ */
+import { gsap } from 'gsap'
+import TextPlugin from 'gsap/TextPlugin'
+gsap.registerPlugin(TextPlugin)
+
 export default {
-  components: {
-    // Loading
+  data () {
+    return {
+    }
+  },
+  mounted () {
+    const tl = gsap.timeline({ repeat: -1, yoyo: false, repeatDelay: 3 }) // 建立 timeline
+    tl.to('.splitText', 3, {
+      text: {
+        value: 'Better'
+      },
+      delay: 0.5
+    })
+
+    tl.to('.splitText', 2, {
+      text: {
+        value: 'World'
+      },
+      delay: 0
+    })
   }
-}
+
 // export default {
 //   created () {
 //     const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`
@@ -144,4 +167,5 @@ export default {
 //     })
 //   }
 // }
+}
 </script>

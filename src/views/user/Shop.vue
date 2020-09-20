@@ -9,6 +9,12 @@
   </div>
 </template>
 
+<style lang="scss" scoped>
+// .user{
+//   color: $white;
+// }
+</style>
+
 <script>
 // 匯入元件
 import Navbar from '../../components/Navbar.vue'

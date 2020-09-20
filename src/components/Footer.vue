@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-dark">
+  <div class="bg-primary">
     <div class="container">
       <div class="d-flex align-items-center justify-content-between text-white py-4">
         <p class="mb-0">© 2020 Forest All Rights Reserved.</p>
