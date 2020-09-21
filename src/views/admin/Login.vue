@@ -32,13 +32,6 @@
         登入
       </button>
       <br />
-      <!-- <button class="btn btn-outline-primary btn-block" type="button" @click="signout">
-        登出
-      </button> -->
-      <!-- <br />
-      <button class="btn btn-outline-primary btn-block" type="button" @click="getData">
-        取得資料
-      </button> -->
       <p class="mt-5 mb-3 text-muted">
         © 2020 Forest All Rights Reserved.
       </p>
