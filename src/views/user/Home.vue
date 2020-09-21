@@ -86,7 +86,7 @@
             <div class="card bg-dark text-white">
               <img class="card-img" src="../../../public/images/function/quin-stevenson-3oyeaivM_fE-unsplash.jpg" alt="Card image">
               <div class="card-img-overlay">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Sleep</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               </div>
             </div>
@@ -95,7 +95,7 @@
             <div class="card bg-dark text-white">
               <img class="card-img" src="../../../public/images/function/thomas-litangen-WQqc8MJ8cuw-unsplash.jpg" alt="Card image">
               <div class="card-img-overlay">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Work</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               </div>
             </div>
@@ -104,7 +104,7 @@
             <div class="card bg-dark text-white">
               <img class="card-img" src="../../../public/images/function/annie-spratt-C8C020JnsjM-unsplash.jpg" alt="Card image">
               <div class="card-img-overlay">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Relax</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               </div>
             </div>
@@ -113,7 +113,7 @@
             <div class="card bg-dark text-white">
               <img class="card-img" src="../../../public/images/function/annie-spratt-C8C020JnsjM-unsplash.jpg" alt="Card image">
               <div class="card-img-overlay">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Outside</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               </div>
             </div>
