@@ -44,8 +44,8 @@
                   </div>
                   <div class="form-group">
                     <validation-provider rules="required" v-slot="{ errors, classes }">
-                      <label for="message" class="text-muted">付款方式</label>
-                      <select name="付款方式" v-model="user.payment" class="form-control" :class="classes">
+                      <label for="payment" class="text-muted">付款方式</label>
+                      <select id="payment" name="付款方式" v-model="user.payment" class="form-control" :class="classes">
                         <option value="" disabled>
                           請選擇付款方式
                         </option>
@@ -98,11 +98,11 @@
                 <tbody>
                   <tr>
                     <th scope="row" class="border-0 px-0 pt-4 font-weight-normal">折扣</th>
-                    <td class="text-right border-0 px-0 pt-4">NT$24,000</td>
+                    <td class="text-right border-0 px-0 pt-4">{{ discount }}</td>
                   </tr>
                   <tr>
                     <th scope="row" class="border-0 px-0 pt-0 pb-4 font-weight-normal">付款方式</th>
-                    <td class="text-right border-0 px-0 pt-0 pb-4">ApplePay</td>
+                    <td class="text-right border-0 px-0 pt-0 pb-4">{{ user.payment }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -132,6 +132,7 @@ export default {
       products: [],
       carts: [],
       cartTotal: 0,
+      discount: 0,
       status: {
         loadingItem: '', // 要預先定義 loadingItem, 不然會出錯
         loadingUpdateCart: ''
@@ -163,6 +164,7 @@ export default {
           this.isLoading = false
           this.carts = res.data.data
           this.updateTotal()
+          this.calculateDiscount() // 取得購物車的時候才會做計算
           // 把購物車資料推送到 navbar 購物車 icon
           this.$bus.$emit('get-cart')
         })
@@ -184,6 +186,16 @@ export default {
         this.isLoading = false
         console.log(error.response.data.errors)
       })
+    },
+    calculateDiscount () {
+      this.discount = 0
+      this.originCartTotal = 0
+      this.carts.forEach((item) => {
+        this.discount += item.product.origin_price - item.product.price
+        this.originCartTotal += item.product.origin_price
+      })
+      // console.log(this.discount)
+      // console.log(this.originCartTotal)
     }
     // goPage () {
     //   // console.log(this.$router)
