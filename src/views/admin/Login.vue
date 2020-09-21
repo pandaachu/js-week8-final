@@ -40,7 +40,7 @@
         取得資料
       </button> -->
       <p class="mt-5 mb-3 text-muted">
-        © 2020~∞ - 六角學院
+        © 2020 Forest All Rights Reserved.
       </p>
     </form>
   </div>

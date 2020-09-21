@@ -156,7 +156,6 @@ export default {
     updateQuantity (id, quantity) { // 更新數量
       this.isLoading = true
       this.status.loadingUpdateCart = id // 當更新購物車的時候把 id 取出
-      // this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       const cart = { // 定義資料
         product: id,
