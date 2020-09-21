@@ -71,6 +71,7 @@
                   <div class="d-flex flex-column-reverse flex-md-row mt-4 justify-content-between align-items-md-center align-items-end w-100">
                     <router-link to="/product" class="text-light mt-md-0 mt-3"><i class="fas fa-chevron-left mr-2"></i> 回訂單列表 </router-link>
                     <!-- button 如果掛 function @:click="goPage ()" 表單送出就會失效 -->
+                    <!-- 資料傳送事件在 form -->
                     <button type="submit" class="btn btn-dark py-3 px-7 rounded-0" :disabled="invalid">確定付款</button>
                     <!-- <router-link to="/checkout-success" class="btn btn-dark py-3 px-7 rounded-0" :disabled="invalid"></router-link> -->
                   </div>
@@ -160,7 +161,7 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.get(url)
         .then(res => {
-          // console.log('cart', res)
+          console.log('cart', res)
           this.isLoading = false
           this.carts = res.data.data
           this.updateTotal()
@@ -180,7 +181,17 @@ export default {
           // 重新渲染購物車
           // console.log('成功')
           this.getCart()
-          this.$router.push('/checkout-success/')
+          // this.$router.push('/checkout-success/')
+          // this.$router.push('/checkout-success/')
+          this.$router.push({
+            path: `/checkout-success/${response.data.data.id}`
+          })
+          // this.$router.push({
+          //   name: 'CheckoutSuccess',
+          //   params: {
+          //     id: response.data.data.id
+          //   }
+          // })
         }
       }).catch((error) => {
         this.isLoading = false

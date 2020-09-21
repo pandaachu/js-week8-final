@@ -10,7 +10,7 @@
             <p>感謝您的訂購，商品將儘快送達！</p>
             <router-link to="/products" class="btn btn-outline-light mr-2 rounded-0 mb-4">繼續選購</router-link>
           </div>
-          <!-- 這邊還沒想到要何何取得已清空的訂單資料 -->
+          <!-- 取得已清空的訂單資料 -->
           <div class="col-md-6">
             <div class="card rounded-0 border-light py-4 bg-transparent">
               <div class="card-header border-bottom-0px-4 py-0">
@@ -21,10 +21,10 @@
                   <li class="list-group-item bg-transparent px-0">
                     <div class="d-flex mt-2">
                       <img src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80" alt="" class="mr-2" style="width: 60px; height: 60px; object-fit: cover">
-                      <div class="w-100 d-flex flex-column">
+                      <div class="w-100 d-flex flex-column" v-for="order in tempOrders.products" :key="order.id">
                         <div class="d-flex justify-content-between font-weight-bold">
-                          <h5>Lorem ipsum</h5>
-                          <p class="mb-0">x10</p>
+                          <h5>{{order.product.title}}</h5>
+                          <p class="mb-0">x <span>{{order.quantity}}{{order.product.unit}}</span></p>
                         </div>
                         <div class="d-flex justify-content-between mt-auto">
                           <p class="text-muted mb-0"><small>NT$12,000</small></p>
@@ -42,7 +42,7 @@
                         </tr>
                         <tr>
                           <th scope="row" class="border-0 px-0 pt-0 font-weight-normal">付款方式</th>
-                          <td class="text-right border-0 px-0 pt-0">ApplePay</td>
+                          <td class="text-right border-0 px-0 pt-0">{{ order.payment }}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -59,3 +59,90 @@
       </div>
     </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      isLoading: false,
+      tempProduct: {},
+      products: [],
+      carts: [],
+      cartTotal: 0,
+      discount: 0,
+      tempOrders: {},
+      id: this.$route.params.id,
+      status: {
+        loadingItem: '', // 要預先定義 loadingItem, 不然會出錯
+        loadingUpdateCart: ''
+      },
+      user: {
+        name: '',
+        email: '',
+        tel: '',
+        address: '',
+        payment: '',
+        message: ''
+      }
+    }
+  },
+  methods: {
+    updateTotal () {
+      // 累加總金額，先歸零後重新計算
+      this.cartTotal = 0
+      this.carts.forEach((item) => {
+        this.cartTotal += item.product.price * item.quantity
+      })
+    },
+    // 抓下結帳後的訂單資料
+    getThisOrder () {
+      this.orders.forEach((item) => {
+        if (item.id === this.id) {
+          this.tempOrders = item
+          console.log(this.tempOrders)
+          // console.log(item.id)
+        }
+      })
+    },
+    getOrders () {
+      this.isLoading = true
+      const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders`
+      this.$http.get(api).then((res) => {
+        this.isLoading = false
+        // console.log('orders', res)
+        this.orders = res.data.data
+        this.getThisOrder()
+      }).catch(() => {
+        this.isLoading = false
+      })
+    },
+    // getCart () { // 取得購物車資料
+    //   this.isLoading = true
+    //   const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
+    //   this.$http.get(url)
+    //     .then(res => {
+    //       console.log('cart', res)
+    //       this.isLoading = false
+    //       this.carts = res.data.data
+    //       this.updateTotal()
+    //       this.calculateDiscount() // 取得購物車的時候才會做計算
+    //     })
+    // },
+    calculateDiscount () {
+      this.discount = 0
+      this.originCartTotal = 0
+      this.carts.forEach((item) => {
+        this.discount += item.product.origin_price - item.product.price
+        this.originCartTotal += item.product.origin_price
+      })
+      // console.log(this.discount)
+      // console.log(this.originCartTotal)
+    }
+  },
+  created () {
+    this.updateTotal()
+    // this.getCart()
+    this.getOrders()
+  }
+}
+</script>
