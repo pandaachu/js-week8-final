@@ -89,7 +89,7 @@
                     <p class="mb-0">x{{ item.quantity }}</p>
                   </div>
                   <div class="d-flex justify-content-between">
-                    <p class="text-muted mb-0"><small>NT$12,000</small></p>
+                    <p class="text-muted mb-0"><small>{{ item.product.origin_price }}</small></p>
                     <p class="mb-0">{{ item.product.price }}</p>
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export default {
           // 重新渲染購物車
           // console.log('成功')
           this.getCart()
-          this.$router.push('/checkout-success')
+          this.$router.push('/checkout-success/')
         }
       }).catch((error) => {
         this.isLoading = false
@@ -197,23 +197,6 @@ export default {
       // console.log(this.discount)
       // console.log(this.originCartTotal)
     }
-    // goPage () {
-    //   // console.log(this.$router)
-    //   // 頁面轉換
-    //   // push 為方法
-    //   this.$router.push('/checkout-success')
-    // },
-    // deleteAllCartItem () {
-    //   this.isLoading = true
-    //   const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping/all/product`
-    //   this.$http.delete(url) // 以 axios.delete 的方法直接清空購物車後，關掉 loading 並刷新購物車
-    //     .then(res => {
-    //       this.isLoading = false
-    //       this.getCart()
-    //     })
-    //   // console.log(this.total_cost)
-    //   this.cartTotal = 0
-    // }
   },
   created () {
     this.updateTotal()
