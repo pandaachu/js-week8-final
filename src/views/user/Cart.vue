@@ -26,7 +26,7 @@
                       @click.prevent="item.quantity --; updateQuantity(item.product.id, item.quantity)"
                   ><i class="fas fa-minus"></i></a> -->
                 </div>
-                <input type="text" class="form-control border-0 text-center my-auto shadow-none bg-light px-0" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="1"
+                <input type="text" class="form-control border-0 text-center my-auto shadow-none bg-transparent text-white px-0" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="1"
                 v-model="item.quantity"
                 @change="updateQuantity(item.product.id, item.quantity)">
                 <div class="input-group-append pl-1">
@@ -46,12 +46,12 @@
         <table class="table mt-4 text-muted">
           <tbody>
             <tr>
-              <th scope="row" class="border-0 px-0 font-weight-normal">Lorem ipsum</th>
-              <td class="text-right border-0 px-0">NT$24,000</td>
+              <th scope="row" class="border-0 px-0 font-weight-normal">原價</th>
+              <td class="text-right border-0 px-0">{{ originCartTotal }}</td>
             </tr>
             <tr>
-              <th scope="row" class="border-0 px-0 pt-0 font-weight-normal">Lorem ipsum</th>
-              <td class="text-right border-0 px-0 pt-0">NT$500</td>
+              <th scope="row" class="border-0 px-0 pt-0 font-weight-normal">折扣</th>
+              <td class="text-right border-0 px-0 pt-0">{{ discount }}</td>
             </tr>
           </tbody>
         </table>
@@ -73,7 +73,9 @@ export default {
       tempProduct: {},
       products: [],
       carts: [],
+      discount: 0,
       cartTotal: 0,
+      originCartTotal: 0,
       status: {
         loadingItem: '', // 要預先定義 loadingItem, 不然會出錯
         loadingUpdateCart: ''
@@ -142,6 +144,7 @@ export default {
           this.isLoading = false
           this.carts = res.data.data
           this.updateTotal()
+          this.calculateDiscount() // 取得購物車的時候才會做計算
         })
     },
     // 在取得購物車的時候才會做計算，刪除購物車的時候就沒有重計算
@@ -196,6 +199,16 @@ export default {
         })
         // console.log(this.total_cost)
       this.cartTotal = 0
+    },
+    calculateDiscount () {
+      this.discount = 0
+      this.originCartTotal = 0
+      this.carts.forEach((item) => {
+        this.discount += item.product.origin_price - item.product.price
+        this.originCartTotal += item.product.origin_price
+      })
+      // console.log(this.discount)
+      // console.log(this.originCartTotal)
     }
     // sendOrder () {
     //   alert("訂單完成")
@@ -205,6 +218,7 @@ export default {
     this.isLoading = true
     this.getProducts() // 要使用 this 去取得 getProducts()
     this.getCart()
+    // this.calculateDiscount()
   }
 }
 

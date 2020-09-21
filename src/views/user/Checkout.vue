@@ -1,12 +1,12 @@
 <template>
   <div class="l-checkout">
     <Loading :active.sync="isLoading"></Loading>
-    <div class="bg-light pt-5 pb-7">
+    <div class="pt-5 pb-7">
       <div class="container">
         <div class="row justify-content-center flex-md-row flex-column-reverse">
           <div class="col-md-6">
             <validation-observer v-slot="{ invalid, handleSubmit }">
-              <div class="bg-white p-4">
+              <div class="p-4 border ">
                 <h4 class="font-weight-bold">聯絡資料</h4>
                 <form @submit.prevent="handleSubmit(createOrder)">
                   <div class="form-group mb-2">
@@ -44,7 +44,7 @@
                   </div>
                   <div class="form-group">
                     <validation-provider rules="required" v-slot="{ errors, classes }">
-                      <label for="message">購買方式</label>
+                      <label for="message" class="text-muted">付款方式</label>
                       <select name="付款方式" v-model="user.payment" class="form-control" :class="classes">
                         <option value="" disabled>
                           請選擇付款方式
@@ -69,9 +69,9 @@
                     </validation-provider>
                   </div>
                   <div class="d-flex flex-column-reverse flex-md-row mt-4 justify-content-between align-items-md-center align-items-end w-100">
-                    <router-link to="/product" class="text-dark mt-md-0 mt-3"><i class="fas fa-chevron-left mr-2"></i> 回訂單列表 </router-link>
+                    <router-link to="/product" class="text-light mt-md-0 mt-3"><i class="fas fa-chevron-left mr-2"></i> 回訂單列表 </router-link>
                     <!-- button 如果掛 function @:click="goPage ()" 表單送出就會失效 -->
-                    <button type="submit" class="btn btn-dark py-3 px-7 rounded-0" :disabled="invalid">確訂付款</button>
+                    <button type="submit" class="btn btn-dark py-3 px-7 rounded-0" :disabled="invalid">確定付款</button>
                     <!-- <router-link to="/checkout-success" class="btn btn-dark py-3 px-7 rounded-0" :disabled="invalid"></router-link> -->
                   </div>
                 </form>
@@ -80,7 +80,7 @@
           </div>
           <div class="col-md-4">
             <div class="border p-4 mb-4">
-              <h4 class="mb-4">訂單資料</h4>
+              <h4 class="mb-4 ">訂單資料</h4>
               <div class="d-flex mb-2" v-for="item in carts" :key="item.product.id + 1">
                 <img :src="item.product.imageUrl" alt="" class="mr-2" style="width: 48px; height: 48px; object-fit: cover">
                 <div class="w-100">
@@ -97,11 +97,11 @@
               <table class="table mt-4 border-top border-bottom text-muted">
                 <tbody>
                   <tr>
-                    <th scope="row" class="border-0 px-0 pt-4 font-weight-normal">Subtotal</th>
+                    <th scope="row" class="border-0 px-0 pt-4 font-weight-normal">折扣</th>
                     <td class="text-right border-0 px-0 pt-4">NT$24,000</td>
                   </tr>
                   <tr>
-                    <th scope="row" class="border-0 px-0 pt-0 pb-4 font-weight-normal">Payment</th>
+                    <th scope="row" class="border-0 px-0 pt-0 pb-4 font-weight-normal">付款方式</th>
                     <td class="text-right border-0 px-0 pt-0 pb-4">ApplePay</td>
                   </tr>
                 </tbody>
@@ -117,7 +117,12 @@
     </div>
   </div>
 </template>
-
+<style lang="scss" scoped>
+.l-checkout{
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+</style>
 <script>
 export default {
   data () {
