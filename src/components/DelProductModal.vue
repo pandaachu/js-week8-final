@@ -2,7 +2,7 @@
   <div id="delProductModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content border-0">
+        <div class="modal-content border-0 text-primary">
           <div class="modal-header bg-danger text-white">
             <h5 id="exampleModalLabel" class="modal-title">
               <span>刪除產品</span>

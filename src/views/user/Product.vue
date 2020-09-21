@@ -6,15 +6,30 @@
       background-position: center center;"
       :style="{ backgroundImage: `url(${product.imageUrl[0]})`}">
       </div>
-      <div class="row justify-content-between mt-4 mb-7">
+      <div class="row justify-content-between mt-5 mb-7">
         <div class="col-md-7">
-          <h2 class="mb-0">{{ product.title }}</h2>
-          <p class="font-weight-bold">NT$1,200</p>
-          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea</p>
+          <h2 class="mb-0 mb-4">{{ product.title }}</h2>
+          <div class="d-flex justify-content-between align-items-baseline">
+            <!-- 售價(price)欄位是可選的，因此售價若為空，就顯示原價(origin_price)
+            售價若不為空，就顯示原價(origin_price)與售價(price) -->
+            <!-- v-if 去判斷 -->
+            <div class="h5" v-if="!product.price || product.price === product.origin_price">
+            {{ product.origin_price }}
+            </div>
+            <div v-else class="d-flex align-items-end">
+              <del class="h6">${{ product.origin_price }} </del>
+              <div class="h5 pl-2">
+                ${{ product.price }}
+              </div>
+            </div>
+          </div>
+          <p class="text-muted">{{ product.content }}</p>
           <div class="my-4">
             <img :src="product.imageUrl[0]" alt="" class="img-fluid mt-4">
           </div>
-          <div class="accordion border border-bottom border-top-0 border-left-0 border-right-0 mb-3" id="accordionExample">
+          <p class="brackets py-4 px-4" style="letter-spacing:1.3px; line-height:1.6">{{ product.description }}</p>
+          <!-- 內容後續加強 -->
+          <!-- <div class="accordion border border-bottom border-top-0 border-left-0 border-right-0 mb-3" id="accordionExample">
             <div class="card border-0">
               <div class="card-header px-0 py-4 bg-white border border-bottom-0 border-top border-left-0 border-right-0" id="headingOne" data-toggle="collapse" data-target="#collapseOne">
                 <div class="d-flex justify-content-between align-items-center pr-1">
@@ -60,7 +75,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="col-md-4">
           <div class="input-group mb-3 border mt-3">

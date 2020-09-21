@@ -1,12 +1,12 @@
 <template>
   <div class="l-productModal">
     <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content border-0">
-        <div class="modal-header bg-dark text-white">
-          <h5 id="exampleModalLabel" class="modal-title">
+      <div class="modal-content border-0 text-primary">
+        <div class="modal-header bg-dark">
+          <h5 id="exampleModalLabel" class="modal-title text-white">
             <span>新增產品</span>
           </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
