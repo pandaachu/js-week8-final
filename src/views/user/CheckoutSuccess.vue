@@ -19,16 +19,16 @@
               <div class="card-body px-4 py-0">
                 <ul class="list-group list-group-item-white list-group-flush bg-transparent">
                   <li class="list-group-item bg-transparent px-0">
-                    <div class="d-flex mt-2">
-                      <img src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80" alt="" class="mr-2" style="width: 60px; height: 60px; object-fit: cover">
-                      <div class="w-100 d-flex flex-column" v-for="order in tempOrders.products" :key="order.id">
+                    <div class="d-flex mt-2" v-for="(order,index) in tempOrders.products" :key="index">
+                      <img :src="order.product.imageUrl[0]" alt="" class="mr-2" style="width: 60px; height: 60px; object-fit: cover">
+                      <div class="w-100 d-flex flex-column">
                         <div class="d-flex justify-content-between font-weight-bold">
                           <h5>{{order.product.title}}</h5>
-                          <p class="mb-0">x <span>{{order.quantity}}{{order.product.unit}}</span></p>
+                          <p class="mb-0">x <span>{{order.quantity}} {{order.product.unit}}</span></p>
                         </div>
                         <div class="d-flex justify-content-between mt-auto">
-                          <p class="text-muted mb-0"><small>NT$12,000</small></p>
-                          <p class="mb-0">NT$12,000</p>
+                          <p class="text-muted mb-0"><small>{{order.product.origin_price}}</small></p>
+                          <p class="mb-0">{{order.product.price}}</p>
                         </div>
                       </div>
                     </div>
@@ -38,11 +38,11 @@
                       <tbody>
                         <tr>
                           <th scope="row" class="border-0 px-0 font-weight-normal">折扣</th>
-                          <td class="text-right border-0 px-0">NT$24,000</td>
+                          <td class="text-right border-0 px-0">{{ discount }}</td>
                         </tr>
                         <tr>
                           <th scope="row" class="border-0 px-0 pt-0 font-weight-normal">付款方式</th>
-                          <td class="text-right border-0 px-0 pt-0">{{ order.payment }}</td>
+                          <td class="text-right border-0 px-0 pt-0">{{ tempOrders.payment }}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -65,34 +65,33 @@ export default {
   data () {
     return {
       isLoading: false,
-      tempProduct: {},
-      products: [],
-      carts: [],
+      // products: [],
+      // carts: [],
       cartTotal: 0,
       discount: 0,
-      tempOrders: {},
-      id: this.$route.params.id,
-      status: {
-        loadingItem: '', // 要預先定義 loadingItem, 不然會出錯
-        loadingUpdateCart: ''
-      },
-      user: {
-        name: '',
-        email: '',
-        tel: '',
-        address: '',
+      orders: [],
+      tempOrders: {
+        id: '',
         payment: '',
-        message: ''
-      }
+        products: []
+      },
+      id: this.$route.params.id
+      // status: {
+      //   loadingItem: '', // 要預先定義 loadingItem, 不然會出錯
+      //   loadingUpdateCart: ''
+      // }
     }
   },
   methods: {
     updateTotal () {
       // 累加總金額，先歸零後重新計算
       this.cartTotal = 0
-      this.carts.forEach((item) => {
+      this.discount = 0
+      this.tempOrders.products.forEach((item) => {
         this.cartTotal += item.product.price * item.quantity
+        this.discount += item.product.origin_price - item.product.price
       })
+      console.log(this.cartTotal)
     },
     // 抓下結帳後的訂單資料
     getThisOrder () {
@@ -112,6 +111,7 @@ export default {
         // console.log('orders', res)
         this.orders = res.data.data
         this.getThisOrder()
+        this.updateTotal()
       }).catch(() => {
         this.isLoading = false
       })
@@ -131,7 +131,7 @@ export default {
     calculateDiscount () {
       this.discount = 0
       this.originCartTotal = 0
-      this.carts.forEach((item) => {
+      this.tempOrders.forEach((item) => {
         this.discount += item.product.origin_price - item.product.price
         this.originCartTotal += item.product.origin_price
       })
@@ -140,9 +140,9 @@ export default {
     }
   },
   created () {
-    this.updateTotal()
-    // this.getCart()
     this.getOrders()
+    // this.updateTotal()
+    // this.getCart()
   }
 }
 </script>
