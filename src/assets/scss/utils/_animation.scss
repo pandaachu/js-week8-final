@@ -6,6 +6,14 @@
     opacity: 0;
   }
 }
+@keyframes img_in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
 
 
 @keyframes colorText {
@@ -24,5 +32,13 @@
   100% {
       transform: rotate(360deg);
       
+  }
+}
+@keyframes leftToRight {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 95%;
   }
 }

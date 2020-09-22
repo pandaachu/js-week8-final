@@ -70,7 +70,8 @@ $colors: map-merge(
 
 $primary:       $newDark !default;
 $primary--t:    $newDark--transparent !default;
-$secondary:     $gray-600 !default;
+$primary--t90: rgba(11, 10, 9, 0.9);
+$secondary:     #e68e20 !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
@@ -84,6 +85,8 @@ $theme-colors: map-merge(
   (
     "primary":    $primary,
     "primary--t": $primary--t,
+    "primary--t50": rgba(11, 10, 9, 0.6),
+    "primary--t90": rgba(11, 10, 9, 0.9),
     "secondary":  $secondary,
     "success":    $success,
     "info":       $info,

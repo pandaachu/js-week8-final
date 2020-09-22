@@ -1,14 +1,14 @@
 <template>
   <div id="loading">
-      <div class="load-center">
-        <div class="line-wrap">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-        </div>
+    <div class="load-center">
+      <div class="line-wrap">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
       </div>
-  <div id="progress-bar" class="load-line" style="width: 98.1481%;"></div>
+    </div>
+    <div id="progress-bar" class="load-line leftToRight"></div>
   </div>
 </template>
 
@@ -17,8 +17,13 @@
 import { TweenMax } from 'gsap'
 
 export default {
-  methods: {
-
+  created () {
+    const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`
+    this.$http
+      .get(url)
+      .then((res) => {
+        console.log(res)
+      })
   },
   mounted () {
     TweenMax.to('#loading', 0.5, {
@@ -28,7 +33,8 @@ export default {
       // ease: Quart.easeOut,
       onComplete: function () {
         // onComplete do something
-        $('.l-home ').addClass('on')
+        $('.l-home').addClass('on')
+        // $('.l-navbar ').addClass('on')
         setTimeout(function () {
           $('.kvSection .kvTitle ').addClass('on')
           $('.kvSection .kv-en').addClass('on')

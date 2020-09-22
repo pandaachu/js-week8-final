@@ -1,24 +1,24 @@
 <template>
-  <div class="l-navbar bg-primary sticky-top">
+  <div class="l-navbar bg-primary--t50 sticky-top">
     <div class="container">
-      <nav class="navbar px-0 navbar-expand-lg navbar-dark bg-primary">
+      <nav class="navbar px-0 navbar-expand-lg">
         <router-link to="/" class="navbar-brand position-absolute" href="#" style="left: 50%; transform: translate(-50%, -50%); top: 50%;">FOREST</router-link>
         <button style="focus:outline: 0" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse bg-primary--t custom-header-md-open" id="navbarNav">
-          <ul class="navbar-nav pl-3 pl-lg-0">
+        <div class="collapse navbar-collapse custom-header-md-open" id="navbarNav">
+          <ul class="navbar-nav  pl-3 pl-lg-0">
             <li class="nav-item active">
-              <router-link to="/" class="nav-link pl-0">首頁 <span class="sr-only">(current)</span></router-link>
+              <router-link to="/" class="nav-link pl-0 text-secondary ">首頁 <span class="sr-only">(current)</span></router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/about" class="nav-link">關於</router-link>
+              <router-link to="/about" class="nav-link text-secondary ">關於</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/products" class="nav-link">產品列表</router-link>
+              <router-link to="/products" class="nav-link text-secondary ">產品列表</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/admin/login" class="nav-link">登入</router-link>
+              <router-link to="/admin/login" class="nav-link text-secondary ">登入</router-link>
             </li>
           </ul>
         </div>

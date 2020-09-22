@@ -1,5 +1,16 @@
 <template>
   <div class="l-home text-white">
+    <div id="loading">
+      <div class="load-center">
+        <div class="line-wrap">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+      <div id="progress-bar" class="load-line"></div>
+    </div>
     <!-- hero banner -->
     <section class="l-home__hero-1 p-relative">
       <div class="bg-img l-bg-no-repeat-tc l-bg-no-repeat-tc--shine">
@@ -127,8 +138,8 @@
 </style>
 
 <script>
-// /* global $ */
-import { gsap } from 'gsap'
+/* global $ */
+import { gsap, Quart } from 'gsap'
 import TextPlugin from 'gsap/TextPlugin'
 gsap.registerPlugin(TextPlugin)
 
@@ -156,6 +167,47 @@ export default {
           value: 'Peace'
         },
         delay: 0
+      })
+
+    // loading
+    // gsap.to('#loading', 0.5, {
+    //   delay: 2,
+    //   display: 'none',
+    //   autoAlpha: 0,
+    //   // ease: Quart.easeOut,
+    //   onComplete: function () {
+    //     // onComplete do something
+    //     $('.l-home ').addClass('on')
+    //     setTimeout(function () {
+    //       $('.kvSection .kvTitle ').addClass('on')
+    //       $('.kvSection .kv-en').addClass('on')
+    //     }, 500)
+    //   }
+    // })
+  },
+  created () {
+    $('#progress-bar').addClass('w-0')
+    const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`
+    this.$http
+      .get(url)
+      .then((res) => {
+        // console.log(res)
+        $('#progress-bar').addClass('w-100')
+        gsap.to('#loading', 0.5, {
+          delay: 2,
+          display: 'none',
+          autoAlpha: 0,
+          ease: Quart.easeOut,
+          onComplete: function () {
+            // onComplete do something
+            $('.l-home').addClass('on')
+            $('.l-navbar ').addClass('on')
+            setTimeout(function () {
+              $('.l-home__content').addClass('on')
+              $('.l-home__carousel .container').addClass('on')
+            }, 500)
+          }
+        })
       })
   }
 

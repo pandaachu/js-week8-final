@@ -13,6 +13,12 @@
     top: 13rem;
     left: 10%;
     letter-spacing: 1.5px;
+    visibility: hidden;
+  }
+  &__content.on{
+    visibility: visible;
+    animation: img_in 2.5s ease;
+    // transition: .5s ease-in;
   }
   &__title{
     font-size: 5rem;
@@ -24,5 +30,12 @@
   &__carousel{
     background-image: url(../public/images/homeBg.jpg);
     background-size: 100%;
+    .container{
+      visibility: hidden;
+    }
+    .container.on{
+      visibility: visible;
+      animation: img_in 3s ease;
+    }
   }
 }

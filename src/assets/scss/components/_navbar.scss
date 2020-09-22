@@ -1,0 +1,8 @@
+.l-navbar{
+  visibility: hidden;
+}
+.l-navbar.on{
+  visibility: visible;
+  animation: img_in 1.5s ease;
+}
+

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <div style="min-height: 400px; background-image: url(https://images.unsplash.com/photo-1480399129128-2066acb5009e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+      <div style="min-height: 400px; background-image: url(https://images.unsplash.com/photo-1532728233432-ca70fefe237a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
       background-position: center center;">
       </div>
       <div class="mt-5 mb-7">
