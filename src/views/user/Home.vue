@@ -82,6 +82,7 @@
         </div>
       </div>
       <div class="container l-home__function pt-5">
+        <icon iconName="border" />
         <div class="row">
           <div class="col-6 mb-5">
             <div class="card bg-dark text-white">
