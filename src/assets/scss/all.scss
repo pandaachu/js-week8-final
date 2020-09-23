@@ -14,10 +14,12 @@
 @import 'utils/mediaQuery';
 @import 'utils/background';
 @import 'utils/position';
+@import 'utils/letter-spacing';
 
 // components
 @import 'components/loading';
 @import 'components/navbar';
 @import 'components/textDeco';
+@import 'components/logo';
 // pages
 @import 'pages/home'

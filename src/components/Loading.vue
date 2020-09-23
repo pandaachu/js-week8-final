@@ -8,13 +8,13 @@
         <div class="line"></div>
       </div>
     </div>
-    <div id="progress-bar" class="load-line leftToRight"></div>
+    <div id="progress-bar" class="load-line"></div>
   </div>
 </template>
 
 <script>
 /* global $ */
-import { TweenMax } from 'gsap'
+import { gsap, Quart } from 'gsap'
 
 export default {
   created () {
@@ -22,25 +22,27 @@ export default {
     this.$http
       .get(url)
       .then((res) => {
-        console.log(res)
+        // console.log(res)
+        gsap.to('.load-line', 0.5, {
+          width: '100%',
+          ease: Quart.easeOut
+        })
+        gsap.to('#loading', 1, {
+          delay: 2,
+          display: 'none',
+          autoAlpha: 0,
+          ease: Quart.easeOut,
+          onComplete: function () {
+            // onComplete do something
+            $('.l-home').addClass('on')
+            // $('.l-navbar ').addClass('on')
+            setTimeout(function () {
+              $('.l-home__content').addClass('on')
+              $('.l-home__carousel .container').addClass('on')
+            }, 500)
+          }
+        })
       })
-  },
-  mounted () {
-    TweenMax.to('#loading', 0.5, {
-      delay: 2,
-      display: 'none',
-      autoAlpha: 0,
-      // ease: Quart.easeOut,
-      onComplete: function () {
-        // onComplete do something
-        $('.l-home').addClass('on')
-        // $('.l-navbar ').addClass('on')
-        setTimeout(function () {
-          $('.kvSection .kvTitle ').addClass('on')
-          $('.kvSection .kv-en').addClass('on')
-        }, 500)
-      }
-    })
   }
 }
 </script>
