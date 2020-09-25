@@ -31,6 +31,7 @@ Vue.component('icon', SvgIcon)
 
 // 一次性的匯入 SVG
 const requireAll = requireContext => requireContext.keys().map(requireContext)
+// const req = require.context('./components/svg-icons', true, /\.vue$/)
 const req = require.context('./assets/icon', true, /\.svg$/)
 requireAll(req)
 
