@@ -1,48 +1,18 @@
 <template>
-  <div class="l-products text-light container mt-5">
+  <div class="l-products container text-light mt-5">
     <Loading :active.sync="isLoading"></Loading>
-    <div class="row justify-content-center">
-      <div class="input-group col-5">
-        <select class="form-control w-25 btn btn-secondary text-white" v-model="input.category">
-          <option>全部</option>
-          <option>香精油</option>
-          <option>蠟燭</option>
-        </select>
-        <input v-model.trim="input.title" type="text" placeholder="搜尋" class="form-control btn btn-outline-secondary w-75">
-      </div>
-    </div>
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark justify-content-center border border-left-0 border-right-0 border-top border-bottom"> -->
-      <!-- <div class="navbar-nav flex-row overflow-auto navbar-custom-scroll mr-3">
-        <a class="nav-item nav-link text-nowrap px-2" href="#">全部 |</a>
-        <a class="nav-item nav-link text-nowrap px-2" href="#">香精油 |</a>
-        <a class="nav-item nav-link text-nowrap px-2 active" href="#">研究中  |<span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link text-nowrap px-2" href="#">蠟燭</a>
-      </div>
-      <div class="input-group-prepend">
-        <input type="text" class="form-control btn btn-outline-secondary">
-      </div> -->
-      <!-- <div class="input-group mb-3">
-        <select class="custom-select col-sm-1">
-          <option selected>選擇...</option>
-          <option value="1">全部</option>
-          <option value="2">香精油</option>
-          <option value="3">蠟燭</option>
-        </select>
-        <div class="input-group-prepend">
-          <input type="text" class="form-control btn btn-outline-secondary">
+      <div class="row justify-content-center">
+        <div class="input-group col-5">
+          <select class="form-control w-25 btn btn-secondary text-white" v-model="input.category">
+            <option>全部</option>
+            <option>香精油</option>
+            <option>蠟燭</option>
+          </select>
+          <!-- trim -> 去頭尾空白 -->
+          <input v-model.trim="input.title" type="text" placeholder="搜尋" class="form-control btn btn-outline-secondary w-75">
         </div>
-      </div> -->
-      <!-- <div class="input-group">
-        <select v-model="input.type" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <option value="">全部</option>
-          <option value="">香精油</option>
-          <option value="">蠟燭</option>
-        </select>
-        <input type="text" v-model.trim="input.title">
-      </div> -->
-    <!-- </nav> -->
-    <div class="container mt-md-5 mt-3 mb-7">
-      <div class="row">
+      </div>
+      <div class="row mt-md-5 mt-3 mb-7">
         <div class="col-md-4" v-for="product in titleFilter" :key="product.id">
           <div class="card bg-transparent border-gray mb-4 position-relative rounded-0">
             <img :src="product.imageUrl[0]" class="card-img-top rounded-0" alt="...">
@@ -55,23 +25,25 @@
               <p class="card-text text-muted mb-0">{{ product.content }}</p>
               <p class="text-muted mt-3"> {{ product.price }}</p>
             </div>
-            <AddToCartBtn></AddToCartBtn>
+            <a href="#" class="text-light" @click.prevent="AddToCart(product.id)">
+              <i class="fas fa-cart-plus position-absolute" style="font-size:1.2rem; right: 16px; bottom: 16px"></i>
+            </a>
+            <!-- <AddToCartBtn @getProductId="saveProductId(product.id)" :id="productId" ></AddToCartBtn> -->
           </div>
         </div>
       </div>
       <Pagination :pages="pagination" @update="getProducts"></Pagination>
     </div>
-  </div>
 </template>
 
 <script>
 import Pagination from '../../components/Pagination.vue'
-import AddToCartBtn from '../../components/AddToCartBtn.vue'
+// import AddToCartBtn from '../../components/AddToCartBtn.vue'
 
 export default {
   components: {
-    Pagination,
-    AddToCartBtn
+    Pagination
+    // AddToCartBtn
   },
   data () {
     return {
@@ -94,6 +66,26 @@ export default {
     //   // push 為方法
     //   this.$router.push(`/product/${item.id}`)
     // },
+    // saveProductId (id) {
+    //   this.productId = id
+    //   console.log(id)
+    // },
+    AddToCart (id) {
+      // console.log(id)
+      this.isLoading = true
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
+      this.$http.post(url, {
+        product: id, // 因為是產品單獨頁面，所以不需要另外把產品 id 帶進來，可以直接在這裡用 this
+        quantity: 1
+        // quantity: this.quantity
+      })
+        .then((res) => {
+          this.isLoading = false
+          // console.log(res)
+          // $emit 推送資料
+          this.$bus.$emit('get-cart') // $bus.$on 定義的方法
+        })
+    },
     getProducts (num = 1) { // 帶上分頁的參數 -> 第一種寫法
       this.isLoading = true
       // 防止 'url: "https://course-ec-api.hexschool.io/api/289038e7-cea7-4a49-afd4-86ec766c3f7f/admin/ec/products?page=undefined" ' --> 出現 undefined

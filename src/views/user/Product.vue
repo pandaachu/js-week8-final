@@ -148,7 +148,7 @@ export default {
       })
         .then((res) => {
           this.isLoading = false
-          console.log(res)
+          // console.log(res)
           // $emit 推送資料
           this.$bus.$emit('get-cart') // $bus.$on 定義的方法
         })
