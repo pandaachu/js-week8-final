@@ -181,17 +181,9 @@ export default {
           // 重新渲染購物車
           // console.log('成功')
           this.getCart()
-          // this.$router.push('/checkout-success/')
-          // this.$router.push('/checkout-success/')
           this.$router.push({
             path: `/checkout-success/${response.data.data.id}`
           })
-          // this.$router.push({
-          //   name: 'CheckoutSuccess',
-          //   params: {
-          //     id: response.data.data.id
-          //   }
-          // })
         }
       }).catch((error) => {
         this.isLoading = false

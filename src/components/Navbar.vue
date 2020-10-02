@@ -24,7 +24,7 @@
         </div>
         <div class="d-flex">
           <!-- <a href="#"><i class="fas fa-heart mr-5"></i></a> -->
-          <router-link to="/cart" class="text-secondary"><i class="fas fa-shopping-cart"></i>
+          <router-link to="/cart" class="cartIcon text-secondary" data-toggle="tooltip" data-placement="bottom" title="成功加入購物車"><i class="fas fa-shopping-cart"></i>
             <span
               class="badge badge-pill badge-danger"
               v-if="carts.length"
@@ -45,6 +45,7 @@
 </style>
 
 <script>
+/* global $ */
 import Logo from './Logo.vue'
 export default {
   components: {
@@ -71,9 +72,16 @@ export default {
     this.getCart()
     // $on('自訂義名稱', 要執行的函式) -> 接收資料
     this.$bus.$on('get-cart', () => {
+      $('.cartIcon').tooltip('show')
       this.getCart() // 重新取得購物車資料
     })
+    $('.cartIcon').tooltip('hide')
   }
+  // updated: function () { // 在重新渲染頁面後叫用，這時的頁面已經被重渲染成改變後的畫面。
+  //   this.$nextTick(function () {
+  //     $('[data-toggle="tooltip"]').tooltip()
+  //   })
+  // }
 }
 
 </script>

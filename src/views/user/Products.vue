@@ -1,6 +1,7 @@
 <template>
   <div class="l-products container text-light mt-5">
     <Loading :active.sync="isLoading"></Loading>
+    <alert-msg></alert-msg>
       <div class="row justify-content-center">
         <div class="input-group col-5">
           <select class="form-control w-25 btn btn-secondary text-white" v-model="input.category">
@@ -14,13 +15,13 @@
       </div>
       <div class="row mt-md-5 mt-3 mb-7">
         <div class="col-md-4" v-for="product in titleFilter" :key="product.id">
-          <div class="card bg-transparent border-gray mb-4 position-relative rounded-0">
-            <router-link :to="`/product/${product.id}`">
+          <div class="card bg-transparent border-secondary mb-4 position-relative rounded-0">
+            <router-link :to="`/product/${product.id}`" class="p-2">
               <img :src="product.imageUrl[0]" class="card-img-top rounded-0" alt="...">
-              <div class="card-body p-2">
-                <h4 class="mb-0 mt-3">{{ product.title }}</h4>
-                <p class="card-text text-muted mb-0">{{ product.content }}</p>
-                <p class="text-muted my-3"> {{ product.price }}</p>
+              <div class="card-body p-0">
+                <h5 class="text-secondary mb-2 mt-2">{{ product.title }}</h5>
+                <p class="card-text text-muted font-m mb-0" style="height: 2rem">{{ product.content }}</p>
+                <p class="text-muted my-3"> ${{ product.price }}</p>
               </div>
             </router-link>
             <!-- 之後再加我的最愛 -->
@@ -29,8 +30,9 @@
             </a> -->
             <!-- <AddToCartBtn @getProductId="saveProductId(product.id)" :id="productId" ></AddToCartBtn> -->
             <div class="position-absolute" style="font-size:1.2rem; right: 16px; bottom: 10px">
-              <a href="#" class="text-light" @click.prevent="AddToCart(product.id)" data-toggle="tooltip" data-placement="top" title="加到購物車">
+              <a href="#" class="text-light" @click.prevent="addToCart(product.id)" data-toggle="tooltip" data-placement="top" title="加到購物車">
                 <i class="fas fa-cart-plus" ></i>
+                <i v-if="product.id === status.loadingItem" class="fas fa-spinner fa-spin"></i>
               </a>
             </div>
           </div>
@@ -47,16 +49,20 @@
 <script>
 /* global $ */
 import Pagination from '../../components/Pagination.vue'
-// import AddToCartBtn from '../../components/AddToCartBtn.vue'
+import AlertMsg from '../../components/AlertMsg.vue'
 
 export default {
   components: {
-    Pagination
+    Pagination,
+    AlertMsg
     // AddToCartBtn
   },
   data () {
     return {
       isLoading: false,
+      status: {
+        loadingItem: ''
+      },
       temProduct: {
         imageUrl: [] // 資料結構
       },
@@ -69,19 +75,27 @@ export default {
     }
   },
   methods: {
-    AddToCart (id) {
+    addToCart (id) {
       // console.log(id)
-      this.isLoading = true
+      // this.isLoading = true
+      this.status.loadingItem = id
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.post(url, {
         product: id,
         quantity: 1
       })
         .then((res) => {
-          this.isLoading = false
+          // this.isLoading = false
           // console.log(res)
           // $emit 推送資料
           this.$bus.$emit('get-cart') // $bus.$on 定義的方法
+          this.status.loadingItem = ''
+        })
+        .catch(error => {
+          this.isLoading = false
+          this.status.loadingItem = ''
+          // axios 固定的寫法，否則 error 訊息不會出現
+          console.log(error.response)
         })
     },
     getProducts (num = 1) { // 帶上分頁的參數 -> 第一種寫法
@@ -121,12 +135,6 @@ export default {
         this.products = res.data.data
       })
     this.getProducts()
-  },
-  mounted () {
-    // $(function () {
-    //   $('[data-toggle="tooltip"]').tooltip()
-    // })
-    // $('[data-toggle="tooltip"]').tooltip()
   },
   updated: function () { // 在重新渲染頁面後叫用，這時的頁面已經被重渲染成改變後的畫面。
     this.$nextTick(function () {
