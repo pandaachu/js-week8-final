@@ -15,22 +15,24 @@
       <div class="row mt-md-5 mt-3 mb-7">
         <div class="col-md-4" v-for="product in titleFilter" :key="product.id">
           <div class="card bg-transparent border-gray mb-4 position-relative rounded-0">
-            <img :src="product.imageUrl[0]" class="card-img-top rounded-0" alt="...">
+            <router-link :to="`/product/${product.id}`">
+              <img :src="product.imageUrl[0]" class="card-img-top rounded-0" alt="...">
+              <div class="card-body p-2">
+                <h4 class="mb-0 mt-3">{{ product.title }}</h4>
+                <p class="card-text text-muted mb-0">{{ product.content }}</p>
+                <p class="text-muted my-3"> {{ product.price }}</p>
+              </div>
+            </router-link>
             <!-- 之後再加我的最愛 -->
             <!-- <a href="#" class="text-light">
               <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
             </a> -->
-            <div class="card-body p-2">
-              <h4 class="mb-0 mt-3"><router-link :to="`/product/${product.id}`" >{{ product.title }}</router-link></h4>
-              <p class="card-text text-muted mb-0">{{ product.content }}</p>
-              <p class="text-muted mt-3"> {{ product.price }}</p>
-            </div>
-            <div class=" position-absolute" style="font-size:1.2rem; right: 16px; bottom: 16px">
+            <!-- <AddToCartBtn @getProductId="saveProductId(product.id)" :id="productId" ></AddToCartBtn> -->
+            <div class="position-absolute" style="font-size:1.2rem; right: 16px; bottom: 10px">
               <a href="#" class="text-light" @click.prevent="AddToCart(product.id)" data-toggle="tooltip" data-placement="top" title="加到購物車">
                 <i class="fas fa-cart-plus" ></i>
               </a>
             </div>
-            <!-- <AddToCartBtn @getProductId="saveProductId(product.id)" :id="productId" ></AddToCartBtn> -->
           </div>
         </div>
       </div>
@@ -103,6 +105,10 @@ export default {
               imageUrl: [] // 資料結構
             } // 把 temProduct 清除，避免重覆觸發
           }
+        })
+        .catch((error) => {
+          console.log(error)
+          this.isLoading = false
         })
     }
   },
