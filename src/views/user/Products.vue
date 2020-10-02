@@ -25,9 +25,11 @@
               <p class="card-text text-muted mb-0">{{ product.content }}</p>
               <p class="text-muted mt-3"> {{ product.price }}</p>
             </div>
-            <a href="#" class="text-light" @click.prevent="AddToCart(product.id)">
-              <i class="fas fa-cart-plus position-absolute" style="font-size:1.2rem; right: 16px; bottom: 16px"></i>
-            </a>
+            <div class=" position-absolute" style="font-size:1.2rem; right: 16px; bottom: 16px">
+              <a href="#" class="text-light" @click.prevent="AddToCart(product.id)" data-toggle="tooltip" data-placement="top" title="加到購物車">
+                <i class="fas fa-cart-plus" ></i>
+              </a>
+            </div>
             <!-- <AddToCartBtn @getProductId="saveProductId(product.id)" :id="productId" ></AddToCartBtn> -->
           </div>
         </div>
@@ -36,7 +38,12 @@
     </div>
 </template>
 
+<style lang="scss" scoped>
+
+</style>
+
 <script>
+/* global $ */
 import Pagination from '../../components/Pagination.vue'
 // import AddToCartBtn from '../../components/AddToCartBtn.vue'
 
@@ -60,24 +67,13 @@ export default {
     }
   },
   methods: {
-    // goProduct (item) {
-    //   // console.log(this.$router)
-    //   // 頁面轉換
-    //   // push 為方法
-    //   this.$router.push(`/product/${item.id}`)
-    // },
-    // saveProductId (id) {
-    //   this.productId = id
-    //   console.log(id)
-    // },
     AddToCart (id) {
       // console.log(id)
       this.isLoading = true
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.post(url, {
-        product: id, // 因為是產品單獨頁面，所以不需要另外把產品 id 帶進來，可以直接在這裡用 this
+        product: id,
         quantity: 1
-        // quantity: this.quantity
       })
         .then((res) => {
           this.isLoading = false
@@ -119,6 +115,17 @@ export default {
         this.products = res.data.data
       })
     this.getProducts()
+  },
+  mounted () {
+    // $(function () {
+    //   $('[data-toggle="tooltip"]').tooltip()
+    // })
+    // $('[data-toggle="tooltip"]').tooltip()
+  },
+  updated: function () { // 在重新渲染頁面後叫用，這時的頁面已經被重渲染成改變後的畫面。
+    this.$nextTick(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
   },
   computed: {
     categoryFilter () {
