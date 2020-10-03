@@ -1,7 +1,6 @@
 <template>
   <div class="l-products container text-light mt-5">
     <Loading :active.sync="isLoading"></Loading>
-    <alert-msg></alert-msg>
       <div class="row justify-content-center">
         <div class="input-group col-5">
           <select class="form-control w-25 btn btn-secondary text-white" v-model="input.category">
@@ -49,13 +48,10 @@
 <script>
 /* global $ */
 import Pagination from '../../components/Pagination.vue'
-import AlertMsg from '../../components/AlertMsg.vue'
 
 export default {
   components: {
-    Pagination,
-    AlertMsg
-    // AddToCartBtn
+    Pagination
   },
   data () {
     return {
@@ -63,6 +59,12 @@ export default {
       status: {
         loadingItem: ''
       },
+      messages: [
+        {
+          name: '重複加入',
+          content: '已有這筆訂單在購物車'
+        }
+      ],
       temProduct: {
         imageUrl: [] // 資料結構
       },
@@ -85,17 +87,16 @@ export default {
         quantity: 1
       })
         .then((res) => {
-          // this.isLoading = false
-          // console.log(res)
           // $emit 推送資料
           this.$bus.$emit('get-cart') // $bus.$on 定義的方法
+          // this.$bus.$emit('push-messages', this.messages.name) // $bus.$on 定義的方法
           this.status.loadingItem = ''
         })
         .catch(error => {
-          this.isLoading = false
           this.status.loadingItem = ''
           // axios 固定的寫法，否則 error 訊息不會出現
           console.log(error.response)
+          this.$bus.$emit('push-messages', this.messages[0])
         })
     },
     getProducts (num = 1) { // 帶上分頁的參數 -> 第一種寫法

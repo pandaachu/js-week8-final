@@ -2,6 +2,7 @@
   <div id="app" class="wrapper">
     <!-- 把 isLoading 載進 -->
     <loading :active.sync="isLoading"></loading>
+    <alert-msg></alert-msg>
     <!-- 使用 router-link 組件來導航. -->
     <!-- 通過傳入 `to` 屬性指定鏈接. -->
     <!-- <router-link> 默認會被渲染成一個 `<a>` 標籤 -->
@@ -13,8 +14,12 @@
 </template>
 
 <script>
+import AlertMsg from './components/AlertMsg.vue'
 // 匯出 loading
 export default {
+  components: {
+    AlertMsg
+  },
   // 元件裡面的資料要用 function return 的方式
   // false 效果不會出現
   data () {

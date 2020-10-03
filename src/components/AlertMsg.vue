@@ -1,6 +1,47 @@
 <template>
-  <div class="alert alert-success alert-dismissible fade show d-inline">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>成功!</strong> 指定操作成功提示信息。
+  <div style="position: fixed; top: 3rem; right: 20px; min-width: 10rem; z-index: 11000;">
+    <div
+      class="l-toast toast fade hide"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+      data-autohide="false"
+    >
+      <div class="l-toast__header toast-header">
+        <strong class="mr-auto text-white">{{message.name}}</strong>
+        <button
+          type="button"
+          class="ml-2 mb-1 close"
+          data-dismiss="toast"
+          aria-label="Close"
+        >
+          <span class="text-white" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        {{message.content}}
+      </div>
+    </div>
   </div>
 </template>
+
+<script>
+/* global $ */
+
+export default {
+  data () {
+    return {
+      message: []
+    }
+  },
+  created () {
+    this.$bus.$on('push-messages', (message) => {
+      // console.log(message)
+      this.message = message
+      setTimeout(() => {
+        $('.toast').toast('hide')
+      }, 5000)
+    })
+  }
+}
+</script>
