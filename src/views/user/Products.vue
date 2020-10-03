@@ -16,6 +16,12 @@
         <div class="col-md-4" v-for="product in titleFilter" :key="product.id">
           <div class="card bg-transparent border-secondary mb-4 position-relative rounded-0">
             <router-link :to="`/product/${product.id}`" class="p-2">
+              <span
+                class="badge badge-secondary badge-pill text-white position-absolute"
+                style="left: 16px; top: 16px"
+              >
+              {{product.category}}
+              </span>
               <img :src="product.imageUrl[0]" class="card-img-top rounded-0" alt="...">
               <div class="card-body p-0">
                 <h5 class="text-secondary mb-2 mt-2">{{ product.title }}</h5>
@@ -29,7 +35,7 @@
             </a> -->
             <!-- <AddToCartBtn @getProductId="saveProductId(product.id)" :id="productId" ></AddToCartBtn> -->
             <div class="position-absolute" style="font-size:1.2rem; right: 16px; bottom: 10px">
-              <a href="#" class="text-light" @click.prevent="addToCart(product.id)" data-toggle="tooltip" data-placement="top" title="加到購物車">
+              <a href="#" class="text-light" @click.prevent="addToCart(product.id)" v-tooltip:top="'加到購物車'">
                 <i class="fas fa-cart-plus" ></i>
                 <i v-if="product.id === status.loadingItem" class="fas fa-spinner fa-spin"></i>
               </a>
@@ -46,7 +52,7 @@
 </style>
 
 <script>
-/* global $ */
+// /* global $ */
 import Pagination from '../../components/Pagination.vue'
 
 export default {
@@ -61,7 +67,7 @@ export default {
       },
       messages: [
         {
-          name: '重複加入',
+          name: '加入失敗 - 重複加入',
           content: '已有這筆訂單在購物車'
         }
       ],
@@ -137,12 +143,16 @@ export default {
       })
     this.getProducts()
   },
-  updated: function () { // 在重新渲染頁面後叫用，這時的頁面已經被重渲染成改變後的畫面。
-    this.$nextTick(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
-  },
+  // updated: function () { // 在重新渲染頁面後叫用，這時的頁面已經被重渲染成改變後的畫面。
+  //   this.$nextTick(function () {
+  //     $('[data-toggle="tooltip"]').tooltip()
+  //   })
+  // },
   computed: {
+    // tooltipText: function () {
+    //   // put your logic here to change the tooltip text
+    //   return '加到購物車'
+    // },
     categoryFilter () {
       if (this.input.category !== '全部') { // 如果 input.category 不是全部
         return this.products.filter(item => {

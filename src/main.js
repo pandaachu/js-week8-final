@@ -68,6 +68,15 @@ Vue.use(VueAxios, axios)
 // event bus
 Vue.prototype.$bus = new Vue()
 
+// tooltip 提示字元設定
+Vue.directive('tooltip', function (el, binding) {
+  $(el).tooltip({
+    title: binding.value,
+    placement: binding.arg,
+    trigger: 'hover'
+  })
+})
+
 new Vue({
   router,
   render: h => h(App)

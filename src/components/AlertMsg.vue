@@ -40,7 +40,7 @@ export default {
       this.message = message
       setTimeout(() => {
         $('.toast').toast('hide')
-      }, 5000)
+      }, 8000)
     })
   }
 }
