@@ -1,4 +1,5 @@
 <template>
+<div class="l-background">
   <div class="l-products container text-light mt-5">
     <Loading :active.sync="isLoading"></Loading>
       <div class="row justify-content-center">
@@ -45,6 +46,8 @@
       </div>
       <Pagination :pages="pagination" @update="getProducts"></Pagination>
     </div>
+</div>
+
 </template>
 
 <style lang="scss" scoped>

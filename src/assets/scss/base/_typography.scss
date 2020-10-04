@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Optima nova LT Pro Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Optima nova LT Pro Light'), url('assets/font/OptimaNovaLTProLight.woff') format('woff');
+  }
+  .optimaNovaFont{
+    font-family: 'Optima nova LT Pro Light',sans-serif;
+  }
+
 $base-font-size: 1rem;
 $base-line-height: 1.5;
 // $font-xxl: 50px;
