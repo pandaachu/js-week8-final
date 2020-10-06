@@ -87,11 +87,11 @@
     <Loading :active.sync="isLoading"></Loading>
     <div class="l-product container">
       <div class="row justify-content-between align-items-center mt-5 mb-7">
-        <div class="col">
-          <!-- <div>
-            <img v-if="!product.price || product.price === product.origin_price" src="../../../public/images/kelly-sikkema-XU1-sAMZFqc-unsplash.jpg" alt="" class="rounded-circle mr-5" style="width: 200px; height: 200px; object-fit: cover;">
-            <img src="../../../public/images/kelly-sikkema-XU1-sAMZFqc-unsplash.jpg" alt="" class="rounded-circle mr-5" style="width: 200px; height: 200px; object-fit: cover;">
-          </div> -->
+        <div class="col position-relative">
+          <div class="position-absolute" style="bottom:0; right:-67px">
+            <img v-if="product.category === '香精油'" src="../../../public/images/oil-bottle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover;border:solid 2px #e68e20">
+            <img v-else-if="product.category === '蠟燭'" src="../../../public/images/candle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover; border:solid 2px #e68e20">
+          </div>
           <div
             class="my-4"
             style="height: 650px;background-position: center center;background-size:cover"
@@ -109,7 +109,7 @@
               >
               {{product.category}}
             </span>
-            <h2 class="mb-0 mb-4 optimaNovaFont letter-spacing-l">{{ product.title }}</h2>
+            <h2 class="mb-0 mb-4 optimaNovaFont letter-spacing-l font-weight-light">{{ product.title }}</h2>
             <div class="d-flex justify-content-between align-items-baseline">
               <!-- 售價(price)欄位是可選的，因此售價若為空，就顯示原價(origin_price)
               售價若不為空，就顯示原價(origin_price)與售價(price) -->
