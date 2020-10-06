@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="wrapper">
     <!-- 把 isLoading 載進 -->
-    <loading :active.sync="isLoading"></loading>
+    <!-- <loading :active.sync="isLoading"></loading> -->
     <alert-msg></alert-msg>
     <!-- 使用 router-link 組件來導航. -->
     <!-- 通過傳入 `to` 屬性指定鏈接. -->

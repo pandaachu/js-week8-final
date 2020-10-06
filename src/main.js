@@ -26,8 +26,8 @@ import router from './router'
 
 // 讓 SVG 全域性的引入，元件中就不用特地 import 了
 // 全域註冊一個新的元件 SvgIcon
-import SvgIcon from './components/SvgIcon'
-Vue.component('icon', SvgIcon)
+// import SvgIcon from './components/svg-icons/SvgIcon'
+// Vue.component('icon', SvgIcon)
 
 // 一次性的匯入 SVG
 const requireAll = requireContext => requireContext.keys().map(requireContext)

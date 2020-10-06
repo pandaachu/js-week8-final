@@ -5,7 +5,7 @@
   src: local('Optima nova LT Pro Light'), url('assets/font/OptimaNovaLTProLight.woff') format('woff');
   }
   .optimaNovaFont{
-    font-family: 'Optima nova LT Pro Light',sans-serif;
+    font-family: 'Optima nova LT Pro Light','Noto Sans TC',sans-serif;
   }
 
 $base-font-size: 1rem;
@@ -48,10 +48,11 @@ html {
   // font-size: $base-font-size;
   line-height: $base-line-height;
   // font-family: 'Tajawal',"Microsoft JhengHei", "微軟正黑體", sans-serif;
-  font-family: 'YuGothic',"Microsoft JhengHei", "微軟正黑體", sans-serif;
-
+  font-family: 'YuGothic','Noto Sans TC', sans-serif;
 }
-
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 400;
+}
 
 .h2 {
   font-size: $base-font-size * 2;

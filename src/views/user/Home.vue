@@ -1,6 +1,6 @@
 <template>
   <div class="l-home text-secondary">
-    <Loading></Loading>
+    <home-loading></home-loading>
     <!-- hero banner -->
     <section class="l-home__hero-1 p-relative">
       <div class="bg-img l-bg-no-repeat-tc l-bg-no-repeat-tc--shine">
@@ -51,17 +51,6 @@
             <div class="carousel-item">
               <div class="row justify-content-center py-7">
                 <div class="col-md-8 d-flex">
-                  <img src="../../../public/images/chelsea-shapouri-r40EYKVyutI-unsplash.jpg" alt="" class="rounded-circle mr-5" style="width: 200px; height: 200px; object-fit: cover;">
-                  <div class="d-flex flex-column justify-content-around">
-                    <h4 class="font-weight-bold">香水系列</h4>
-                    <p class="h5">“Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.”</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row justify-content-center py-7">
-                <div class="col-md-8 d-flex">
                   <img src="../../../public/images/kelly-sikkema-XU1-sAMZFqc-unsplash.jpg" alt="" class="rounded-circle mr-5" style="width: 200px; height: 200px; object-fit: cover;">
                   <div class="d-flex flex-column justify-content-around">
                     <h4 class="font-weight-bold">香氛系列</h4>
@@ -82,42 +71,24 @@
         </div>
       </div>
       <div class="container l-home__function pt-5">
-        <icon iconName="border" />
-        <div class="row">
-          <div class="col-6 mb-5">
-            <div class="card bg-dark text-white">
-              <img class="card-img" src="../../../public/images/function/quin-stevenson-3oyeaivM_fE-unsplash.jpg" alt="Card image">
-              <div class="card-img-overlay">
-                <h5 class="card-title">Sleep</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              </div>
-            </div>
+        <div class="titleGroup text-center">
+          <h2 class="titleGroup__title letter-spacing-l">在不同的場合</h2>
+          <h6 class="titleGroup__suptitle letter-spacing-xxl font-weight-light" style="margin-left:20px">搭配不同的香氣</h6>
+        </div>
+        <!-- <icon iconName="border" />-->
+        <div class="d-flex flex-column align-items-center">
+          <div class="imageFrameGroup position-relative">
+            <image-frame></image-frame>
+            <img class="imageFrameGroup__image position-absolute" src="../../../public/images/function/function-1.png" alt="">
           </div>
-          <div class="col-6 mb-5">
-            <div class="card bg-dark text-white">
-              <img class="card-img" src="../../../public/images/function/thomas-litangen-WQqc8MJ8cuw-unsplash.jpg" alt="Card image">
-              <div class="card-img-overlay">
-                <h5 class="card-title">Work</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              </div>
+          <div class="d-flex" style="margin-top:-5rem">
+            <div class="imageFrameGroup position-relative mr-5">
+              <image-frame></image-frame>
+              <img class="imageFrameGroup__image position-absolute" src="../../../public/images/function/function-2.png" alt="">
             </div>
-          </div>
-          <div class="col-6 mb-5">
-            <div class="card bg-dark text-white">
-              <img class="card-img" src="../../../public/images/function/annie-spratt-C8C020JnsjM-unsplash.jpg" alt="Card image">
-              <div class="card-img-overlay">
-                <h5 class="card-title">Relax</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 mb-5">
-            <div class="card bg-dark text-white">
-              <img class="card-img" src="../../../public/images/function/annie-spratt-C8C020JnsjM-unsplash.jpg" alt="Card image">
-              <div class="card-img-overlay">
-                <h5 class="card-title">Outside</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              </div>
+            <div class="imageFrameGroup position-relative">
+              <image-frame></image-frame>
+              <img class="imageFrameGroup__image position-absolute" src="../../../public/images/function/function-3.png" alt="">
             </div>
           </div>
         </div>
@@ -132,12 +103,14 @@
 // /* global $ */
 import { gsap } from 'gsap'
 import TextPlugin from 'gsap/TextPlugin'
-import Loading from '../../components/Loading.vue'
+import HomeLoading from '../../components/HomeLoading.vue'
+import ImageFrame from '../../components/ImageFrame.vue'
 gsap.registerPlugin(TextPlugin)
 
 export default {
   components: {
-    Loading
+    HomeLoading,
+    ImageFrame
   },
   data () {
     return {

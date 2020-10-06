@@ -1,11 +1,11 @@
 <template>
-<div>
+<div class="imageFrameGroup__frame">
   <!-- 1. Inline SVG -->
   <svg id="border" data-name="border" class="svgIcon-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 534 534">
     <defs>
       <!-- <style>.cls-1{fill:#e68e20;}</style> -->
       <mask id="theMask">
-        <rect id="theSquare" x="0" y="-534" width="534" height="534" fill="#fff" />
+        <rect id="theSquare" class="theSquare" x="0" y="-534" width="534" height="534" fill="#fff" />
       </mask>
     </defs>
     <g id="toBeRevealed" mask="url(#theMask)" fill="#e68e20">
@@ -22,10 +22,11 @@
 
 <style lang="scss" scoped>
   .svgIcon-border{
-    width: 50%;
-    // &__border{
-    //   fill:#e68e20
-    // }
+    width: 555px;
+    &__border{
+      fill:#e68e20;
+      stroke: #e68e20;
+    }
   }
 </style>
 
@@ -35,7 +36,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 export default {
-  name: 'SvgIcon',
+  name: 'imageFrameGroup__frame',
   props: {
     // iconName: {
     //   type: String,
@@ -44,17 +45,31 @@ export default {
   },
   methods: {
     showBorder () {
-      gsap.to('#theSquare', {
-        scrollTrigger: {
-          trigger: '#border',
-          start: 'center center',
-          toggleActions: 'restart none none none',
-          markers: true
-        },
-        y: 534,
-        duration: 1.5,
-        yoyo: false
+      // const theSquares = document.querySelector('.theSquare')
+      gsap.utils.toArray('.imageFrameGroup__frame').forEach((el, i) => {
+        gsap.to(el.querySelector('.theSquare'), {
+          scrollTrigger: {
+            trigger: '.imageFrameGroup__frame',
+            start: '-100px 80%',
+            toggleActions: 'restart none none none',
+            markers: true
+          },
+          y: 534,
+          duration: 4
+        })
       })
+      // gsap.to('.theSquare', {
+      //   scrollTrigger: {
+      //     trigger: '.imageFrameGroup__frame',
+      //     // trigger element , view board
+      //     start: '-100px 80%',
+      //     toggleActions: 'restart none none none',
+      //     markers: true
+      //   },
+      //   y: 534,
+      //   duration: 2,
+      //   yoyo: false
+      // })
     }
   },
   mounted () {

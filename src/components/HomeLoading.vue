@@ -1,5 +1,5 @@
 <template>
-  <div id="loading">
+  <div id="loading" class="l-loading">
     <div class="load-center">
       <div class="line-wrap">
         <div class="line"></div>
