@@ -51,8 +51,8 @@ export default {
           scrollTrigger: {
             trigger: '.imageFrameGroup__frame',
             start: '-100px 80%',
-            toggleActions: 'restart none none none',
-            markers: true
+            toggleActions: 'restart none none none'
+            // markers: true
           },
           y: 534,
           duration: 4
