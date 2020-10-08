@@ -1,4 +1,43 @@
-
+// HOVER
+.hoverGroup{
+  &__underline {
+    display: inline-block;
+    position: relative;
+  }
+  &__underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: $secondary;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  &__image{
+    transition: filter 1s ease;
+  }
+  &__showText{
+    transition: opacity 1s ease;
+    opacity: 0;
+  }
+}
+.hoverGroup:hover{
+  transition-duration: 5s;
+  .hoverGroup__underline::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .hoverGroup__image{
+    // -webkit-filter:brightness(.5);
+    filter:brightness(.5);
+  }
+  .hoverGroup__showText{
+    opacity: 1;
+  }
+}
 
 
 @keyframes img_shine {

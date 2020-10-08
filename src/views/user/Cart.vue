@@ -3,43 +3,62 @@
     <Loading :active.sync="isLoading"></Loading>
     <div class="row justify-content-center my-5">
       <div class="col-md-6 bg-transparent py-5 border" style="min-height: calc(100vh - 56px - 76px);">
-        <div class="d-flex justify-content-between">
-          <h2 class="mt-2">購物車列表</h2>
+        <div class="d-flex justify-content-between align-items-end border-bottom pb-3">
+          <h2 class="mt-2">購物車列表 </h2>
+          <h6 class="text-muted">清除購物車</h6>
         </div>
-        <div class="d-flex mt-4 py-5 bg-transparent border-bottom border-top" v-for="item in carts" :key="item.product.id + 1">
+        <div
+          class="d-flex align-items-center py-3 bg-transparent border-bottom"
+          v-for="item in carts" :key="item.product.id + 1"
+        >
           <img :src="item.product.imageUrl" alt="" style="width: 120px; height: 120px; object-fit: cover;">
           <div class="w-100 p-3 position-relative">
-            <a href="#" class="position-absolute" style="top: 16px; right: 16px;" @click="removeItem(item.product.id)"><i class="fas fa-times"></i></a>
-            <p class="mb-0 font-weight-bold">{{ item.product.title }}</p>
+            <a
+              href="#"
+              class="position-absolute"
+              style="top: 16px; right: 16px;"
+              @click="removeItem(item.product.id)"
+            >
+              <i class="fas fa-times"></i>
+            </a>
+            <span
+              class="badge badge-secondary badge-pill text-white font-weight-light mb-1"
+            >
+              {{item.product.category}}
+            </span>
+            <p class="mb-1 font-weight-bold">{{ item.product.title }}</p>
             <p class="mb-1 text-muted" style="font-size: 14px;">{{ item.product.content }}</p>
             <div class="d-flex justify-content-between align-items-center w-100">
-              <div class="input-group w-50 align-items-center">
+              <div class="input-group w-50 align-items-center" style="background-color:#191b1d">
                 <div class="input-group-prepend pr-1">
                   <button class="btn"
-                      type="button" :disabled="item.quantity === 1 "
-                      @click="item.quantity --; updateQuantity(item.product.id, item.quantity)"
-                      >
-                      <i class="fas fa-minus"></i>
+                    type="button" :disabled="item.quantity === 1 "
+                    @click="item.quantity --; updateQuantity(item.product.id, item.quantity)"
+                  >
+                    <i class="fas fa-minus"></i>
                   </button>
-                  <!-- a tag can't use disabled -->
-                  <!-- <a href="#" :disabled="item.quantity === 1 "
-                      @click.prevent="item.quantity --; updateQuantity(item.product.id, item.quantity)"
-                  ><i class="fas fa-minus"></i></a> -->
                 </div>
-                <input type="text" class="form-control border-0 text-center my-auto shadow-none bg-transparent text-white px-0" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="1"
-                v-model="item.quantity"
-                @change="updateQuantity(item.product.id, item.quantity)">
+                <input
+                  type="text"
+                  class="form-control border-0 text-center my-auto shadow-none bg-transparent text-white px-0"
+                  placeholder=""
+                  aria-label="Example text with button addon"
+                  aria-describedby="button-addon1"
+                  value="1"
+                  v-model="item.quantity"
+                  @change="updateQuantity(item.product.id, item.quantity)"
+                >
                 <div class="input-group-append pl-1">
                   <button class="btn"
-                      type="button" @click="item.quantity ++; updateQuantity(item.product.id, item.quantity)"
-                      >
-                      <i class="fas fa-plus"></i>
+                    type="button" @click="item.quantity ++; updateQuantity(item.product.id, item.quantity)"
+                  >
+                    <i class="fas fa-plus"></i>
                   </button>
                   <!-- <a href="#" @click.prevent="item.quantity ++; updateQuantity(item.product.id, item.quantity)"
                     :disabled="status.loadingUpdateCart === item.product.id"><i class="fas fa-plus" ></i></a> -->
                 </div>
               </div>
-              <p class="mb-0 ml-auto">{{ item.product.price }}</p>
+              <p class="mb-0 ml-auto">${{ item.product.price }}</p>
             </div>
           </div>
         </div>
@@ -47,17 +66,17 @@
           <tbody>
             <tr>
               <th scope="row" class="border-0 px-0 font-weight-normal">原價</th>
-              <td class="text-right border-0 px-0">{{ originCartTotal }}</td>
+              <td class="text-right border-0 px-0">${{ originCartTotal }}</td>
             </tr>
             <tr>
               <th scope="row" class="border-0 px-0 pt-0 font-weight-normal">折扣</th>
-              <td class="text-right border-0 px-0 pt-0">{{ discount }}</td>
+              <td class="text-right border-0 px-0 pt-0">${{ discount }}</td>
             </tr>
           </tbody>
         </table>
         <div class="d-flex justify-content-between mt-4">
           <p class="mb-0 h4 font-weight-bold">總計</p>
-          <p class="mb-0 h4 font-weight-bold">{{ cartTotal }}</p>
+          <p class="mb-0 h4 font-weight-bold">${{ cartTotal }}</p>
         </div>
         <router-link to="/checkout" class="btn btn-dark btn-block mt-4 rounded-0 py-3">確認訂單</router-link>
       </div>

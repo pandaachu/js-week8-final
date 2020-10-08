@@ -41,31 +41,33 @@
             </h6>
           </div>
           <div class="l-home__collection__slider d-flex flex-column">
-            <div class="d-flex justify-content-around l-home__collection__slider-item mb-5 pb-5">
+            <router-link to="/collections-oil" class="hoverGroup d-flex justify-content-around l-home__collection__slider-item text-secondary mb-5 pb-5">
               <img
+                class="custom-border-bottom hoverGroup__image"
                 data-aos="custom-fade-up"
                 data-aos-duration="3000"
-                data-aos-delay="400"
+                data-aos-delay="200"
                 src="../../../public/images/oil-collection.jpg" alt=""
               >
               <div
                 style="width:350px"
                 class="d-flex flex-column justify-content-center align-items-center mt-5"
                 data-aos="custom-fade-left"
-                data-aos-duration="3000"
-                data-aos-delay="100"
+                data-aos-duration="2000"
+                data-aos-delay="1500"
               >
-                <h4 class="letter-spacing-l mb-4">精油系列</h4>
+                <h4 class="hoverGroup__underline letter-spacing-l pb-2 mb-4">精油系列</h4>
                 <p class="font-weight-lighter letter-spacing-m">選用來自世界各地的天然素材製作，再經過傳統的水分蒸餾方法提取精油。
                 每個步驟皆確保只有品質最高的精油能夠順利通過品質控制、品質保證，
                 讓顧客每次收到的精油品質都是最好的。</p>
               </div>
-            </div>
-            <div class="d-flex flex-row-reverse justify-content-around l-home__collection__slider-item mb-5">
+            </router-link>
+            <router-link to="/collections-candle" class="hoverGroup d-flex flex-row-reverse justify-content-around l-home__collection__slider-item text-secondary mb-5">
               <img
+                class="custom-border-bottom hoverGroup__image"
                 data-aos="custom-fade-up"
                 data-aos-duration="3000"
-                data-aos-delay="400"
+                data-aos-delay="200"
                 src="../../../public/images/candle-collection.jpg" alt=""
               >
               <div
@@ -73,12 +75,12 @@
                 class="d-flex flex-column justify-content-center align-items-center mt-5"
                 data-aos="custom-fade-right"
                 data-aos-duration="3000"
-                data-aos-delay="100"
+                data-aos-delay="1500"
               >
-                <h4 class="letter-spacing-l mb-4">蠟燭系列</h4>
+                <h4 class="hoverGroup__underline letter-spacing-l pb-2 mb-4">蠟燭系列</h4>
                 <p class="font-weight-lighter letter-spacing-m">堅持只用全天然成分，採非基改大豆蠟、蜜蠟、椰子油、乳油木果脂、不含鉛的棉線燭芯、芳療級植物精油製成。</p>
               </div>
-            </div>
+            </router-link>
           </div>
         </div>
       </section>
@@ -105,10 +107,10 @@
             </h6>
           </div>
           <div class="d-flex flex-column align-items-center">
-            <router-link to="/collections-sleep" href="#" class="imageFrameGroup position-relative d-flex justify-content-center text-secondary">
+            <div href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary">
                 <image-frame></image-frame>
                 <h4
-                  class="imageFrameGroup__title position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
+                  class="imageFrameGroup__title hoverGroup__underline position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
                   data-aos="custom-fade-up"
                   data-aos-duration="3000"
                   data-aos-delay="200"
@@ -116,13 +118,13 @@
                   Sleep
                   <span class="h6">/ 睡眠</span>
                 </h4>
-                <img class="imageFrameGroup__image position-absolute" src="../../../public/images/function/function-1.png" alt="">
-            </router-link>
+                <img class="imageFrameGroup__image hoverGroup__image position-absolute" src="../../../public/images/function/function-1.png" alt="">
+            </div>
             <div class="d-flex" style="margin-top:-5rem">
-              <a href="#" class="imageFrameGroup position-relative d-flex justify-content-center mr-5 text-secondary">
+              <a href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center mr-5 text-secondary">
                 <image-frame></image-frame>
                 <h4
-                  class="imageFrameGroup__title position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
+                  class="imageFrameGroup__title hoverGroup__underline position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
                   data-aos="custom-fade-up"
                   data-aos-duration="3000"
                   data-aos-delay="300"
@@ -132,10 +134,10 @@
                 </h4>
                 <img class="imageFrameGroup__image position-absolute" src="../../../public/images/function/function-2.png" alt="">
               </a>
-              <a href="#" class="imageFrameGroup position-relative d-flex justify-content-center text-secondary">
+              <a href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary">
                 <image-frame></image-frame>
                 <h4
-                  class="imageFrameGroup__title position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
+                  class="imageFrameGroup__title hoverGroup__underline position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
                   data-aos="custom-fade-up"
                   data-aos-duration="3000"
                   data-aos-delay="400"

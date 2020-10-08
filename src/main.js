@@ -20,6 +20,11 @@ import $ from 'jquery'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
+// vue-awesome-swiper // Custom Build with Swiper
+import Swiper, { Navigation, Pagination, Mousewheel, Autoplay } from 'swiper'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/swiper-bundle.css'
+
 // vee-validate
 import { ValidationObserver, ValidationProvider, configure, extend, localize } from 'vee-validate'
 import zhTW from 'vee-validate/dist/locale/zh_TW.json' // 語系檔案
@@ -68,6 +73,10 @@ Vue.component('Loading', Loading)
 
 // 套件加入到 Vue 的藍圖內 (原型內)
 Vue.use(VueAxios, axios)
+
+// Swiper modules
+Swiper.use([Navigation, Pagination, Mousewheel, Autoplay])
+Vue.use(VueAwesomeSwiper /* { default options with global component } */)
 
 // event bus
 Vue.prototype.$bus = new Vue()
