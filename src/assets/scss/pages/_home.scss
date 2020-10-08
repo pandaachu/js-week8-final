@@ -27,15 +27,20 @@
   &__subtitle{
     font-size: 2.5rem;
   }
-  &__carousel{
-    background-image: url(../public/images/homeBg.jpg);
+  // &__carousel{
+  //   background-image: url(../public/images/homeBg.jpg);
+  //   background-size: 100%;
+  //   .container{
+  //     visibility: hidden;
+  //   }
+  //   .container.on{
+  //     visibility: visible;
+  //     animation: img_in 3s ease;
+  //   }
+  // }
+  &__sectionbg{
+    background-image: url(../public/images/bg-2-3.jpg);
     background-size: 100%;
-    .container{
-      visibility: hidden;
-    }
-    .container.on{
-      visibility: visible;
-      animation: img_in 3s ease;
-    }
+    background-repeat: no-repeat;
   }
 }

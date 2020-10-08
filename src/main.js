@@ -16,6 +16,10 @@ import 'bootstrap'
 import $ from 'jquery'
 // 這一行是關鍵，若不這樣寫是無法在全域下使用
 
+// AOS
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
 // vee-validate
 import { ValidationObserver, ValidationProvider, configure, extend, localize } from 'vee-validate'
 import zhTW from 'vee-validate/dist/locale/zh_TW.json' // 語系檔案
@@ -68,6 +72,8 @@ Vue.use(VueAxios, axios)
 // event bus
 Vue.prototype.$bus = new Vue()
 
+Vue.prototype.aos = AOS
+
 // tooltip 提示字元設定
 Vue.directive('tooltip', function (el, binding) {
   $(el).tooltip({
@@ -78,6 +84,9 @@ Vue.directive('tooltip', function (el, binding) {
 })
 
 new Vue({
+  created () {
+    AOS.init()
+  },
   router,
   render: h => h(App)
 }).$mount('#app')

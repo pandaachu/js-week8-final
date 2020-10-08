@@ -55,7 +55,7 @@ export default {
             // markers: true
           },
           y: 534,
-          duration: 4
+          duration: 3.5
         })
       })
       // gsap.to('.theSquare', {

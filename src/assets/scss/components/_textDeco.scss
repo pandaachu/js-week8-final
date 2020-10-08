@@ -15,16 +15,16 @@
   display: inline-block;
 }
 .brackets:before {
-  border-left: solid 1px $white;
-  border-top: solid 1px $white;
-  border-bottom: solid 1px $white;
+  border-left: solid 1px $text-muted;
+  border-top: solid 1px $text-muted;
+  border-bottom: solid 1px $text-muted;
   left: 0;
 }
 .brackets:after {
   content: '';
-  border-top: solid 1px $white;
-  border-right: solid 1px $white;
-  border-bottom: solid 1px $white;
+  border-top: solid 1px $text-muted;
+  border-right: solid 1px $text-muted;
+  border-bottom: solid 1px $text-muted;
   right: 0;
 }
 

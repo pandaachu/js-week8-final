@@ -51,6 +51,11 @@ const routes = [
         path: '/shop',
         name: 'Shop',
         component: () => import('../views/user/Shop.vue')
+      },
+      {
+        path: '/collections-sleep',
+        name: 'CollectionsSleep',
+        component: () => import('../views/user/collections/CollectionsSleep.vue')
       }
     ]
   },

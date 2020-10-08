@@ -88,7 +88,7 @@
     <div class="l-product container">
       <div class="row justify-content-between align-items-center mt-5 mb-7">
         <div class="col position-relative">
-          <div class="position-absolute" style="bottom:0; right:-67px">
+          <div class="l-product__bottle position-absolute" style="bottom:0; right:-67px">
             <img v-if="product.category === '香精油'" src="../../../public/images/oil-bottle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover;border:solid 2px #e68e20">
             <img v-else-if="product.category === '蠟燭'" src="../../../public/images/candle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover; border:solid 2px #e68e20">
           </div>
@@ -105,7 +105,7 @@
         <div class="col-5 offset-1">
           <div class="scrollbarHide" style="overflow:auto; height: 60vh;">
             <span
-                class="badge badge-secondary badge-pill text-white mb-4"
+                class="badge badge-secondary badge-pill text-white mb-3"
               >
               {{product.category}}
             </span>
@@ -126,28 +126,44 @@
                 </div>
               </div>
             </div>
-            <p class="text-muted font-weight-lighter">{{ product.content }}</p>
-            <p class="brackets py-4 px-4 font-weight-lighter" style="letter-spacing:1.3px; line-height:1.6">{{ product.description }}</p>
-            <!-- 內容後續加強 -->
             <div class="bg-transparent mb-3">
               <div class="card border-0 bg-transparent">
                 <div class="card-header px-0 pt-4 mb-3 border border-bottom border-top-0 border-left-0 border-right-0">
-                    <h4 class="mb-0 letter-spacing-l">
-                      使用方法
-                    </h4>
+                  <h4 class="mb-0 letter-spacing-l">
+                    產品介紹
+                  </h4>
                 </div>
                 <div class="card-body font-weight-lighter">
-                  <ol class="p-0 letter-spacing-s">
+                  <h5 class="text-secondary font-weight-lighter text-center letter-spacing-m mb-4">{{ product.content }}</h5>
+                  <p class="brackets py-4 px-4 font-weight-lighter" style="letter-spacing:1.3px; line-height:1.6">{{ product.description }}</p>
+                </div>
+              </div>
+              <div class="card border-0 bg-transparent">
+                <div class="card-header px-0 pt-4 mb-3 border border-bottom border-top-0 border-left-0 border-right-0">
+                  <h4 class="mb-0 letter-spacing-l">
+                    使用方法
+                  </h4>
+                </div>
+                <div class="card-body font-weight-lighter">
+                  <ol v-if="product.category === '香精油'" class="p-0 letter-spacing-s">
                     <li class="pb-3">可以滴在吸收精油的材料，如紙類、布類、木類讓它自然揮發。</li>
                     <li class="pb-3">用罐子裝一些自然材料如乾花草，松果相思子這些，處理乾淨後，就可以當做最自然的擴香。</li>
                     <li class="pb-3">精油水氧機，一次5-10滴，用水稀釋後擴香，可以用一晚上。</li>
                     <li class="pb-3">使用精油擴香儀，精油沒有稀釋，原汁原味的擴香。</li>
                   </ol>
+                  <ol v-if="product.category === '蠟燭'" class="p-0 letter-spacing-s">
+                    <li class="pb-3">香氛蠟燭點燃前要修剪燭芯至0.5cm的長度。</li>
+                    <li class="pb-3">初次使用至少要燃燒持續兩個小時，讓所有蠟燭能夠均勻燒融。</li>
+                    <li class="pb-3">使用長型點火器，可以避免難以點燃和被燙傷的危險。</li>
+                    <li class="pb-3">不要用嘴吹熄蠟燭，可以使用長型點火器把燭芯推倒，或使用專業滅燭器具。</li>
+                  </ol>
                 </div>
+              </div>
+              <div class="card border-0 bg-transparent">
                 <div class="card-header px-0 pt-4 mb-3 border border-bottom border-top-0 border-left-0 border-right-0">
-                    <h4 class="mb-0 letter-spacing-l">
-                      注意事項
-                    </h4>
+                  <h4 class="mb-0 letter-spacing-l">
+                    注意事項
+                  </h4>
                 </div>
                 <p class="card-body pb-5 font-weight-lighter letter-spacing-s">
                   可能導致肌膚敏感，請放置在兒童無法拿取處。 <br>
@@ -173,7 +189,7 @@
               </div>
               <input
                 type="text"
-                class="form-control border-0 text-center my-auto shadow-none bg-transparent px-0"
+                class="form-control border-0 text-center my-auto shadow-none bg-transparent text-white px-0"
                 placeholder=""
                 aria-label="Example text with button addon" aria-describedby="button-addon1"
                 v-model="productAddToCart.quantity"
@@ -209,6 +225,9 @@
 </style>
 
 <script>
+// /* global $ */
+import { gsap } from 'gsap'
+
 export default {
   data () {
     return {
@@ -272,6 +291,22 @@ export default {
         this.product = res.data.data
       })
     this.getCart()
+  },
+  mounted () {
+    gsap.from('.l-product__bottle', {
+      opacity: 0,
+      y: 100,
+      delay: 1,
+      duration: 2,
+      ease: 'back'
+    })
+    gsap.from('.card', {
+      opacity: 0,
+      x: 50,
+      delay: 1,
+      duration: 2,
+      stagger: 0.5
+    })
   }
 }
 
