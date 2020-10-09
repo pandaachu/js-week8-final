@@ -69,6 +69,7 @@
                 <p class="contentScrollUp__item line-height-m font-weight-lighter letter-spacing-m">選用來自世界各地的天然素材製作，再經過傳統的水分蒸餾方法提取精油。
                 每個步驟皆確保只有品質最高的精油能夠順利通過品質控制、品質保證，
                 讓顧客每次收到的精油品質都是最好的。</p>
+                <p class="hoverGroup__showText text-white font-m letter-spacing-l">看更多<i class="fas fa-long-arrow-alt-right font-s ml-3"></i></p>
               </section>
             </router-link>
             <router-link to="/collections-candle" class="hoverGroup d-flex flex-row-reverse justify-content-around l-home__collection__slider-item text-secondary mb-5">

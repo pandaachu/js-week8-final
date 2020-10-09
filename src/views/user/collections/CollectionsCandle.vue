@@ -1,5 +1,6 @@
 <template>
 <div class="l-background l-collection">
+  <Loading :active.sync="isLoading"></Loading>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-10 mt-5">
@@ -81,8 +82,10 @@ export default {
       this.$refs.mySwiper.$swiper.autoplay.start()
     }
   },
-  mounted () {
+  created () {
     this.getProducts()
+  },
+  mounted () {
     // console.log('Current Swiper instance object', this.swiper)
     // this.swiper.slideTo(3, 1000, false)
     gsap.from('.l-collection__content', {

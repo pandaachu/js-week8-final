@@ -45,11 +45,10 @@ export default {
   },
   methods: {
     showBorder () {
-      // const theSquares = document.querySelector('.theSquare')
-      gsap.utils.toArray('.imageFrameGroup__frame').forEach((el, i) => {
-        gsap.to(el.querySelector('.theSquare'), {
+      gsap.utils.toArray('.imageFrameGroup__frame').forEach((section) => {
+        gsap.to(section.querySelector('.theSquare'), {
           scrollTrigger: {
-            trigger: '.imageFrameGroup__frame',
+            trigger: section,
             start: '-100px 80%',
             toggleActions: 'restart none none none'
             // markers: true
@@ -58,17 +57,17 @@ export default {
           duration: 3.5
         })
       })
-      // gsap.to('.theSquare', {
-      //   scrollTrigger: {
-      //     trigger: '.imageFrameGroup__frame',
-      //     // trigger element , view board
-      //     start: '-100px 80%',
-      //     toggleActions: 'restart none none none',
-      //     markers: true
-      //   },
-      //   y: 534,
-      //   duration: 2,
-      //   yoyo: false
+      // gsap.utils.toArray('.imageFrameGroup__frame').forEach((el, i) => {
+      //   gsap.to(el.querySelector('.theSquare'), {
+      //     scrollTrigger: {
+      //       trigger: '.imageFrameGroup__frame',
+      //       start: '-100px 80%',
+      //       toggleActions: 'restart none none none'
+      //       // markers: true
+      //     },
+      //     y: 534,
+      //     duration: 3.5
+      //   })
       // })
     }
   },
