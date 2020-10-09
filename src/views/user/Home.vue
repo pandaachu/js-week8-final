@@ -49,7 +49,7 @@
                 data-aos-delay="200"
                 src="../../../public/images/oil-collection.jpg" alt=""
               >
-              <div
+              <!-- <div
                 style="width:350px"
                 class="d-flex flex-column justify-content-center align-items-center mt-5"
                 data-aos="custom-fade-left"
@@ -60,7 +60,16 @@
                 <p class="font-weight-lighter letter-spacing-m">選用來自世界各地的天然素材製作，再經過傳統的水分蒸餾方法提取精油。
                 每個步驟皆確保只有品質最高的精油能夠順利通過品質控制、品質保證，
                 讓顧客每次收到的精油品質都是最好的。</p>
-              </div>
+              </div> -->
+              <section
+                style="width:350px"
+                class="contentScrollUp d-flex flex-column justify-content-center align-items-center mt-5"
+              >
+                <h4 class="contentScrollUp__item hoverGroup__underline letter-spacing-l pb-2 mb-4">精油系列</h4>
+                <p class="contentScrollUp__item line-height-m font-weight-lighter letter-spacing-m">選用來自世界各地的天然素材製作，再經過傳統的水分蒸餾方法提取精油。
+                每個步驟皆確保只有品質最高的精油能夠順利通過品質控制、品質保證，
+                讓顧客每次收到的精油品質都是最好的。</p>
+              </section>
             </router-link>
             <router-link to="/collections-candle" class="hoverGroup d-flex flex-row-reverse justify-content-around l-home__collection__slider-item text-secondary mb-5">
               <img
@@ -70,7 +79,7 @@
                 data-aos-delay="200"
                 src="../../../public/images/candle-collection.jpg" alt=""
               >
-              <div
+              <!-- <div
                 style="width:350px"
                 class="d-flex flex-column justify-content-center align-items-center mt-5"
                 data-aos="custom-fade-right"
@@ -79,7 +88,14 @@
               >
                 <h4 class="hoverGroup__underline letter-spacing-l pb-2 mb-4">蠟燭系列</h4>
                 <p class="font-weight-lighter letter-spacing-m">堅持只用全天然成分，採非基改大豆蠟、蜜蠟、椰子油、乳油木果脂、不含鉛的棉線燭芯、芳療級植物精油製成。</p>
-              </div>
+              </div> -->
+              <section
+                style="width:350px"
+                class="contentScrollUp d-flex flex-column justify-content-center align-items-center mt-5"
+              >
+                <h4 class="contentScrollUp__item hoverGroup__underline letter-spacing-l pb-2 mb-4">蠟燭系列</h4>
+                <p class="contentScrollUp__item font-weight-lighter line-height-m  letter-spacing-m">堅持只用全天然成分，採非基改大豆蠟、蜜蠟、椰子油、乳油木果脂、不含鉛的棉線燭芯、芳療級植物精油製成。</p>
+              </section>
             </router-link>
           </div>
         </div>
@@ -209,13 +225,12 @@
 </style>
 
 <script>
-// /* global $ */
 import { gsap } from 'gsap'
-// import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import TextPlugin from 'gsap/TextPlugin'
 import HomeLoading from '../../components/HomeLoading.vue'
 import ImageFrame from '../../components/ImageFrame.vue'
-gsap.registerPlugin(TextPlugin)
+gsap.registerPlugin(TextPlugin, ScrollTrigger)
 
 export default {
   components: {
@@ -226,37 +241,52 @@ export default {
     return {
     }
   },
+  methods: {
+    titleAnimation () {
+      const tl = gsap.timeline({ repeat: -1, yoyo: false, repeatDelay: 3 }) // 建立 timeline
+      tl.to('.splitText', 3, {
+        text: {
+          value: 'Better'
+        },
+        delay: 0.5
+      })
+        .to('.splitText', 2, {
+          text: {
+            value: 'Fun'
+          },
+          delay: 0
+        })
+        .to('.splitText', 2, {
+          text: {
+            value: 'Peace'
+          },
+          delay: 0
+        })
+    },
+    contentScrollUp () {
+      gsap.utils.toArray('.contentScrollUp').forEach((section) => {
+        gsap.from(section, {
+          scrollTrigger: {
+            trigger: section,
+            start: 'top bottom',
+            end: '+=100%',
+            toggleActions: 'restart none none none',
+            // markers: true,
+            // pin: true,
+            scrub: true
+          },
+          opacity: 0,
+          ease: 'power3.out',
+          y: 80,
+          // stagger: 0.5,
+          duration: 2
+        })
+      })
+    }
+  },
   mounted () {
-    const tl = gsap.timeline({ repeat: -1, yoyo: false, repeatDelay: 3 }) // 建立 timeline
-    tl.to('.splitText', 3, {
-      text: {
-        value: 'Better'
-      },
-      delay: 0.5
-    })
-      .to('.splitText', 2, {
-        text: {
-          value: 'Fun'
-        },
-        delay: 0
-      })
-      .to('.splitText', 2, {
-        text: {
-          value: 'Peace'
-        },
-        delay: 0
-      })
-
-    // gsap.to('.pContent', {
-    //   yPercent: -100,
-    //   ease: 'none',
-    //   scrollTrigger: {
-    //     trigger: '.pSection',
-    //     // start: "top bottom", // the default values
-    //     // end: "bottom top",
-    //     scrub: true
-    //   }
-    // })
+    this.titleAnimation()
+    this.contentScrollUp()
   }
 // export default {
 //   created () {
