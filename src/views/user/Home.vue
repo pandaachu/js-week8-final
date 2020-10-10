@@ -125,7 +125,7 @@
             </h6>
           </div>
           <div class="d-flex flex-column align-items-center">
-            <div href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary">
+            <a href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary">
                 <image-frame></image-frame>
                 <h4
                   class="imageFrameGroup__title hoverGroup__underline position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
@@ -137,7 +137,7 @@
                   <span class="h6">/ 睡眠</span>
                 </h4>
                 <img class="imageFrameGroup__image hoverGroup__image position-absolute" src="../../../public/images/function/function-1.png" alt="">
-            </div>
+            </a>
             <div class="d-flex" style="margin-top:-5rem">
               <a href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center mr-5 text-secondary">
                 <image-frame></image-frame>
@@ -150,7 +150,7 @@
                   Work
                   <span class="h6 ">/ 工作</span>
                 </h4>
-                <img class="imageFrameGroup__image position-absolute" src="../../../public/images/function/function-2.png" alt="">
+                <img class="hoverGroup__image imageFrameGroup__image position-absolute" src="../../../public/images/function/function-2.png" alt="">
               </a>
               <a href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary">
                 <image-frame></image-frame>
@@ -163,7 +163,7 @@
                   Relax
                   <span class="h6">/ 放鬆</span>
                 </h4>
-                <img class="imageFrameGroup__image position-absolute" src="../../../public/images/function/function-3.png" alt="">
+                <img class="hoverGroup__image imageFrameGroup__image position-absolute" src="../../../public/images/function/function-3.png" alt="">
               </a>
             </div>
           </div>
