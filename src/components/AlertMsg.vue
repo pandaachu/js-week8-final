@@ -1,5 +1,6 @@
 <template>
-  <div style="position: fixed; top: 3rem; right: 20px; min-width: 10rem; z-index: 11000;">
+<div class="container d-flex justify-content-end">
+  <div class="mt-5" style="position: fixed; min-width: 10rem; z-index: 11000;">
     <div
       class="l-toast toast fade hide"
       role="alert"
@@ -23,6 +24,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
