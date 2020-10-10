@@ -1,4 +1,5 @@
 <template>
+<div class="l-background">
   <div class="container">
       <div style="min-height: 400px; background-image: url(https://images.unsplash.com/photo-1532728233432-ca70fefe237a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
       background-position: center center;">
@@ -6,9 +7,9 @@
       <div class="mt-5 mb-7">
         <div class="row">
           <div class="col-md-6">
-            <h2>訂單成功</h2>
-            <p>感謝您的訂購，商品將儘快送達！</p>
-            <router-link to="/products" class="btn btn-outline-light mr-2 rounded-0 mb-4">繼續選購</router-link>
+            <h2 class="font-weight-light">訂單成功</h2>
+            <p class="letter-spacing-xl font-weight-lighter">感謝您的訂購，商品將儘快送達！</p>
+            <router-link to="/products" class="btn btn-outline-light mr-2 rounded-0 mb-4 letter-spacing-xl">繼續選購</router-link>
           </div>
           <!-- 取得已清空的訂單資料 -->
           <div class="col-md-6">
@@ -19,16 +20,16 @@
               <div class="card-body px-4 py-0">
                 <ul class="list-group list-group-item-white list-group-flush bg-transparent">
                   <li class="list-group-item bg-transparent px-0">
-                    <div class="d-flex mt-2" v-for="(order,index) in tempOrders.products" :key="index">
+                    <div class="d-flex mt-4" v-for="(order,index) in tempOrders.products" :key="index">
                       <img :src="order.product.imageUrl[0]" alt="" class="mr-2" style="width: 60px; height: 60px; object-fit: cover">
-                      <div class="w-100 d-flex flex-column">
+                      <div class="w-100 d-flex flex-column justify-content-center">
                         <div class="d-flex justify-content-between font-weight-bold">
-                          <h5>{{order.product.title}}</h5>
-                          <p class="mb-0">x <span>{{order.quantity}} {{order.product.unit}}</span></p>
+                          <h6 class="font-weight-light0">{{order.product.title}}</h6>
+                          <p class="mb-0 font-weight-light">x <span>{{order.quantity}} {{order.product.unit}}</span></p>
                         </div>
-                        <div class="d-flex justify-content-between mt-auto">
-                          <p class="text-muted mb-0"><small>{{order.product.origin_price}}</small></p>
-                          <p class="mb-0">{{order.product.price}}</p>
+                        <div class="d-flex justify-content-between">
+                          <p class="text-muted mb-0"> <del><small>{{order.product.origin_price | money}}</small></del> </p>
+                          <p class="mb-0">{{order.product.price | money}}</p>
                         </div>
                       </div>
                     </div>
@@ -38,7 +39,7 @@
                       <tbody>
                         <tr>
                           <th scope="row" class="border-0 px-0 font-weight-normal">折扣</th>
-                          <td class="text-right border-0 px-0">{{ discount }}</td>
+                          <td class="text-right border-0 px-0">{{ discount | money }}</td>
                         </tr>
                         <tr>
                           <th scope="row" class="border-0 px-0 pt-0 font-weight-normal">付款方式</th>
@@ -48,7 +49,7 @@
                     </table>
                     <div class="d-flex justify-content-between mt-2">
                       <p class="mb-0 h4 font-weight-bold">總計</p>
-                      <p class="mb-0 h4 font-weight-bold">{{ cartTotal }}</p>
+                      <p class="mb-0 h4 font-weight-bold">{{ cartTotal | money }}</p>
                     </div>
                   </li>
                 </ul>
@@ -58,6 +59,7 @@
         </div>
       </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -75,6 +77,16 @@ export default {
         payment: '',
         products: []
       },
+      messages: [
+        {
+          name: '加入失敗 - 重複加入',
+          content: '已有這筆訂單在購物車'
+        },
+        {
+          name: '訂單成功',
+          content: ''
+        }
+      ],
       id: this.$route.params.id
       // status: {
       //   loadingItem: '', // 要預先定義 loadingItem, 不然會出錯

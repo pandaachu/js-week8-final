@@ -86,12 +86,12 @@
                 <img :src="item.product.imageUrl" alt="" class="mr-2" style="width: 48px; height: 48px; object-fit: cover">
                 <div class="w-100">
                   <div class="d-flex justify-content-between font-weight-bold">
-                    <p class="mb-0">{{ item.product.title }}</p>
-                    <p class="mb-0">x{{ item.quantity }}</p>
+                    <p class="mb-0 font-weight-light">{{ item.product.title }}</p>
+                    <p class="mb-0 font-weight-light">x{{ item.quantity }}</p>
                   </div>
                   <div class="d-flex justify-content-between">
-                    <p class="text-muted mb-0"><small>{{ item.product.origin_price }}</small></p>
-                    <p class="mb-0">{{ item.product.price }}</p>
+                    <p class="text-muted mb-0"><small>{{ item.product.origin_price | money }}</small></p>
+                    <p class="mb-0">{{ item.product.price | money }}</p>
                   </div>
                 </div>
               </div>
@@ -99,7 +99,7 @@
                 <tbody>
                   <tr>
                     <th scope="row" class="border-0 px-0 pt-4 font-weight-normal">折扣</th>
-                    <td class="text-right border-0 px-0 pt-4">{{ discount }}</td>
+                    <td class="text-right border-0 px-0 pt-4">{{ discount | money }}</td>
                   </tr>
                   <tr>
                     <th scope="row" class="border-0 px-0 pt-0 pb-4 font-weight-normal">付款方式</th>
@@ -109,7 +109,7 @@
               </table>
               <div class="d-flex justify-content-between mt-4">
                 <p class="mb-0 h4 font-weight-bold">總計</p>
-                <p class="mb-0 h4 font-weight-bold">{{ cartTotal }}</p>
+                <p class="mb-0 h4 font-weight-bold">{{ cartTotal | money }}</p>
               </div>
             </div>
           </div>

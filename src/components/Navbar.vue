@@ -24,7 +24,7 @@
         </div>
         <div class="d-flex">
           <!-- <a href="#"><i class="fas fa-heart mr-5"></i></a> -->
-          <router-link to="/cart" class="cartIcon text-secondary" data-toggle="tooltip" data-placement="bottom" title="成功加入購物車"><i class="fas fa-shopping-cart"></i>
+          <router-link to="/cart" class="cartIcon text-secondary"><i class="fas fa-shopping-cart"></i>
             <span
               class="badge badge-pill badge-danger"
               v-if="carts.length"

@@ -5,7 +5,9 @@
       <div class="col-md-6 bg-transparent py-5 border" style="min-height: calc(100vh - 56px - 76px);">
         <div class="d-flex justify-content-between align-items-end border-bottom pb-3">
           <h2 class="mt-2">購物車列表 </h2>
-          <h6 class="text-muted">清除購物車</h6>
+          <button type="button" class="btn btn-outline-secondary btn-sm" @click="deleteAllCartItem()">
+              <i class="far fa-trash-alt"> 清空購物車</i>
+          </button>
         </div>
         <div
           class="d-flex align-items-center py-3 bg-transparent border-bottom"
@@ -98,7 +100,13 @@ export default {
       status: {
         loadingItem: '', // 要預先定義 loadingItem, 不然會出錯
         loadingUpdateCart: ''
-      }
+      },
+      messages: [
+        {
+          name: '刪除成功',
+          content: ''
+        }
+      ]
     }
   },
   methods: {
@@ -206,15 +214,21 @@ export default {
         .then(res => {
           this.isLoading = false
           this.getCart()
+          this.$bus.$emit('get-cart')
+          // 刪除成功訊息
+          this.messages.content = res.data.message
+          console.log(this.messages.content)
+          this.$bus.$emit('push-messages', this.messages[0])
         })
     },
     deleteAllCartItem () {
       this.isLoading = true
-      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}ec/shopping/all/product`
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping/all/product`
       this.$http.delete(url) // 以 axios.delete 的方法直接清空購物車後，關掉 loading 並刷新購物車
         .then(res => {
           this.isLoading = false
           this.getCart()
+          // console.log(response)
         })
         // console.log(this.total_cost)
       this.cartTotal = 0

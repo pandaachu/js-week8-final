@@ -1,10 +1,13 @@
 <template>
-<div class="l-background">
-  <div class="l-products container text-light mt-5">
+  <div class="l-background">
     <Loading :active.sync="isLoading"></Loading>
+    <div class="l-products container text-light mt-5">
       <div class="row justify-content-center">
         <div class="input-group col-5">
-          <select class="form-control w-25 btn btn-secondary text-white" v-model="input.category">
+          <select
+            class="form-control w-25 btn btn-secondary text-white"
+            v-model="input.category"
+          >
             <option>全部</option>
             <option>香精油</option>
             <option>蠟燭</option>
@@ -13,7 +16,7 @@
           <input v-model.trim="input.title" type="text" placeholder="搜尋" class="form-control btn btn-outline-secondary w-75">
         </div>
       </div>
-      <div class="row mt-md-5 mt-3 mb-7">
+      <div class="row mt-md-5 mt-3 mb-7 animation-scroll-section">
         <div class="col-md-4" v-for="product in titleFilter" :key="product.id">
           <div class="card bg-transparent border-secondary mb-4 position-relative rounded-0">
             <router-link :to="`/product/${product.id}`" class="p-2">
@@ -31,9 +34,9 @@
                   {{ product.origin_price | money }}
                   </div>
                   <div v-else class="mb-5">
-                    <div class="h6 letter-spacing-m mr-3">
+                    <div class="h6 text-muted letter-spacing-m mr-3">
                       {{ product.price | money }}
-                      <span class="font-s letter-spacing-m">
+                      <span class="font-s text-muted letter-spacing-m">
                         ( <del> {{ product.origin_price | money }}</del> )
                       </span>
                     </div>
@@ -56,16 +59,12 @@
       </div>
       <Pagination :pages="pagination" @update="getProducts"></Pagination>
     </div>
-</div>
+  </div>
 
 </template>
 
-<style lang="scss" scoped>
-
-</style>
-
 <script>
-// /* global $ */
+/* global $ */
 import Pagination from '../../components/Pagination.vue'
 
 export default {
@@ -82,6 +81,10 @@ export default {
         {
           name: '加入失敗 - 重複加入',
           content: '已有這筆訂單在購物車'
+        },
+        {
+          name: '加入成功',
+          content: '已加入到購物車'
         }
       ],
       temProduct: {
@@ -106,16 +109,19 @@ export default {
         quantity: 1
       })
         .then((res) => {
+          // console.log(res)
           // $emit 推送資料
           this.$bus.$emit('get-cart') // $bus.$on 定義的方法
-          // this.$bus.$emit('push-messages', this.messages.name) // $bus.$on 定義的方法
           this.status.loadingItem = ''
+          this.$bus.$emit('push-messages', this.messages[1])
+          $('.l-toast').toast('show')
         })
         .catch(error => {
           this.status.loadingItem = ''
           // axios 固定的寫法，否則 error 訊息不會出現
           console.log(error.response)
           this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
         })
     },
     getProducts (num = 1) { // 帶上分頁的參數 -> 第一種寫法
