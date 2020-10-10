@@ -27,7 +27,17 @@
               <div class="card-body p-0">
                 <h5 class="text-secondary mb-2 mt-2">{{ product.title }}</h5>
                 <p class="card-text text-muted font-m mb-0" style="height: 2rem">{{ product.content }}</p>
-                <p class="text-muted my-3"> ${{ product.price }}</p>
+                <div class="h6 letter-spacing-m mb-5" v-if="!product.price || product.price === product.origin_price">
+                  {{ product.origin_price | money }}
+                  </div>
+                  <div v-else class="mb-5">
+                    <div class="h6 letter-spacing-m mr-3">
+                      {{ product.price | money }}
+                      <span class="font-s letter-spacing-m">
+                        ( <del> {{ product.origin_price | money }}</del> )
+                      </span>
+                    </div>
+                  </div>
               </div>
             </router-link>
             <!-- 之後再加我的最愛 -->

@@ -1,93 +1,9 @@
 <template>
-  <!-- <div class="l-product">
-    <Loading :active.sync="isLoading"></Loading>
-    <div class="container">
-      <div style="min-height: 400px;
-      background-position: center center;"
-      :style="{ backgroundImage: `url(${product.imageUrl[0]})`}">
-      </div>
-      <div class="row justify-content-between mt-5 mb-7">
-        <div class="col-md-7">
-          <h2 class="mb-0 mb-4 optimaNovaFont letter-spacing-l">{{ product.title }}</h2>
-          <div class="d-flex justify-content-between align-items-baseline">
-            <div class="h5" v-if="!product.price || product.price === product.origin_price">
-            {{ product.origin_price }}
-            </div>
-            <div v-else class="d-flex align-items-end">
-              <del class="h6">${{ product.origin_price }} </del>
-              <div class="h5 pl-2">
-                ${{ product.price }}
-              </div>
-            </div>
-          </div>
-          <p class="text-muted">{{ product.content }}</p>
-          <div class="my-4">
-            <img :src="product.imageUrl[0]" alt="" class="img-fluid mt-4">
-          </div>
-          <p class="brackets py-4 px-4" style="letter-spacing:1.3px; line-height:1.6">{{ product.description }}</p>
-          <div class="accordion bg-transparent border border-bottom border-top-0 border-left-0 border-right-0 mb-3" id="accordionExample">
-            <div class="card border-0 bg-transparent">
-              <div class="card-header px-0 py-4 bg-transparent border border-bottom-0 border-top border-left-0 border-right-0" id="headingOne" data-toggle="collapse" data-target="#collapseOne">
-                <div class="d-flex justify-content-between align-items-center pr-1">
-                  <h4 class="mb-0">
-                    注意事項
-                  </h4>
-                  <i class="fas fa-minus"></i>
-                </div>
-              </div>
-              <div id="collapseOne" class="collapse bg-transparent show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body pb-5">
-                  可能導致肌膚敏感，請放置在兒童無法拿取處。懷孕、哺乳或接受治療者，請先諮詢醫師後再使用。避免接觸眼睛、耳內和敏感部位。
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="input-group mb-3 border mt-3">
-            <div class="input-group-prepend">
-              <button
-                class="btn btn-outline-dark rounded-0 border-0 py-3 text-gray"
-                id="button-addon2"
-                type="button"
-                :disabled="productAddToCart.quantity === 1"
-                @click="productAddToCart.quantity -- ; updateQuantity(productAddToCart.quantity)"
-              >
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
-            <input
-              type="text"
-              class="form-control border-0 text-center my-auto shadow-none bg-transparent px-0"
-              placeholder=""
-              aria-label="Example text with button addon" aria-describedby="button-addon1"
-              v-model="productAddToCart.quantity"
-            >
-            <div class="input-group-append">
-              <button
-                class="btn btn-outline-dark rounded-0 border-0 py-3 text-gray"
-                id="button-addon2"
-                type="button" @click="productAddToCart.quantity ++ ; updateQuantity(productAddToCart.quantity)"
-              >
-                <i class="fas fa-plus"></i>
-              </button>
-            </div>
-          </div>
-          <button
-            class="btn btn-dark btn-block rounded-0 py-3 letter-spacing-m"
-            @click="addToCart ()"
-            >
-            加入購物車
-          </button>
-        </div>
-      </div>
-    </div>
-  </div> -->
 <div class="l-background">
     <Loading :active.sync="isLoading"></Loading>
     <div class="l-product container">
       <div class="row justify-content-between align-items-center mt-5 mb-7">
-        <div class="col position-relative">
+        <div class="col-12 col-md-6 position-relative">
           <div class="l-product__bottle position-absolute" style="bottom:0; right:-67px">
             <img v-if="product.category === '香精油'" src="../../../public/images/oil-bottle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover;border:solid 2px #e68e20">
             <img v-else-if="product.category === '蠟燭'" src="../../../public/images/candle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover; border:solid 2px #e68e20">
@@ -102,7 +18,7 @@
             <img :src="product.imageUrl[0]" alt="" class="img-fluid mt-2">
           </div> -->
         </div>
-        <div class="col-5 offset-1">
+        <div class="col-12 col-md-5 offset-md-1">
           <div class="scrollbarHide" style="overflow:auto; height: 60vh;">
             <span
                 class="badge badge-secondary badge-pill text-white mb-3"
@@ -115,13 +31,13 @@
               售價若不為空，就顯示原價(origin_price)與售價(price) -->
               <!-- v-if 去判斷 -->
               <div class="h5 letter-spacing-m mb-5" v-if="!product.price || product.price === product.origin_price">
-              {{ product.origin_price }}
+              {{ product.origin_price | money }}
               </div>
               <div v-else class="mb-5">
                 <div class="h5 letter-spacing-m pl-2 mr-3">
-                  <small>$</small>{{ product.price }}
+                  {{ product.price | money }}
                   <span class="font-m letter-spacing-m">
-                    ( <del> <small>$</small>{{ product.origin_price }}</del> )
+                    ( <del> {{ product.origin_price | money }}</del> )
                   </span>
                 </div>
               </div>

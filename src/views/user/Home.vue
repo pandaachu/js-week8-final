@@ -19,9 +19,9 @@
       </div>
     </section>
     <div class="l-home__sectionbg pb-5">
-      <section class="l-home__collection pt-5">
-        <div class="container ">
-          <div class="titleGroup text-center">
+      <section class="l-home__collection container pt-5">
+        <div class="row">
+          <div class="col-12 titleGroup text-center">
             <h2
               class="titleGroup__title letter-spacing-l"
               data-aos="custom-fade-up"
@@ -40,8 +40,8 @@
               體驗不同的香氣
             </h6>
           </div>
-          <div class="l-home__collection__slider d-flex flex-column">
-            <router-link to="/collections-oil" class="hoverGroup d-flex justify-content-around l-home__collection__slider-item text-secondary mb-5 pb-5">
+          <div class="col l-home__collection__slider d-flex flex-column">
+            <router-link to="/collections-oil" class="hoverGroup d-flex flex-md-row flex-column justify-content-md-around l-home__collection__slider-item text-secondary mb-5 pb-5">
               <img
                 class="custom-border-bottom hoverGroup__image"
                 data-aos="custom-fade-up"
@@ -72,7 +72,7 @@
                 <p class="hoverGroup__showText text-white font-m letter-spacing-l">看更多<i class="fas fa-long-arrow-alt-right font-s ml-3"></i></p>
               </section>
             </router-link>
-            <router-link to="/collections-candle" class="hoverGroup d-flex flex-row-reverse justify-content-around l-home__collection__slider-item text-secondary mb-5">
+            <router-link to="/collections-candle" class="hoverGroup d-flex flex-column flex-md-row-reverse justify-content-md-around l-home__collection__slider-item text-secondary mb-5">
               <img
                 class="custom-border-bottom hoverGroup__image"
                 data-aos="custom-fade-up"
@@ -96,6 +96,7 @@
               >
                 <h4 class="contentScrollUp__item hoverGroup__underline letter-spacing-l pb-2 mb-4">蠟燭系列</h4>
                 <p class="contentScrollUp__item font-weight-lighter line-height-m  letter-spacing-m">堅持只用全天然成分，採非基改大豆蠟、蜜蠟、椰子油、乳油木果脂、不含鉛的棉線燭芯、芳療級植物精油製成。</p>
+                <p class="hoverGroup__showText text-white font-m letter-spacing-l">看更多<i class="fas fa-long-arrow-alt-right font-s ml-3"></i></p>
               </section>
             </router-link>
           </div>
