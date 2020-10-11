@@ -112,7 +112,7 @@
               data-aos-duration="3000"
               data-aos-delay="400"
             >
-              在不同的場合
+              不同的場合
             </h2>
             <h6
               class="titleGroup__suptitle letter-spacing-xxl font-weight-light"
@@ -136,6 +136,14 @@
                   Sleep
                   <span class="h6">/ 睡眠</span>
                 </h4>
+                <p
+                  class="hoverGroup__showText position-absolute m-0 text-center"
+                  style="top:40%;transform: translateY(50%);z-index: 1;"
+                >
+                  難以進入睡眠狀態的時候， <br>
+                  搭配寧神靜心的香味，<br>
+                  讓香氣飄散到屋裡的每個角落，讓你安然入眠
+                </p>
                 <img class="imageFrameGroup__image hoverGroup__image position-absolute" src="../../../public/images/function/function-1.png" alt="">
             </a>
             <div class="d-flex" style="margin-top:-5rem">
@@ -148,8 +156,16 @@
                   data-aos-delay="300"
                 >
                   Work
-                  <span class="h6 ">/ 工作</span>
+                  <span class="h6">/ 工作</span>
                 </h4>
+                <p
+                  class="hoverGroup__showText position-absolute m-0 text-center"
+                  style="top:40%;transform: translateY(50%);z-index: 1;"
+                >
+                  需要集中精神於工作時，<br>
+                  搭配提神、增加專注力的香味， <br>
+                  能夠讓你事半功倍，工作也能保持好心情
+                </p>
                 <img class="hoverGroup__image imageFrameGroup__image position-absolute" src="../../../public/images/function/function-2.png" alt="">
               </a>
               <a href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary">
@@ -163,6 +179,14 @@
                   Relax
                   <span class="h6">/ 放鬆</span>
                 </h4>
+                <p
+                  class="hoverGroup__showText position-absolute m-0 text-center"
+                  style="top:40%;transform: translateY(50%);z-index: 1;"
+                >
+                  在休閒的假日裡想放鬆的時候， <br>
+                  搭配柔和舒緩的香味， <br>
+                  隨時隨地放鬆轉換心情，過一個美好的假日！
+                </p>
                 <img class="hoverGroup__image imageFrameGroup__image position-absolute" src="../../../public/images/function/function-3.png" alt="">
               </a>
             </div>

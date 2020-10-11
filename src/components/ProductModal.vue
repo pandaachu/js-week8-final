@@ -15,19 +15,19 @@
             <div class="col-sm-4">
             <!-- 因為已經在編輯按鈕上綁定按下按鈕打開該產品資料 modal，且把資料存在 temProduct，所以這裡的 v-model 是綁 temProduct.imageUrl, 而不是 product.imageUrl -->
             <div v-for="i in 5" :key="i + 'img'" class="form-group">
-            <label :for="'img' + i">輸入圖片網址</label>
-            <input :id="'img' + i" v-model="temProduct.imageUrl[i - 1]" type="text" class="form-control"
-            placeholder="請輸入圖片連結">
+              <label :for="'img' + i">輸入圖片網址</label>
+              <input :id="'img' + i" v-model="temProduct.imageUrl[i - 1]" type="text" class="form-control"
+              placeholder="請輸入圖片連結">
             </div>
             <div class="form-group">
-            <!-- 這個方法能適合在新增產吅的時候用 -->
-                <label for="customFile">
-                  或 上傳圖片
-                  <i v-if="status.fileUploading" class="fas fa-spinner fa-spin"></i>
-                </label>
-                <input id="customFile" ref="file" type="file" class="form-control" @change="uploadFile">
-              </div>
-              <img :src="temProduct.imageUrl[0]" class="img-fluid" alt />
+            <!-- 這個方法能適合在新增產品的時候用 -->
+              <label for="customFile">
+                或 上傳圖片
+                <i v-if="status.fileUploading" class="fas fa-spinner fa-spin"></i>
+              </label>
+              <input id="customFile" ref="file" type="file" class="form-control" @change="uploadFile">
+            </div>
+            <img :src="temProduct.imageUrl[0]" class="img-fluid" alt />
             </div>
             <div class="col-sm-8">
               <div class="form-group">
@@ -40,7 +40,6 @@
                   placeholder="請輸入標題"
                 />
               </div>
-
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="category">分類</label>
@@ -63,7 +62,6 @@
                   />
                 </div>
               </div>
-
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="origin_price">原價</label>
@@ -87,7 +85,6 @@
                 </div>
               </div>
               <hr />
-
               <div class="form-group">
                 <label for="content">產品描述</label>
                 <textarea

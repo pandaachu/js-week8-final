@@ -8,8 +8,8 @@
           <th class="text-center" width="175">訂單日期</th>
           <th>購買產品</th>
           <th class="text-center">訂單總額</th>
-          <th>訂單付款方式</th>
-          <th class="text-center">付款狀態</th>
+          <th >訂單付款方式</th>
+          <th width="130" class="text-center">付款狀態</th>
           <th width="130">操作</th>
         </tr>
       </thead>
