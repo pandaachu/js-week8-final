@@ -8,13 +8,14 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/', // 對應的路徑
-    name: 'Home', // 元件呈現的名稱
+    // name: 'Home', // 元件呈現的名稱
     // component: Home, // 對應的元件
     component: () => import('../views/user/Shop.vue'),
     // redirect: '',
     children: [ // 巢狀結構
       {
         path: '', // 首頁
+        name: 'Home',
         component: () => import('../views/user/Home.vue')
       },
       {
@@ -46,11 +47,6 @@ const routes = [
         path: '/checkout-success/:id',
         name: 'CheckoutSuccess',
         component: () => import('../views/user/CheckoutSuccess.vue')
-      },
-      {
-        path: '/shop',
-        name: 'Shop',
-        component: () => import('../views/user/Shop.vue')
       },
       {
         path: '/collections-oil',
