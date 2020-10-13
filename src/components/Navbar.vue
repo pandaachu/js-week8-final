@@ -1,12 +1,12 @@
 <template>
   <div class="l-navbar bg-primary--t50 sticky-top">
     <div class="container">
-      <nav class="navbar px-0 navbar-expand-lg">
+      <nav class="navbar navbar-dark px-0 navbar-expand-lg">
         <router-link to="/" class="logo navbar-brand position-absolute text-secondary d-flex m-0" href="#"><Logo class="mr-3"></Logo>FOREST</router-link>
         <button style="focus:outline: 0" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse custom-header-md-open" id="navbarNav">
+        <div class="collapse navbar-collapse navbar-collapse-bg custom-header-md-open" id="navbarNav">
           <ul class="navbar-nav  pl-3 pl-lg-0">
             <li class="nav-item active">
               <router-link to="/" class="nav-link pl-0 text-secondary font-m letter-spacing-xl">首頁 <span class="sr-only">(current)</span></router-link>

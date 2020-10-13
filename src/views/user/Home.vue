@@ -4,8 +4,12 @@
     <!-- hero banner -->
     <section class="l-home__hero-1 p-relative">
       <div class="bg-img l-bg-no-repeat-tc l-bg-no-repeat-tc--shine">
-        <img style="width:100vw "
+        <img class="d-none d-md-block" style="width:100vw "
           src="../../../public/images/heroBannerHeight.gif"
+          alt=""
+        />
+        <img class="d-block d-md-none" style="width:100vw "
+          src="../../../public/images/heroBannerHeight_mb.gif"
           alt=""
         />
       </div>
@@ -19,7 +23,7 @@
       </div>
     </section>
     <div class="l-home__sectionbg pb-5">
-      <section class="l-home__collection container pt-5">
+      <section class="l-home__collection container pt-md-5">
         <div class="row">
           <div class="col-12 titleGroup text-center">
             <h2
