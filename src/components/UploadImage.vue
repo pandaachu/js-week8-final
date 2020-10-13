@@ -4,8 +4,7 @@
       <div class="modal-content border-0 text-primary">
         <div class="modal-header bg-dark">
           <h5 id="exampleModalLabel" class="modal-title text-white">
-            <span v-if="!temProduct.id">新增產品</span>
-            <span v-else> 編輯產品</span>
+            <span>新增產品</span>
           </h5>
           <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -14,21 +13,40 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-4">
-            <!-- 因為已經在編輯按鈕上綁定按下按鈕打開該產品資料 modal，且把資料存在 temProduct，所以這裡的 v-model 是綁 temProduct.imageUrl, 而不是 product.imageUrl -->
-            <div v-for="i in 5" :key="i + 'img'" class="form-group">
-              <label :for="'img' + i">輸入圖片網址</label>
-              <input :id="'img' + i" v-model="temProduct.imageUrl[i - 1]" type="text" class="form-control"
-              placeholder="請輸入圖片連結">
-            </div>
-            <div class="form-group">
-            <!-- 這個方法能適合在新增產品的時候用 -->
-              <label for="customFile">
-                或 上傳圖片
-                <i v-if="status.fileUploading" class="fas fa-spinner fa-spin"></i>
-              </label>
-              <input id="customFile" ref="file" type="file" class="form-control" @change="uploadFile">
-            </div>
-            <img :src="temProduct.imageUrl[0]" class="img-fluid" alt />
+              <div>
+                <div v-if="!temProduct.id" id="my-strictly-unique-vue-upload-multiple-image" style="display: flex; justify-content: center;">
+                  <vue-upload-multiple-image
+                    @upload-success="uploadImageSuccess"
+                    @before-remove="beforeRemove"
+                    @edit-image="editImage"
+                    :data-images="images"
+                    idUpload="myIdUpload"
+                    editUpload="myIdEdit"
+                    dragText="HI"
+                    browseText="圖片不可超過 2 MB"
+                    primaryText="默認圖片"
+                    markIsPrimaryText="設為默認圖片"
+                    popupText="該圖像將默認顯示"
+                    ></vue-upload-multiple-image>
+                </div>
+                <div v-else>
+                  <vue-upload-multiple-image
+                    @before-remove="beforeRemove"
+                    @edit-image="editImage"
+                    :data-images="images"
+                    idUpload="myIdUpload"
+                    editUpload="myIdEdit"
+                    dragText="HI"
+                    browseText="圖片不可超過 2 MB"
+                    primaryText="默認圖片"
+                    markIsPrimaryText="設為默認圖片"
+                    popupText="該圖像將默認顯示"
+                    ></vue-upload-multiple-image>
+                </div>
+              </div>
+                  <!-- <div v-for="i in temProduct.imageUrl" :key="i + 'img'" class="form-group">
+                    <img :src="temProduct.imageUrl" class="img-fluid" alt />
+                  </div> -->
             </div>
             <div class="col-sm-8">
               <div class="form-group">
@@ -133,11 +151,28 @@
   </div>
 </template>
 
+<style lang="scss" scoped>
+#my-strictly-unique-vue-upload-multiple-image {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+
 <script>
 /* global $ */
+import VueUploadMultipleImage from 'vue-upload-multiple-image'
+
 export default {
+  components: {
+    VueUploadMultipleImage
+  },
   data () {
     return {
+      images: [],
       imageUrl: [],
       filePath: ''
     }
@@ -145,6 +180,32 @@ export default {
   // 要把外層的 api 傳進來
   props: ['isNew', 'temProduct', 'status'],
   methods: {
+    uploadImageSuccess (formData, index, fileList) {
+      console.log('data', formData, index, fileList)
+      // Upload image api
+      // axios.post('http://your-url-upload', formData).then(response => {
+      //   console.log(response)
+      // })
+    },
+    beforeRemove (index, done, fileList) {
+      console.log('index', index, fileList)
+      var r = confirm('remove image')
+      if (r === true) {
+        done()
+      } else {
+      }
+    },
+    editImage (formData, index, fileList) {
+      console.log('edit data', formData, index, fileList)
+    },
+    onChange () {
+      console.log('New picture selected!')
+      if (this.$refs.pictureInput.image) {
+        console.log('Picture loaded.')
+      } else {
+        console.log('FileReader API not supported: use the <form>, Luke!')
+      }
+    },
     // 上傳產品資料
     updateProduct () {
       // 新增商品
@@ -203,5 +264,17 @@ export default {
         })
     }
   }
+  // mounted () {
+  //   console.log('temProduct', this.temProduct)
+  // },
+  // computed: {
+  //   productFilter () {
+  //     const oldProduct = this.temProduct.filter(item => {
+  //       return item.imageUrl
+  //     })
+  //     // console.log(oldProduct)
+  //     return oldProduct
+  //   }
+  // }
 }
 </script>

@@ -77,11 +77,16 @@
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <!-- 要把外層的 api 傳到元件 -->
         <product-modal
           :tem-product="temProduct" :is-new="isNew" :status="status"
           @update="getProducts"
-        ></product-modal>
+        >
+        </product-modal>
+        <!-- <upload-image
+          :tem-product="temProduct" :is-new="isNew" :status="status"
+          @update="getProducts"
+        >
+        </upload-image> -->
       </div>
       <del-product-modal :tem-product="temProduct" @update="getProducts"></del-product-modal>
   </div>
@@ -91,11 +96,13 @@
 /* global $ */
 import DelProductModal from '../../components/DelProductModal.vue'
 import ProductModal from '../../components/ProductModal.vue'
+// import UploadImage from '../../components/UploadImage.vue'
 import Pagination from '../../components/Pagination.vue'
 export default {
   components: {
     DelProductModal,
     ProductModal,
+    // UploadImage,
     Pagination
   },
   data () {
