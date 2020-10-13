@@ -41,7 +41,7 @@
             </h6>
           </div>
           <div class="col l-home__collection__slider d-flex flex-column">
-            <router-link to="/collections-oil" class="hoverGroup d-flex flex-md-row flex-column justify-content-md-around l-home__collection__slider-item text-secondary mb-5 pb-5">
+            <router-link to="/collections-oil" class="hoverGroup d-flex flex-md-row flex-column align-items-center justify-content-md-around l-home__collection__slider-item text-secondary mb-5 pb-5">
               <img
                 class="custom-border-bottom hoverGroup__image"
                 data-aos="custom-fade-up"
@@ -72,7 +72,7 @@
                 <p class="hoverGroup__showText text-white font-m letter-spacing-l">看更多<i class="fas fa-long-arrow-alt-right font-s ml-3"></i></p>
               </section>
             </router-link>
-            <router-link to="/collections-candle" class="hoverGroup d-flex flex-column flex-md-row-reverse justify-content-md-around l-home__collection__slider-item text-secondary mb-5">
+            <router-link to="/collections-candle" class="hoverGroup d-flex flex-column align-items-center flex-md-row-reverse justify-content-md-around l-home__collection__slider-item text-secondary mb-5">
               <img
                 class="custom-border-bottom hoverGroup__image"
                 data-aos="custom-fade-up"
@@ -124,30 +124,32 @@
               搭配不同的香氣
             </h6>
           </div>
-          <div class="d-flex flex-column align-items-center">
-            <a href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary">
-                <image-frame></image-frame>
-                <h4
-                  class="imageFrameGroup__title hoverGroup__underline position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
-                  data-aos="custom-fade-up"
-                  data-aos-duration="3000"
-                  data-aos-delay="200"
-                >
-                  Sleep
-                  <span class="h6">/ 睡眠</span>
-                </h4>
-                <p
-                  class="hoverGroup__showText position-absolute m-0 text-center"
-                  style="top:40%;transform: translateY(50%);z-index: 1;"
-                >
-                  難以進入睡眠狀態的時候， <br>
-                  搭配寧神靜心的香味，<br>
-                  讓香氣飄散到屋裡的每個角落，讓你安然入眠
-                </p>
-                <img class="imageFrameGroup__image hoverGroup__image position-absolute" src="../../../public/images/function/function-1.png" alt="">
-            </a>
-            <div class="d-flex" style="margin-top:-5rem">
-              <a href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center mr-5 text-secondary">
+          <div class="d-flex flex-column">
+            <div>
+              <div href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary mb-4 mb-md-0">
+                  <image-frame></image-frame>
+                  <h4
+                    class="imageFrameGroup__title hoverGroup__underline position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
+                    data-aos="custom-fade-up"
+                    data-aos-duration="3000"
+                    data-aos-delay="200"
+                  >
+                    Sleep
+                    <span class="h6">/ 睡眠</span>
+                  </h4>
+                  <p
+                    class="hoverGroup__showText position-absolute m-0 text-center"
+                    style="top:40%;transform: translateY(50%);z-index: 1;"
+                  >
+                    難以進入睡眠狀態的時候， <br>
+                    搭配寧神靜心的香味，<br>
+                    讓香氣飄散到屋裡的每個角落，讓你安然入眠
+                  </p>
+                  <img class="imageFrameGroup__image hoverGroup__image position-absolute" src="../../../public/images/function/function-1.png" alt="">
+              </div>
+            </div>
+            <div class="d-flex flex-column flex-md-row justify-content-md-center mt-md-n5">
+              <div href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center mr-0 mr-md-5 text-secondary mb-4 mb-md-0">
                 <image-frame></image-frame>
                 <h4
                   class="imageFrameGroup__title hoverGroup__underline position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
@@ -167,8 +169,8 @@
                   能夠讓你事半功倍，工作也能保持好心情
                 </p>
                 <img class="hoverGroup__image imageFrameGroup__image position-absolute" src="../../../public/images/function/function-2.png" alt="">
-              </a>
-              <a href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary">
+              </div>
+              <div href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary mb-4 mb-md-0">
                 <image-frame></image-frame>
                 <h4
                   class="imageFrameGroup__title hoverGroup__underline position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
@@ -188,7 +190,7 @@
                   隨時隨地放鬆轉換心情，過一個美好的假日！
                 </p>
                 <img class="hoverGroup__image imageFrameGroup__image position-absolute" src="../../../public/images/function/function-3.png" alt="">
-              </a>
+              </div>
             </div>
           </div>
         </div>

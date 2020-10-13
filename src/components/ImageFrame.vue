@@ -22,7 +22,6 @@
 
 <style lang="scss" scoped>
   .svgIcon-border{
-    width: 555px;
     &__border{
       fill:#e68e20;
       stroke: #e68e20;

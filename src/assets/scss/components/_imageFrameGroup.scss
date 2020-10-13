@@ -1,15 +1,25 @@
 .imageFrameGroup{
   // transition: filter 1s ease;
+  // width: 90%;
+  @include media-breakpoint-up(md) {
+    // width: 100%;
+  }
   &__title{
     z-index: 1;
     top: 8rem;
   }
   &__image{
     top: 0;
-    left: 0;
-    right: 0;
+    // left: 0;
+    // right: 0;
     bottom: 0;
     // transition: filter 1s ease;
+  }
+  &__frame{
+    width: 455px;
+    @include media-breakpoint-up(md) {
+      width: 555px;
+    }
   }
   // .hover-underline {
   //   display: inline-block;
