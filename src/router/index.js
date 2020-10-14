@@ -10,7 +10,7 @@ const routes = [
     path: '/', // 對應的路徑
     // name: 'Home', // 元件呈現的名稱
     // component: Home, // 對應的元件
-    component: () => import('../views/user/Shop.vue'),
+    component: () => import('../views/user/layout/Shop.vue'),
     // redirect: '',
     children: [ // 巢狀結構
       {
@@ -68,7 +68,7 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
-    component: () => import('../views/admin/Dashboard.vue'),
+    component: () => import('../views/admin/layout/Dashboard.vue'),
     redirect: '/admin/products',
     children: [ // 巢狀結構
       {
@@ -90,14 +90,19 @@ const routes = [
         path: 'coupons',
         name: 'AdminCoupons',
         component: () => import('../views/admin/Coupons.vue')
+      },
+      {
+        path: 'storages',
+        name: 'AdminStorages',
+        component: () => import('../views/admin/Storages.vue')
       }
     ]
-  }
+  },
   // 路徑輸入錯誤導回首頁
-  // { // * -> 代表全部
-  //   path: '*',
-  //   redirect: '/'
-  // }
+  { // * -> 代表全部
+    path: '*',
+    redirect: '/'
+  }
 ]
 
 const router = new VueRouter({

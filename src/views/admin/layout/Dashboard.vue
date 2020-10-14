@@ -18,15 +18,17 @@
               <li class="nav-item">
                 <router-link to="/admin/coupons" class="nav-link">優惠卷</router-link>
               </li>
-              <!-- <li class="nav-item">
-                <router-link to="/products" class="nav-link">產品列表</router-link>
-              </li> -->
+              <li class="nav-item">
+                <router-link to="/admin/storages" class="nav-link">圖片管理</router-link>
+              </li>
             </ul>
           </div>
           <!-- <router-link to="/" class="nav-link" @click="signout">登出</router-link> -->
-          <div><button class="btn btn-outline-primary btn-block" type="button" @click="signout">
-            登出
-          </button></div>
+          <div>
+            <button class="btn btn-outline-primary btn-block" type="button" @click="signout">
+              登出
+            </button>
+          </div>
           <!-- <div><a class="nav-link" href="#" @click="signout">登出</a></div> -->
         </nav>
       </div>
