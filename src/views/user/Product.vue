@@ -2,7 +2,8 @@
 <div class="l-background">
     <Loading :active.sync="isLoading"></Loading>
     <div class="l-product container">
-      <div class="row justify-content-between align-items-center mt-5 mb-7">
+      <!-- v-if="product.id" -> 讓資料先跑出來再跑畫面，解決 filter 錯誤-->
+      <div class="row justify-content-between align-items-center mt-5 mb-7" v-if="product.id">
         <div class="col-12 col-md-6 position-relative">
           <div class="l-product__bottle position-absolute" style="bottom:0; right:-67px">
             <img v-if="product.category === '香精油'" src="../../../public/images/oil-bottle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover;border:solid 2px #e68e20">
