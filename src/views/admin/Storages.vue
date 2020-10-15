@@ -166,14 +166,14 @@ export default {
           this.getStorages()
         })
     },
-    selectedCheckbox () { // 抓出已選擇的 checkbox for 的寫法
-      const checkboxs = document.querySelectorAll("input[type='checkbox']")
-      for (var i = 0; i < checkboxs.length; i++) {
-        if (checkboxs[i].checked) {
-          this.selected.push(checkboxs[i].value)
-        }
-      }
-    },
+    // selectedCheckbox () { // 抓出已選擇的 checkbox for 的寫法
+    //   const checkboxs = document.querySelectorAll("input[type='checkbox']")
+    //   for (var i = 0; i < checkboxs.length; i++) {
+    //     if (checkboxs[i].checked) {
+    //       this.selected.push(checkboxs[i].value)
+    //     }
+    //   }
+    // },
     delSlected () {
       this.isLoading = true
       // this.selectedCheckbox()
@@ -184,7 +184,7 @@ export default {
           this.selected.push(element.value)
         }
       })
-      console.log(this.selected)
+      // console.log(this.selected)
       // 刪除選擇的圖片
       this.selected.forEach(item => {
         const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/storage/${item}`
@@ -197,16 +197,16 @@ export default {
       $('#deleteModal').modal('hide')
       this.getStorages()
       // console.log(this.selected)
-    },
-    test () {
-      // const checkboxs = document.querySelectorAll("input[type='checkbox']")
-      // checkboxs.forEach(element => {
-      //   if (element.checked) {
-      //     this.isCheck = true
-      //     console.log(this.isCheck)
-      //   }
-      // })
     }
+    // test () {
+    //   const checkboxs = document.querySelectorAll("input[type='checkbox']")
+    //   checkboxs.forEach(element => {
+    //     if (element.checked) {
+    //       this.isCheck = true
+    //       console.log(this.isCheck)
+    //     }
+    //   })
+    // }
   },
   created () {
     this.getStorages()
