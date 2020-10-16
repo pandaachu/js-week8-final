@@ -133,7 +133,13 @@ export default {
       selected: [],
       status: '',
       checkboxs: [],
-      isCheck: false
+      isCheck: false,
+      messages: [
+        {
+          name: '刪除成功',
+          content: '已刪除圖片'
+        }
+      ]
     }
   },
   methods: {
@@ -164,6 +170,8 @@ export default {
         .then(() => {
           $('#deleteModal').modal('hide')
           this.isLoading = false
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
           this.getStorages()
         })
     },
@@ -180,7 +188,7 @@ export default {
           this.selected.push(element.value)
         }
       })
-      console.log('selected a', this.selected)
+      // console.log('selected a', this.selected)
     },
     delSlected () {
       this.isLoading = true
@@ -200,26 +208,13 @@ export default {
         this.$http.delete(url)
           .then(() => {
             this.isLoading = false
+            this.$bus.$emit('push-messages', this.messages[0])
+            $('.l-toast').toast('show')
           })
       })
       $('#deleteModal').modal('hide')
       this.getStorages()
       // console.log(this.selected)
-    },
-    test () {
-      const checkboxs = document.querySelectorAll("input[type='checkbox']")
-      // checkboxs.forEach(element => {
-      //   if (element.checked) {
-      //     this.isCheck = true
-      //     console.log(this.isCheck)
-      //   }
-      // })
-      checkboxs.forEach(element => {
-        if (element.checked) {
-          this.isCheck = true
-          console.log(this.isCheck)
-        }
-      })
     }
   },
   created () {
