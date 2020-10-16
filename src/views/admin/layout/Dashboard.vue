@@ -3,7 +3,7 @@
     <div class="bg-white sticky-top">
       <div class="container">
         <nav class="navbar px-0 navbar-expand-lg navbar-light bg-white d-flex justify-content-between">
-          <router-link to="/admin/" class="navbar-brand position-absolute" href="#" style="left: 50%; transform: translate(-50%, -50%); top: 50%;">FOREST</router-link>
+          <router-link to="/admin/" class="logo navbar-brand position-absolute text-secondary d-flex m-0" href="#" ><Logo class="mr-3"></Logo>FOREST</router-link>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -46,7 +46,11 @@
 <script>
 // import NavbarAdmin from '../../components/NavbarAdmin.vue'
 // 這裡是後台入口，驗證要做在這
+import Logo from '../../../components/Logo.vue'
 export default {
+  components: {
+    Logo
+  },
   data () {
     return {
       token: '',
