@@ -4,6 +4,7 @@
   <div class="text-right mt-4">
     <button
       class="btn btn-primary"
+      :disabled="selected.length <= 0"
       @click.prevent="openModelDel('delStorages')"
     >
       刪除選擇的圖片
@@ -26,7 +27,7 @@
           <th style="vertical-align: middle;" scope="row">{{index+1}}</th>
           <td style="vertical-align: middle;">
             <div class="form-check">
-              <input type="checkbox"  :value="item.id" class="storages-checkbox form-check-input m-0" style="width:1.2rem; height:1.2rem" id="exampleCheck1">
+              <input type="checkbox" @change="getCheckedValues"  :value="item.id" class="storages-checkbox form-check-input m-0" style="width:1.2rem; height:1.2rem" id="exampleCheck1">
             </div>
             <!-- <input type="checkbox" :value="item.id" class="form-check-input" id="exampleCheck1"> -->
           </td>
@@ -166,24 +167,31 @@ export default {
           this.getStorages()
         })
     },
-    // selectedCheckbox () { // 抓出已選擇的 checkbox for 的寫法
-    //   const checkboxs = document.querySelectorAll("input[type='checkbox']")
-    //   for (var i = 0; i < checkboxs.length; i++) {
-    //     if (checkboxs[i].checked) {
-    //       this.selected.push(checkboxs[i].value)
-    //     }
-    //   }
-    // },
-    delSlected () {
-      this.isLoading = true
-      // this.selectedCheckbox()
-      // 先抓出已選擇的 checkbox
+    getCheckedValues () { // 抓出已選擇的 checkbox for 的寫法
+      this.selected = []
       const checkboxs = document.querySelectorAll("input[type='checkbox']")
+      // for (var i = 0; i < checkboxs.length; i++) {
+      //   if (checkboxs[i].checked) {
+      //     this.selected.push(checkboxs[i].value)
+      //   }
+      // }
       checkboxs.forEach(element => {
         if (element.checked) {
           this.selected.push(element.value)
         }
       })
+      console.log('selected a', this.selected)
+    },
+    delSlected () {
+      this.isLoading = true
+      this.getCheckedValues()
+      // 先抓出已選擇的 checkbox
+      // const checkboxs = document.querySelectorAll("input[type='checkbox']")
+      // checkboxs.forEach(element => {
+      //   if (element.checked) {
+      //     this.selected.push(element.value)
+      //   }
+      // })
       // console.log(this.selected)
       // 刪除選擇的圖片
       this.selected.forEach(item => {
@@ -197,16 +205,22 @@ export default {
       $('#deleteModal').modal('hide')
       this.getStorages()
       // console.log(this.selected)
+    },
+    test () {
+      const checkboxs = document.querySelectorAll("input[type='checkbox']")
+      // checkboxs.forEach(element => {
+      //   if (element.checked) {
+      //     this.isCheck = true
+      //     console.log(this.isCheck)
+      //   }
+      // })
+      checkboxs.forEach(element => {
+        if (element.checked) {
+          this.isCheck = true
+          console.log(this.isCheck)
+        }
+      })
     }
-    // test () {
-    //   const checkboxs = document.querySelectorAll("input[type='checkbox']")
-    //   checkboxs.forEach(element => {
-    //     if (element.checked) {
-    //       this.isCheck = true
-    //       console.log(this.isCheck)
-    //     }
-    //   })
-    // }
   },
   created () {
     this.getStorages()
