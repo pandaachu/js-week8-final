@@ -33,8 +33,8 @@
           <tr v-for="item in products" :key="item.id">
             <td>{{ item.category }}</td>
             <td>{{ item.title }}</td>
-            <td>{{ item.origin_price }}</td>
-            <td>{{ item.price }}</td>
+            <td>{{ item.origin_price | money }}</td>
+            <td>{{ item.price | money }}</td>
             <td>
               <span v-if="item.enabled" class="text-success">啟用</span>
               <span v-else>未啟用</span>

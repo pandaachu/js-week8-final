@@ -65,3 +65,11 @@ svg{
 .user{
   color: $white;
 }
+
+// router-link
+.user .router-link-exact-active{
+  color: lighten($secondary,35%) !important;
+}
+.admin .router-link-exact-active{
+  color: $primary !important;
+}

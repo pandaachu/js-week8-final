@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="admin">
     <div class="bg-white sticky-top">
       <div class="container">
         <nav class="navbar px-0 navbar-expand-lg navbar-light bg-white d-flex justify-content-between">
@@ -9,7 +9,7 @@
           </button>
           <div class="collapse navbar-collapse bg-white custom-header-md-open" id="navbarNavAdimn">
             <ul class="navbar-nav">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <router-link to="/admin/products" class="nav-link pl-0">產品列表 <span class="sr-only">(current)</span></router-link>
               </li>
               <li class="nav-item">
