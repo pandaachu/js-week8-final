@@ -3,9 +3,10 @@
     <Loading :active.sync="isLoading"></Loading>
     <div class="l-products container text-light mt-5">
       <div class="row justify-content-center">
-        <div class="input-group col-5">
+        <div class="input-group col-10 col-md-5">
           <select
-            class="form-control w-25 btn btn-secondary text-white"
+            class="form-control btn btn-secondary text-white"
+            style="width:35%"
             v-model="input.category"
           >
             <option>全部</option>
@@ -13,7 +14,7 @@
             <option>蠟燭</option>
           </select>
           <!-- trim -> 去頭尾空白 -->
-          <input v-model.trim="input.title" type="text" placeholder="搜尋" class="form-control btn btn-outline-secondary w-75">
+          <input v-model.trim="input.title" type="text" placeholder="搜尋" class="form-control btn btn-outline-secondary" style="width:65%">
         </div>
       </div>
       <div class="row mt-md-5 mt-3 mb-7 animation-scroll-section">

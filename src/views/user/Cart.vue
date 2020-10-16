@@ -2,8 +2,9 @@
   <div class="container">
     <Loading :active.sync="isLoading"></Loading>
     <div class="row justify-content-center my-5">
-      <div class="col-md-6 bg-transparent py-5 border" style="min-height: calc(100vh - 56px - 76px);">
-        <div class="d-flex justify-content-between align-items-end border-bottom pb-3">
+      <div class="col-md-6 bg-transparent py-5" >
+        <div class="p-2 border" style="min-height: calc(100vh - 56px - 76px);">
+          <div class="d-flex justify-content-between align-items-end border-bottom pb-3">
           <h2 class="mt-2">購物車列表 </h2>
           <button type="button" class="btn btn-outline-secondary btn-sm" @click="deleteAllCartItem()">
               <i class="far fa-trash-alt"> 清空購物車</i>
@@ -81,6 +82,7 @@
           <p class="mb-0 h4 font-weight-bold">${{ cartTotal }}</p>
         </div>
         <router-link to="/checkout" class="btn btn-dark btn-block mt-4 rounded-0 py-3">確認訂單</router-link>
+        </div>
       </div>
     </div>
   </div>

@@ -45,7 +45,7 @@
                   <div class="form-group">
                     <validation-provider rules="required" v-slot="{ errors, classes }">
                       <label for="payment" class="text-muted">付款方式</label>
-                      <select id="payment" name="付款方式" v-model="user.payment" class="form-control" :class="classes">
+                      <select id="payment" name="付款方式" v-model="user.payment" class="form-control rounded-0" :class="classes">
                         <option value="" disabled>
                           請選擇付款方式
                         </option>
@@ -68,15 +68,13 @@
                       <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
                     </validation-provider>
                   </div>
-                  <div class="d-flex flex-column-reverse flex-md-row mt-4 justify-content-between align-items-md-center align-items-end w-100">
-                    <router-link to="/product" class="text-light mt-md-0 mt-3"><i class="fas fa-chevron-left mr-2"></i> 回訂單列表 </router-link>
-                    <!-- button 如果掛 function @:click="goPage ()" 表單送出就會失效 -->
-                    <!-- 資料傳送事件在 form -->
-                    <button type="submit" class="btn btn-dark py-3 px-7 rounded-0" :disabled="invalid">確定付款</button>
-                    <!-- <router-link to="/checkout-success" class="btn btn-dark py-3 px-7 rounded-0" :disabled="invalid"></router-link> -->
-                  </div>
+                  <!-- button 如果掛 function @:click="goPage ()" 表單送出就會失效 -->
+                  <!-- 資料傳送事件在 form -->
+                  <button type="submit" class="btn btn-dark btn-block py-3 px-7 rounded-0" :disabled="invalid">確定付款</button>
+                  <!-- <router-link to="/checkout-success" class="btn btn-dark py-3 px-7 rounded-0" :disabled="invalid"></router-link> -->
                 </form>
               </div>
+                <router-link to="/product" class="text-light btn btn-dark btn-block py-3 mt-5 rounded-0"><i class="fas fa-chevron-left mr-2"></i> 回訂單列表 </router-link>
             </validation-observer>
           </div>
           <div class="col-md-4">
