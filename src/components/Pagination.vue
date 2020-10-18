@@ -12,7 +12,7 @@
         :class="{ active: pages.current_page === i }">
           <a class="page-link" href="#" @click.prevent="updatePage(i)">{{ i }}</a>
       </li>
-      <li class="page-item" :class="{'disabled': pages.current_page === pages.total_pages}">
+      <li class="page-item" :class="{ 'disabled': pages.current_page === pages.total_pages }">
         <a class="page-link" href="#" aria-label="Next" @click.prevent="updatePage(pages.current_page + 1)">
           <span aria-hidden="true">&raquo;</span>
         </a>
@@ -21,17 +21,7 @@
   </nav>
 </template>
 
-<style lang="scss" scoped>
-.page-item.disabled .page-link, .page-link {
-    background-color: transparent;
-}
-.page-item.active .page-link {
-  border: 1px solid #dee2e6;
-}
-</style>
-
 <script>
-
 export default {
   data () {
     return {
@@ -51,3 +41,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.page-item.disabled .page-link, .page-link {
+    background-color: transparent;
+}
+.page-item.active .page-link {
+  border: 1px solid #dee2e6;
+}
+</style>

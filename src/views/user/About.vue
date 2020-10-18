@@ -3,7 +3,7 @@
     <div class="container my-5">
       <div class="row position-relative">
         <div class="col-12">
-          <img class="mb-5" src="../../../public/images/apothecary-87-6uTS4cpkqjM-unsplash.jpg" alt="">
+          <img class="mb-5" src="@/../public/images/apothecary-87-6uTS4cpkqjM-unsplash.jpg" alt="">
         </div>
         <div class="l-about__bg">
           <div class="l-about__text position-absolute p-5">
@@ -30,19 +30,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-.l-about__text{
-  // background-image: url(../../../public/images/apothecary-87-6uTS4cpkqjM-unsplash.jpg);
-  // background-size: 100%;
-  // background-repeat: no-repeat;
-  // background-position: bottom center;
-  background-color: rgba(0,0,0,0.7);
-  width: 50%;
-  top: 30%;
-  left: 75%;
-}
-</style>
-
 <script>
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -66,3 +53,16 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.l-about__text{
+  // background-image: url(../../../public/images/apothecary-87-6uTS4cpkqjM-unsplash.jpg);
+  // background-size: 100%;
+  // background-repeat: no-repeat;
+  // background-position: bottom center;
+  background-color: rgba(0,0,0,0.7);
+  width: 50%;
+  top: 30%;
+  left: 75%;
+}
+</style>

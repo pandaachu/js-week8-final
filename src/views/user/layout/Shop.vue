@@ -9,27 +9,15 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-// .user{
-//   color: $white;
-// }
-</style>
-
 <script>
 // 匯入元件
-import Navbar from '../../../components/Navbar.vue'
-import Footer from '../../../components/Footer.vue'
+import Navbar from '@/components/user/Navbar.vue'
+import Footer from '@/components/user/Footer.vue'
 
 export default {
   components: {
     Navbar,
     Footer
-  },
-  data () {
-    return {
-      // isLoading: false
-    }
   }
 }
-
 </script>

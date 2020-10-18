@@ -27,7 +27,7 @@
             <span
               class="badge badge-secondary badge-pill text-white font-weight-light mb-1"
             >
-              {{item.product.category}}
+              {{ item.product.category }}
             </span>
             <p class="mb-1 font-weight-bold">{{ item.product.title }}</p>
             <p class="mb-1 text-muted" style="font-size: 14px;">{{ item.product.content }}</p>
@@ -219,7 +219,7 @@ export default {
           this.$bus.$emit('get-cart')
           // 刪除成功訊息
           this.messages.content = res.data.message
-          console.log(this.messages.content)
+          // console.log(this.messages.content)
           this.$bus.$emit('push-messages', this.messages[0])
         })
     },

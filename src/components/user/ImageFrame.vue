@@ -1,6 +1,5 @@
 <template>
 <div class="imageFrameGroup__frame">
-  <!-- 1. Inline SVG -->
   <svg id="border" data-name="border" class="svgIcon-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 534 534">
     <defs>
       <!-- <style>.cls-1{fill:#e68e20;}</style> -->
@@ -13,21 +12,8 @@
       <polygon class="svgIcon-border__border" points="532 267.95 267.84 533.59 267.01 534.42 266.16 533.59 232.86 500.66 199.67 467.62 133.5 401.35 67.59 334.8 34.73 301.44 2 267.95 2.21 267.74 35.69 300.48 69.06 333.34 135.6 399.24 201.88 465.42 234.92 498.6 267.84 531.9 266.16 531.9 531.79 267.74 532 267.95"/>
     </g>
   </svg>
-  <!-- 2. SVG Sprites -->
-  <!-- <svg class="svgIcon-border"><use :xlink:href="`#${iconName}`" /></svg> -->
 </div>
-
-<!-- #target 改成svg的檔名就好囉，記得加井字號 -->
 </template>
-
-<style lang="scss" scoped>
-  .svgIcon-border{
-    &__border{
-      fill:#e68e20;
-      stroke: #e68e20;
-    }
-  }
-</style>
 
 <script>
 // /* global $ */
@@ -36,12 +22,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'imageFrameGroup__frame',
-  props: {
-    // iconName: {
-    //   type: String,
-    //   required: true
-    // }
-  },
   methods: {
     showBorder () {
       gsap.utils.toArray('.imageFrameGroup__frame').forEach((section) => {
@@ -56,18 +36,6 @@ export default {
           duration: 3.5
         })
       })
-      // gsap.utils.toArray('.imageFrameGroup__frame').forEach((el, i) => {
-      //   gsap.to(el.querySelector('.theSquare'), {
-      //     scrollTrigger: {
-      //       trigger: '.imageFrameGroup__frame',
-      //       start: '-100px 80%',
-      //       toggleActions: 'restart none none none'
-      //       // markers: true
-      //     },
-      //     y: 534,
-      //     duration: 3.5
-      //   })
-      // })
     }
   },
   mounted () {
@@ -75,3 +43,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .svgIcon-border{
+    &__border{
+      fill:#e68e20;
+      stroke: #e68e20;
+    }
+  }
+</style>

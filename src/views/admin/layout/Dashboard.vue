@@ -29,14 +29,10 @@
               登出
             </button>
           </div>
-          <!-- <div><a class="nav-link" href="#" @click="signout">登出</a></div> -->
         </nav>
       </div>
     </div>
     <div class="container">
-      <!-- <h2>這裡是管理頁面</h2> -->
-      <!-- <NavbarAdmin></NavbarAdmin> -->
-      <!-- <router-view name="NavbarAdmin"/> -->
       <router-view :token="token" v-if="checkSuccess"/>
       <!-- 當驗證沒有問題，checkSuccess = true ，再跑下面的區塊 -->
     </div>
@@ -44,9 +40,8 @@
 </template>
 
 <script>
-// import NavbarAdmin from '../../components/NavbarAdmin.vue'
 // 這裡是後台入口，驗證要做在這
-import Logo from '../../../components/Logo.vue'
+import Logo from '@/components/Logo.vue'
 export default {
   components: {
     Logo

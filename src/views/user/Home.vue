@@ -5,11 +5,11 @@
     <section class="l-home__hero-1 p-relative">
       <div class="bg-img l-bg-no-repeat-tc l-bg-no-repeat-tc--shine">
         <img class="d-none d-md-block" style="width:100vw "
-          src="../../../public/images/heroBannerHeight.gif"
+          src="@/../public/images/heroBannerHeight.gif"
           alt=""
         />
         <img class="d-block d-md-none" style="width:100vw "
-          src="../../../public/images/heroBannerHeight_mb.gif"
+          src="@/../public/images/heroBannerHeight_mb.gif"
           alt=""
         />
       </div>
@@ -52,7 +52,7 @@
                 data-aos="custom-fade-up"
                 data-aos-duration="3000"
                 data-aos-delay="200"
-                src="../../../public/images/oil-collection.jpg" alt=""
+                src="@/../public/images/oil-collection.jpg" alt=""
               >
               <!-- <div
                 style="width:350px"
@@ -83,7 +83,7 @@
                 data-aos="custom-fade-up"
                 data-aos-duration="3000"
                 data-aos-delay="200"
-                src="../../../public/images/candle-collection.jpg" alt=""
+                src="@/../public/images/candle-collection.jpg" alt=""
               >
               <!-- <div
                 style="width:350px"
@@ -134,7 +134,7 @@
         <div class="d-flex flex-column">
           <div>
             <div href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary mb-4 mb-md-0">
-                <image-frame></image-frame>
+                <ImageFrame></ImageFrame>
                 <h4
                   class="imageFrameGroup__title hoverGroup__underline position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
                   data-aos="custom-fade-up"
@@ -152,12 +152,12 @@
                   搭配寧神靜心的香味，<br>
                   讓香氣飄散到屋裡的每個角落，讓你安然入眠
                 </p>
-                <img class="imageFrameGroup__image hoverGroup__image position-absolute" src="../../../public/images/function/function-1.png" alt="">
+                <img class="imageFrameGroup__image hoverGroup__image position-absolute" src="@/../public/images/function/function-1.png" alt="">
             </div>
           </div>
           <div class="d-flex flex-column flex-md-row justify-content-md-center mt-md-n5">
             <div href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center mr-0 mr-md-5 text-secondary mb-4 mb-md-0">
-              <image-frame></image-frame>
+              <ImageFrame></ImageFrame>
               <h4
                 class="imageFrameGroup__title hoverGroup__underline position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
                 data-aos="custom-fade-up"
@@ -175,10 +175,10 @@
                 搭配提神、增加專注力的香味， <br>
                 能夠讓你事半功倍，工作也能保持好心情
               </p>
-              <img class="hoverGroup__image imageFrameGroup__image position-absolute" src="../../../public/images/function/function-2.png" alt="">
+              <img class="hoverGroup__image imageFrameGroup__image position-absolute" src="@/../public/images/function/function-2.png" alt="">
             </div>
             <div href="#" class="imageFrameGroup hoverGroup position-relative d-flex justify-content-center text-secondary mb-4 mb-md-0">
-              <image-frame></image-frame>
+              <ImageFrame></ImageFrame>
               <h4
                 class="imageFrameGroup__title hoverGroup__underline position-absolute optimaNovaFont letter-spacing-xl hover-underline pb-2"
                 data-aos="custom-fade-up"
@@ -196,25 +196,22 @@
                 搭配柔和舒緩的香味， <br>
                 隨時隨地放鬆轉換心情，過一個美好的假日！
               </p>
-              <img class="hoverGroup__image imageFrameGroup__image position-absolute" src="../../../public/images/function/function-3.png" alt="">
+              <img class="hoverGroup__image imageFrameGroup__image position-absolute" src="@/../public/images/function/function-3.png" alt="">
             </div>
           </div>
         </div>
       </div>
       <hr style="padding-bottom:9rem">
     </section>
-    <!-- <hr style="margin-bottom:14rem"> -->
   </div>
 </template>
-<style lang="scss" scoped>
-</style>
 
 <script>
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import TextPlugin from 'gsap/TextPlugin'
-import HomeLoading from '../../components/HomeLoading.vue'
-import ImageFrame from '../../components/ImageFrame.vue'
+import HomeLoading from '@/components/user/HomeLoading.vue'
+import ImageFrame from '@/components/user/ImageFrame.vue'
 gsap.registerPlugin(TextPlugin, ScrollTrigger)
 
 export default {

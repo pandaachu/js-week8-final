@@ -6,8 +6,8 @@
       <div class="row justify-content-between align-items-center mt-5 mb-7" v-if="product.id">
         <div class="col-12 col-md-6 position-relative  overflow-hidden">
           <div class="l-product__bottle position-absolute" style="bottom:0; right:-67px">
-            <img v-if="product.category === '香精油'" src="../../../public/images/oil-bottle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover;border:solid 2px #e68e20">
-            <img v-else-if="product.category === '蠟燭'" src="../../../public/images/candle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover; border:solid 2px #e68e20">
+            <img v-if="product.category === '香精油'" src="@/../public/images/oil-bottle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover;border:solid 2px #e68e20">
+            <img v-else-if="product.category === '蠟燭'" src="@/../public/images/candle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover; border:solid 2px #e68e20">
           </div>
           <div
             class="my-4"
@@ -24,7 +24,7 @@
             <span
                 class="badge badge-secondary badge-pill text-white mb-3"
               >
-              {{product.category}}
+              {{ product.category }}
             </span>
             <h2 class="mb-0 mb-4 optimaNovaFont letter-spacing-l font-weight-light">{{ product.title }}</h2>
             <div class="d-flex justify-content-between align-items-baseline">
@@ -135,12 +135,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-.scrollbarHide::-webkit-scrollbar{
-  display: none;
-}
-</style>
-
 <script>
 // /* global $ */
 import { gsap } from 'gsap'
@@ -150,7 +144,7 @@ export default {
     return {
       isLoading: false,
       productAddToCart: {
-        product: this.$route.params.id,
+        // product: this.$route.params.id,
         quantity: 1
       },
       carts: [],
@@ -168,7 +162,7 @@ export default {
     // 加入購物車後要觸發另外的元件更新資料 -> $bus.$emit
     // navbar 的購物車 icon 用 $bus.$on 接收
     addToCart () {
-      console.log(this.productAddToCart)
+      // console.log(this.productAddToCart)
       this.isLoading = true
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.post(url, this.productAddToCart)
@@ -226,5 +220,10 @@ export default {
     })
   }
 }
-
 </script>
+
+<style lang="scss" scoped>
+.scrollbarHide::-webkit-scrollbar{
+  display: none;
+}
+</style>

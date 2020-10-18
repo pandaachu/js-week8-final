@@ -25,7 +25,7 @@
                 class="badge badge-secondary badge-pill text-white position-absolute"
                 style="left: 16px; top: 16px"
               >
-              {{product.category}}
+              {{ product.category }}
               </span>
               <img :src="product.imageUrl[0]" class="card-img-top rounded-0" alt="...">
               <div class="card-body p-0">
@@ -48,7 +48,6 @@
             <!-- <a href="#" class="text-light">
               <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
             </a> -->
-            <!-- <AddToCartBtn @getProductId="saveProductId(product.id)" :id="productId" ></AddToCartBtn> -->
             <div class="position-absolute" style="font-size:1.2rem; right: 16px; bottom: 10px">
               <a href="#" class="text-light" @click.prevent="addToCart(product.id)" v-tooltip:top="'加到購物車'">
                 <i class="fas fa-cart-plus" ></i>
@@ -66,7 +65,7 @@
 
 <script>
 /* global $ */
-import Pagination from '../../components/Pagination.vue'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
   components: {
@@ -154,13 +153,6 @@ export default {
     }
   },
   created () {
-    // 以 node.js 運行，所以要加 process.env
-    this.isLoading = true
-    this.$http.get(`${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`)
-      .then((res) => {
-        this.isLoading = false
-        this.products = res.data.data
-      })
     this.getProducts()
   },
   // updated: function () { // 在重新渲染頁面後叫用，這時的頁面已經被重渲染成改變後的畫面。

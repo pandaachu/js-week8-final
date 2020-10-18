@@ -23,7 +23,6 @@
           </ul>
         </div>
         <div class="d-flex">
-          <!-- <a href="#"><i class="fas fa-heart mr-5"></i></a> -->
           <router-link to="/cart" class="cartIcon text-secondary"><i class="fas fa-shopping-cart"></i>
             <span
               class="badge badge-pill badge-danger"
@@ -38,15 +37,9 @@
   </div>
 </template>
 
-<style scoped lang="scss">
-  // .l-navbar{
-
-  // }
-</style>
-
 <script>
 /* global $ */
-import Logo from './Logo.vue'
+import Logo from '../Logo.vue'
 export default {
   components: {
     Logo
@@ -77,11 +70,5 @@ export default {
     })
     $('.cartIcon').tooltip('hide')
   }
-  // updated: function () { // 在重新渲染頁面後叫用，這時的頁面已經被重渲染成改變後的畫面。
-  //   this.$nextTick(function () {
-  //     $('[data-toggle="tooltip"]').tooltip()
-  //   })
-  // }
 }
-
 </script>

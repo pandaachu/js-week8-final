@@ -39,18 +39,6 @@
   </div>
 </template>
 
-<style>
-  .login {
-    height: 100vh;
-    text-align: center;
-  }
-  .login {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
-
 <script>
 export default {
   data () {
@@ -116,3 +104,15 @@ export default {
   }
 }
 </script>
+
+<style>
+  .login {
+    height: 100vh;
+    text-align: center;
+  }
+  .login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

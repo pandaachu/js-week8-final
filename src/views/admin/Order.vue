@@ -27,7 +27,7 @@
           <th></th>
           <th></th>
           <th></th>
-          <th>{{order.amount}}</th>
+          <th>{{ order.amount }}</th>
         </tr>
       </thead>
     </table>
@@ -64,19 +64,6 @@ export default {
       isLoading: false
     }
   },
-  methods: {
-    // getOrder () {
-    //   const id = this.$route.params
-    //   const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/orders/${id}`
-    //   this.isLoading = true
-    //   this.$http.get(url).then((res) => {
-    //     this.isLoading = false
-    //     this.order = res.data.data
-    //   }).catch(() => {
-    //     this.isLoading = false
-    //   })
-    // }
-  },
   created () {
     this.isLoading = true
     // console.log(this.$route.params.id)
@@ -85,7 +72,7 @@ export default {
     // this.getOrder()
     this.$http.get(url)
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         this.isLoading = false
         this.order = res.data.data
       })

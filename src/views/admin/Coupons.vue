@@ -4,6 +4,7 @@
     <div class="text-right mt-4">
       <button
         class="btn btn-primary"
+        type="button"
         @click="openCouponModal('created')"
       >
         建立新的優惠券
@@ -46,12 +47,14 @@
               <!-- 把當下按的 coupon 資料帶到 modal -->
               <button
                 class="btn btn-outline-primary btn-sm"
+                type="button"
                 @click="openCouponModal('edit', coupon)"
               >
                 編輯
               </button>
               <button
                 class="btn btn-outline-danger btn-sm"
+                type="button"
                 @click="openCouponModal('delete', coupon)"
               >
                 刪除
@@ -61,6 +64,7 @@
         </tr>
       </tbody>
     </table>
+    <Pagination :pages="pagination" @update="getCoupons"></Pagination>
     <div
       id="couponModal"
       class="modal fade text-primary"
@@ -176,9 +180,9 @@
         </div>
       </div>
     </div>
-    <!-- <div
+    <div
       id="delCouponModal"
-      class="modal fade"
+      class="modal fade text-primary"
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -221,20 +225,24 @@
             <button
               type="button"
               class="btn btn-danger"
-              @click="delCoupon"
+              @click="delCoupon(tempCoupon.id)"
             >
               確認刪除
             </button>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
 /* global $ */
+import Pagination from '@/components/Pagination.vue'
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       coupons: {},
@@ -248,24 +256,32 @@ export default {
         code: ''
       },
       deadline_date: '',
-      deadline_time: ''
+      deadline_time: '',
+      pagination: {},
+      messages: [
+        {
+          name: '刪除成功',
+          content: '已刪除優惠券'
+        }
+      ]
     }
   },
   methods: {
-    getCoupons () {
+    getCoupons (num = 1) {
       this.isLoading = true
-      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupons`
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupons?page=${num}`
       this.$http.get(url)
         .then(res => {
           // console.log(res)
           this.coupons = res.data.data
+          this.pagination = res.data.meta.pagination
           this.isLoading = false
           // console.log(this.coupons)
         })
     },
     openCouponModal (status, coupon) {
-      this.status = status // 把上面的 status 帶下來
-      console.log(coupon)
+      this.status = status // 把上面的 status 帶下來存在 this.status 以此更換 modal title
+      // console.log(coupon)
       switch (status) {
         case 'created':
           this.tempCoupon = {} // 新增時清空 tempCoupon
@@ -281,6 +297,12 @@ export default {
           $('#couponModal').modal('show')
           break
         }
+        case 'delete':
+          this.tempCoupon = coupon
+          $('#delCouponModal').modal('show')
+          break
+        default:
+          break
       }
     },
     updateCoupon () {
@@ -304,6 +326,18 @@ export default {
       }).catch(() => {
         this.isLoading = false
       })
+    },
+    delCoupon (id) {
+      this.isLoading = true
+      // console.log(id)
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupon/${id}`
+      this.$http.delete(url)
+        .then(() => {
+          this.isLoading = false
+          $('#delCouponModal').modal('hide')
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+        })
     }
   },
   created () {

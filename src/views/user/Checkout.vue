@@ -116,12 +116,7 @@
     </div>
   </div>
 </template>
-<style lang="scss" scoped>
-.l-checkout{
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
-</style>
+
 <script>
 export default {
   data () {
@@ -159,7 +154,7 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.get(url)
         .then(res => {
-          console.log('cart', res)
+          // console.log('cart', res)
           this.isLoading = false
           this.carts = res.data.data
           this.updateTotal()
@@ -205,3 +200,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.l-checkout{
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+</style>

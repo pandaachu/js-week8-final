@@ -139,7 +139,13 @@ export default {
   data () {
     return {
       imageUrl: [],
-      filePath: ''
+      filePath: '',
+      messages: [
+        {
+          name: '上傳失敗',
+          content: '上傳不可超過 2 MB'
+        }
+      ]
     }
   },
   // 要把外層的 api 傳進來
@@ -188,7 +194,7 @@ export default {
         }
       })
         .then(response => {
-          console.log(response)
+          // console.log(response)
           // 接到參數後關閉 loading 圖示
           this.status.fileUploading = false
           // 把路徑帶到畫面
@@ -199,6 +205,8 @@ export default {
         })
         .catch(() => {
           console.log('上傳不可超過 2 MB')
+          this.$bus.$emit('push-messages', this.messages)
+          $('.l-toast').toast('show')
           this.status.fileUploading = false
         })
     }

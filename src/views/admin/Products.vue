@@ -94,10 +94,10 @@
 
 <script>
 /* global $ */
-import DelProductModal from '../../components/DelProductModal.vue'
-import ProductModal from '../../components/ProductModal.vue'
+import DelProductModal from '@/components/admin/DelProductModal.vue'
+import ProductModal from '@/components/admin/ProductModal.vue'
 // import UploadImage from '../../components/UploadImage.vue'
-import Pagination from '../../components/Pagination.vue'
+import Pagination from '@/components/Pagination.vue'
 export default {
   components: {
     DelProductModal,
@@ -142,7 +142,6 @@ export default {
           // console.log(item);
           this.$http.get(url)
             .then(res => {
-              // console.log(res);
               this.temProduct = res.data.data
               $('#productModal').modal('show')
               this.loadingBtn = '' // 清除
@@ -169,8 +168,6 @@ export default {
         .get(url)
         .then(res => {
           this.isLoading = false
-          // console.log(res);
-          // 對應遠端傳回來的資料
           this.products = res.data.data
           this.pagination = res.data.meta.pagination
           // 如果 id 存在
@@ -184,13 +181,6 @@ export default {
     }
   },
   created () {
-    // const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/products`
-    // this.isLoading = true
-    // this.$http.get(url)
-    //   .then((res) => {
-    //     this.isLoading = false
-    //     this.products = res.data.data
-    //   })
     this.getProducts()
   }
 }

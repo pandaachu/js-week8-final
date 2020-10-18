@@ -35,19 +35,6 @@ import router from './router'
 
 import moneyFilter from './filters/money'
 
-// import VueLazyload from 'vue-lazyload'
-
-// 讓 SVG 全域性的引入，元件中就不用特地 import 了
-// 全域註冊一個新的元件 SvgIcon
-// import SvgIcon from './components/svg-icons/SvgIcon'
-// Vue.component('icon', SvgIcon)
-
-// // 一次性的匯入 SVG
-// const requireAll = requireContext => requireContext.keys().map(requireContext)
-// // const req = require.context('./components/svg-icons', true, /\.vue$/)
-// const req = require.context('./assets/icon', true, /\.svg$/)
-// requireAll(req)
-
 // jquery 全域注冊
 window.$ = $
 // 在使用 jq 的頁面加上： /* global $ */
@@ -63,8 +50,6 @@ Vue.filter('money', moneyFilter)
 // 元件，全域注冊
 Vue.use(Loading)
 Vue.component('Loading', Loading)
-
-// Vue.use(VueLazyload)
 
 // vee-validate
 // install rules and localization

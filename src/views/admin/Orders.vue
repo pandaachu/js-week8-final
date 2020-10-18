@@ -42,11 +42,16 @@
         </tr>
       </tbody>
     </table>
+    <Pagination :pages="pagination" @update="getOrders"></Pagination>
   </div>
 </template>
 
 <script>
+import Pagination from '@/components/Pagination.vue'
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       orders: [],
@@ -56,19 +61,12 @@ export default {
     }
   },
   methods: {
-    // goOrders (item) {
-    //   // 頁面轉換
-    //   // push 為方法
-    //   // this.$router.push(`/admin/order/${item.id}`)
-    //   console.log(item)
-    //   // console.log(this.order.id)
-    // },
-    getOrders (page = 1) {
+    getOrders (num = 1) {
       this.isLoading = true
-      const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/orders`
+      const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/orders?page=${num}`
       this.$http.get(api).then((res) => {
         this.isLoading = false
-        console.log('orders', res)
+        // console.log('orders', res)
         this.orders = res.data.data
         this.pagination = res.data.meta.pagination
       }).catch(() => {
@@ -88,10 +86,6 @@ export default {
   },
   created () {
     this.getOrders()
-    // this.goOrders()
-  },
-  mounted () {
-    this.$bus.$emit('active-menu', 1)
   }
 }
 </script>
