@@ -2,7 +2,7 @@
   <div id="app" class="wrapper">
     <!-- 把 isLoading 載進 -->
     <!-- <loading :active.sync="isLoading"></loading> -->
-    <alert-msg></alert-msg>
+    <AlertMsg></AlertMsg>
     <!-- 使用 router-link 組件來導航. -->
     <!-- 通過傳入 `to` 屬性指定鏈接. -->
     <!-- <router-link> 默認會被渲染成一個 `<a>` 標籤 -->
@@ -17,6 +17,7 @@
 import AlertMsg from './components/AlertMsg.vue'
 // 匯出 loading
 export default {
+  name: 'App',
   components: {
     AlertMsg
   },

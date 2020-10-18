@@ -90,6 +90,7 @@
 
 <script>
 export default {
+  name: 'Cart',
   data () {
     return {
       isLoading: false,

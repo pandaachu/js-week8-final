@@ -119,6 +119,7 @@
 
 <script>
 export default {
+  name: 'Checkout',
   data () {
     return {
       isLoading: false,

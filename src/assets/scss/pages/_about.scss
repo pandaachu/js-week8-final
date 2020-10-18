@@ -1,0 +1,13 @@
+.l-about{
+  &__text{
+    // background-image: url(../../../public/images/apothecary-87-6uTS4cpkqjM-unsplash.jpg);
+    // background-size: 100%;
+    // background-repeat: no-repeat;
+    // background-position: bottom center;
+    background-color: rgba(0,0,0,0.7);
+    margin-top: -10vh;
+    @include media-breakpoint-up(md) {
+      margin-top: -50vh;
+    }
+  }
+}

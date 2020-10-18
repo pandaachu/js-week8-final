@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-10 mt-5">
-          <img src="../../../../public/images/collectionCandle-banner.jpg" alt="">
+          <img src="@/../public/images/collectionCandle-banner.jpg" alt="">
           <div class="d-flex justify-content-start">
             <div
               class="l-collection__content p-5"
@@ -41,7 +41,7 @@
 // /* global $ */
 import { gsap } from 'gsap'
 export default {
-  name: 'CollectionOil',
+  name: 'CollectionsCandle',
   data () {
     return {
       swiperOptions: {

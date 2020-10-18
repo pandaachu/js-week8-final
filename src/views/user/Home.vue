@@ -1,6 +1,6 @@
 <template>
   <div class="l-home text-secondary">
-    <home-loading></home-loading>
+    <HomeLoading></HomeLoading>
     <!-- hero banner -->
     <section class="l-home__hero-1 p-relative">
       <div class="bg-img l-bg-no-repeat-tc l-bg-no-repeat-tc--shine">
@@ -215,6 +215,7 @@ import ImageFrame from '@/components/user/ImageFrame.vue'
 gsap.registerPlugin(TextPlugin, ScrollTrigger)
 
 export default {
+  name: 'Home',
   components: {
     HomeLoading,
     ImageFrame

@@ -43,6 +43,12 @@ export default {
         $('.toast').toast('hide')
       }, 8000)
     })
+  },
+  beforeDestroy () {
+    // 清除監聽事件
+    // 如果要指定哪個監聽對應方法，就需要傳入第二個參數(對應$on的設定)
+    // 否則元件會不知道，該 event bus 事件是從哪呼叫的
+    this.$bus.$off('push-messages')
   }
 }
 </script>

@@ -1,0 +1,8 @@
+.l-product{
+  &__bottle-wrap{
+    overflow: hidden;
+    @include media-breakpoint-up(md) {
+      overflow: visible;
+    }
+  }
+}

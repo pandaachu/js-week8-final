@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-10 mt-5">
-          <img src="../../../../public/images/collectionOil-banner.jpg" alt="">
+          <img src="@/../public/images/collectionOil-banner.jpg" alt="">
           <div class="d-flex justify-content-end">
             <div class="l-collection__content p-5" style="background-color:rgba(255,255,255, 0.1); max-width:500px; margin-top:-20% ; margin-right:-6rem">
               <h5 class="l-collection__text text-secondary font-weight-light letter-spacing-xl">單方精油</h5>

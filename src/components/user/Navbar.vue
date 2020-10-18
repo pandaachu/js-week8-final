@@ -2,7 +2,14 @@
   <div class="l-navbar bg-primary--t50 sticky-top">
     <div class="container">
       <nav class="navbar navbar-dark px-0 navbar-expand-lg">
-        <router-link to="/" class="logo navbar-brand position-absolute text-secondary d-flex m-0" href="#"><Logo class="mr-3"></Logo>FOREST</router-link>
+        <router-link
+          to="/"
+          class="logo navbar-brand position-absolute text-secondary d-flex m-0"
+          href="#"
+        >
+          <Logo class="mr-3"></Logo>
+          FOREST
+        </router-link>
         <button style="focus:outline: 0" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -55,9 +62,9 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.get(url)
         .then((res) => {
-          this.isLoading = false
           // console.log('cart', res)
           this.carts = res.data.data
+          this.isLoading = false
         })
     }
   },
@@ -69,6 +76,12 @@ export default {
       this.getCart() // 重新取得購物車資料
     })
     $('.cartIcon').tooltip('hide')
+  },
+  beforeDestroy () {
+    // 清除監聽事件
+    // 如果要指定哪個監聽對應方法，就需要傳入第二個參數(對應$on的設定)
+    // 否則元件會不知道，該 event bus 事件是從哪呼叫的
+    this.$bus.$off('get-cart')
   }
 }
 </script>

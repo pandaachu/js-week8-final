@@ -15,6 +15,7 @@ import Navbar from '@/components/user/Navbar.vue'
 import Footer from '@/components/user/Footer.vue'
 
 export default {
+  name: 'Shop',
   components: {
     Navbar,
     Footer

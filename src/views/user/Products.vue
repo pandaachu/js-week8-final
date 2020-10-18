@@ -17,7 +17,7 @@
           <input v-model.trim="input.title" type="text" placeholder="搜尋" class="form-control btn btn-outline-secondary" style="width:65%">
         </div>
       </div>
-      <div class="row mt-md-5 mt-3 mb-7 animation-scroll-section">
+      <div class="row mt-md-5 mt-3 mb-7 animation-scroll-section" style="min-height: calc(100vh - 56px - 76px);">
         <div class="col-md-4" v-for="product in titleFilter" :key="product.id">
           <div class="card bg-transparent border-secondary mb-4 position-relative rounded-0">
             <router-link :to="`/product/${product.id}`" class="p-2">
@@ -68,6 +68,7 @@
 import Pagination from '@/components/Pagination.vue'
 
 export default {
+  name: 'Products',
   components: {
     Pagination
   },

@@ -1,12 +1,12 @@
 <template>
   <div class="l-about">
     <div class="container my-5">
-      <div class="row position-relative">
+      <div class="row position-relative justify-content-end">
         <div class="col-12">
           <img class="mb-5" src="@/../public/images/apothecary-87-6uTS4cpkqjM-unsplash.jpg" alt="">
         </div>
-        <div class="l-about__bg">
-          <div class="l-about__text position-absolute p-5">
+        <div class="l-about__bg col-12 col-md-6 align-self-end">
+          <div class="l-about__text position-relative p-5">
             <p class="l-about__text__item font-weight-light letter-spacing-l line-height-m">
               FOREST 的香氛系列是以單方植物作主要基底，加上其他植物成份所調配出來的蠟燭及精油香氛，
               全系列商品都以歐洲進口精油與天然植物調香以及植物萃取成分。
@@ -37,6 +37,7 @@ import TextPlugin from 'gsap/TextPlugin'
 gsap.registerPlugin(TextPlugin, ScrollTrigger)
 
 export default {
+  name: 'About',
   methods: {
     textAnimation () {
       gsap.from('.l-about__text__item', {
@@ -53,16 +54,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.l-about__text{
-  // background-image: url(../../../public/images/apothecary-87-6uTS4cpkqjM-unsplash.jpg);
-  // background-size: 100%;
-  // background-repeat: no-repeat;
-  // background-position: bottom center;
-  background-color: rgba(0,0,0,0.7);
-  width: 50%;
-  top: 30%;
-  left: 75%;
-}
-</style>

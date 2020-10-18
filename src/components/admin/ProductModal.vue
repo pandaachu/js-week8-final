@@ -1,5 +1,6 @@
 <template>
   <div class="l-productModal">
+    <Loading :active.sync="isLoading"></Loading>
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content border-0 text-primary">
         <div class="modal-header bg-dark">
@@ -140,7 +141,12 @@ export default {
     return {
       imageUrl: [],
       filePath: '',
+      isLoading: false,
       messages: [
+        {
+          name: '失敗',
+          content: '出現錯誤'
+        },
         {
           name: '上傳失敗',
           content: '上傳不可超過 2 MB'
@@ -154,6 +160,7 @@ export default {
     // 上傳產品資料
     updateProduct () {
       // 新增商品
+      this.isLoading = true
       // this.isNew = true; 要符合此條件
       let api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product`
       let axiosMethod = 'post'
@@ -162,14 +169,21 @@ export default {
         api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product/${this.temProduct.id}`
         axiosMethod = 'patch'
       }
-      this.$http[axiosMethod](api, this.temProduct).then(() => {
-        $('#productModal').modal('hide')
-        this.$emit('update')
-      }).catch((error) => {
-        console.log(error)
-      })
+      this.$http[axiosMethod](api, this.temProduct)
+        .then(() => {
+          $('#productModal').modal('hide')
+          this.$emit('update')
+          this.isLoading = false
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
+        })
     },
     uploadFile () {
+      this.isLoading = true
       // 選取 DOM 中的檔案資訊
       // 取得 DOM 物件
       const uploadedfile = document.querySelector('#customFile').files[0]
@@ -202,12 +216,14 @@ export default {
             this.temProduct.imageUrl.push(response.data.data.path)
           }
           // 圖片上傳有大小限制，過度使用會被停權
+          this.isLoading = false
         })
         .catch(() => {
           console.log('上傳不可超過 2 MB')
-          this.$bus.$emit('push-messages', this.messages)
+          this.$bus.$emit('push-messages', this.messages[1])
           $('.l-toast').toast('show')
           this.status.fileUploading = false
+          this.isLoading = false
         })
     }
   }

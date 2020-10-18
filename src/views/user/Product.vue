@@ -1,10 +1,10 @@
 <template>
-<div class="l-background">
+<div class="l-background" style="min-height: calc(100vh - 56px - 76px);">
     <Loading :active.sync="isLoading"></Loading>
     <div class="l-product container">
       <!-- v-if="product.id" -> 讓資料先跑出來再跑畫面，解決 filter 錯誤-->
       <div class="row justify-content-between align-items-center mt-5 mb-7" v-if="product.id">
-        <div class="col-12 col-md-6 position-relative  overflow-hidden">
+        <div class="l-product__bottle-wrap col-12 col-md-6 position-relative">
           <div class="l-product__bottle position-absolute" style="bottom:0; right:-67px">
             <img v-if="product.category === '香精油'" src="@/../public/images/oil-bottle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover;border:solid 2px #e68e20">
             <img v-else-if="product.category === '蠟燭'" src="@/../public/images/candle.jpg" alt="" class="rounded-circle mr-5" style="width: 185px; height: 185px; object-fit: cover; border:solid 2px #e68e20">
@@ -15,9 +15,6 @@
             :style="{ backgroundImage: `url(${product.imageUrl[0]})`}"
           >
           </div>
-          <!-- <div class="my-4">
-            <img :src="product.imageUrl[0]" alt="" class="img-fluid mt-2">
-          </div> -->
         </div>
         <div class="col-12 col-md-5 offset-md-1">
           <div class="scrollbarHide" style="overflow:auto; height: 60vh;">
@@ -140,6 +137,7 @@
 import { gsap } from 'gsap'
 
 export default {
+  name: 'Product',
   data () {
     return {
       isLoading: false,
@@ -223,7 +221,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.scrollbarHide::-webkit-scrollbar{
-  display: none;
-}
+  .scrollbarHide::-webkit-scrollbar{
+    display: none;
+  }
 </style>
