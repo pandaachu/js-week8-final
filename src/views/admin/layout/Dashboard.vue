@@ -80,7 +80,6 @@ export default {
       // 看驗證結果
       // then & catch 都要做
         .then(res => {
-          // console.log(res)
           this.checkSuccess = true
         })
         .catch(error => {

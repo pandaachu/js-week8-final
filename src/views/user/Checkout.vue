@@ -201,16 +201,6 @@ export default {
           this.isLoading = false
         })
     }
-    // calculateDiscount () {
-    //   this.discount = 0
-    //   // this.originCartTotal = 0
-    //   this.carts.forEach((item) => {
-    //     this.discount += item.product.origin_price - item.product.price
-    //     // this.originCartTotal += item.product.origin_price
-    //   })
-    //   // console.log(this.discount)
-    //   // console.log(this.originCartTotal)
-    // }
   },
   created () {
     this.updateTotal()
