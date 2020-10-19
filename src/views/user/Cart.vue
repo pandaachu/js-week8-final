@@ -48,12 +48,15 @@
                   aria-label="Example text with button addon"
                   aria-describedby="button-addon1"
                   value="1"
+                  readonly
                   v-model="item.quantity"
                   @change="updateQuantity(item.product.id, item.quantity)"
                 >
                 <div class="input-group-append pl-1">
                   <button class="btn"
-                    type="button" @click="item.quantity ++; updateQuantity(item.product.id, item.quantity)"
+                    type="button"
+                    :disabled="item.quantity >= 20"
+                    @click="item.quantity ++; updateQuantity(item.product.id, item.quantity)"
                   >
                     <i class="fas fa-plus"></i>
                   </button>

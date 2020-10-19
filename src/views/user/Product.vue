@@ -108,7 +108,7 @@
                 max="20" min="1"
                 aria-label="Example text with button addon" aria-describedby="button-addon1"
                 v-model="productAddToCart.quantity"
-                @change="changeNumber(productNum)"
+                @change="changeNumber(productAddToCart.quantity)"
               >
               <div class="input-group-append">
                 <!-- 加數量 -->
@@ -146,7 +146,7 @@ export default {
     return {
       isLoading: false,
       productAddToCart: {
-        // product: this.$route.params.id,
+        product: this.$route.params.id,
         quantity: 1
       },
       carts: [],
@@ -158,7 +158,6 @@ export default {
         loadingItem: '', // 要預先定義 loadingItem, 不然會出錯
         loadingUpdateCart: ''
       },
-      productNum: 1,
       messages: [
         {
           name: '失敗',
@@ -201,16 +200,16 @@ export default {
         })
     },
     changeNumber (num) {
-      if (num >= 21) {
-        this.productNum = 20
+      if (num >= 20) {
+        this.productAddToCart.quantity = 20
         this.$bus.$emit('push-messages', this.messages[3])
         $('.l-toast').toast('show')
       } else if (num <= 1) {
-        this.productNum = 1
+        this.productAddToCart.quantity = 1
         this.$bus.$emit('push-messages', this.messages[3])
         $('.l-toast').toast('show')
       } else {
-        this.productNum = num
+        this.productAddToCart.quantity = num
       }
     },
     getCart () { // 取得購物車資料
