@@ -118,6 +118,7 @@
 </template>
 
 <script>
+/* global $ */
 export default {
   name: 'Checkout',
   data () {
@@ -139,7 +140,13 @@ export default {
         address: '',
         payment: '',
         message: ''
-      }
+      },
+      messages: [
+        {
+          name: '失敗',
+          content: '出現錯誤'
+        }
+      ]
     }
   },
   methods: {
@@ -155,34 +162,42 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.get(url)
         .then(res => {
-          // console.log('cart', res)
-          this.isLoading = false
           this.carts = res.data.data
           this.updateTotal()
           this.calculateDiscount() // 取得購物車的時候才會做計算
           // 把購物車資料推送到 navbar 購物車 icon
           this.$bus.$emit('get-cart')
+          this.isLoading = false
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
     },
     createOrder () {
       this.isLoading = true
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders`
-      this.$http.post(url, this.user).then((response) => {
-        if (response.data.data.id) {
+      this.$http.post(url, this.user)
+        .then((response) => {
+          if (response.data.data.id) {
+            // 跳出提示訊息
+            // $('#orderModal').modal('show')
+            // 重新渲染購物車
+            // console.log('成功')
+            this.getCart()
+            this.$router.push({
+              path: `/checkout-success/${response.data.data.id}`
+            })
+            this.isLoading = false
+          }
+        })
+        .catch((error) => {
+          console.log(error.response.data.errors)
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
           this.isLoading = false
-          // 跳出提示訊息
-          // $('#orderModal').modal('show')
-          // 重新渲染購物車
-          // console.log('成功')
-          this.getCart()
-          this.$router.push({
-            path: `/checkout-success/${response.data.data.id}`
-          })
-        }
-      }).catch((error) => {
-        this.isLoading = false
-        console.log(error.response.data.errors)
-      })
+        })
     },
     calculateDiscount () {
       this.discount = 0

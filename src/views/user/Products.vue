@@ -80,6 +80,10 @@ export default {
       },
       messages: [
         {
+          name: '失敗',
+          content: '出現錯誤'
+        },
+        {
           name: '加入失敗 - 重複加入',
           content: '已有這筆訂單在購物車'
         },
@@ -101,8 +105,7 @@ export default {
   },
   methods: {
     addToCart (id) {
-      // console.log(id)
-      // this.isLoading = true
+      this.isLoading = true
       this.status.loadingItem = id
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.post(url, {
@@ -110,19 +113,20 @@ export default {
         quantity: 1
       })
         .then((res) => {
-          // console.log(res)
           // $emit 推送資料
           this.$bus.$emit('get-cart') // $bus.$on 定義的方法
           this.status.loadingItem = ''
-          this.$bus.$emit('push-messages', this.messages[1])
+          this.$bus.$emit('push-messages', this.messages[2])
           $('.l-toast').toast('show')
+          this.isLoading = false
         })
         .catch(error => {
           this.status.loadingItem = ''
           // axios 固定的寫法，否則 error 訊息不會出現
           console.log(error.response)
-          this.$bus.$emit('push-messages', this.messages[0])
+          this.$bus.$emit('push-messages', this.messages[1])
           $('.l-toast').toast('show')
+          this.isLoading = false
         })
     },
     getProducts (num = 1) { // 帶上分頁的參數 -> 第一種寫法
@@ -135,8 +139,6 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products?page=${num}`
       this.$http.get(api)
         .then(res => {
-          this.isLoading = false
-          // console.log(res)
           // 對應遠端傳回來的資料
           this.products = res.data.data
           this.pagination = res.data.meta.pagination
@@ -146,9 +148,11 @@ export default {
               imageUrl: [] // 資料結構
             } // 把 temProduct 清除，避免重覆觸發
           }
+          this.isLoading = false
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
           this.isLoading = false
         })
     }
@@ -156,16 +160,7 @@ export default {
   created () {
     this.getProducts()
   },
-  // updated: function () { // 在重新渲染頁面後叫用，這時的頁面已經被重渲染成改變後的畫面。
-  //   this.$nextTick(function () {
-  //     $('[data-toggle="tooltip"]').tooltip()
-  //   })
-  // },
   computed: {
-    // tooltipText: function () {
-    //   // put your logic here to change the tooltip text
-    //   return '加到購物車'
-    // },
     categoryFilter () {
       if (this.input.category !== '全部') { // 如果 input.category 不是全部
         return this.products.filter(item => {
@@ -192,5 +187,4 @@ export default {
     }
   }
 }
-
 </script>

@@ -105,15 +105,19 @@
                 type="text"
                 class="form-control border-0 text-center my-auto shadow-none bg-transparent text-white px-0"
                 placeholder=""
+                max="20" min="1"
                 aria-label="Example text with button addon" aria-describedby="button-addon1"
                 v-model="productAddToCart.quantity"
+                @change="changeNumber(productNum)"
               >
               <div class="input-group-append">
                 <!-- 加數量 -->
                 <button
                   class="btn btn-outline-dark rounded-0 border-0 py-3 text-gray"
                   id="button-addon2"
-                  type="button" @click="productAddToCart.quantity ++ ; updateQuantity(productAddToCart.quantity)"
+                  type="button"
+                  :disabled="productAddToCart.quantity >= 20"
+                  @click="productAddToCart.quantity ++ ; updateQuantity(productAddToCart.quantity)"
                 >
                   <i class="fas fa-plus"></i>
                 </button>
@@ -133,7 +137,7 @@
 </template>
 
 <script>
-// /* global $ */
+/* global $ */
 import { gsap } from 'gsap'
 
 export default {
@@ -153,7 +157,26 @@ export default {
       status: { // 讀取效果
         loadingItem: '', // 要預先定義 loadingItem, 不然會出錯
         loadingUpdateCart: ''
-      }
+      },
+      productNum: 1,
+      messages: [
+        {
+          name: '失敗',
+          content: '出現錯誤'
+        },
+        {
+          name: '加入成功',
+          content: '已加入購物車'
+        },
+        {
+          name: '加入失敗 - 重複加入',
+          content: '已有這筆訂單在購物車'
+        },
+        {
+          name: '加入失敗',
+          content: '請調整數量為 1-20'
+        }
+      ]
     }
   },
   methods: {
@@ -165,20 +188,43 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.post(url, this.productAddToCart)
         .then((res) => {
-          this.isLoading = false
-          // console.log(res)
           // $emit 推送資料
           this.$bus.$emit('get-cart') // $bus.$on 定義的方法
+          this.$bus.$emit('push-messages', this.messages[1])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[2])
+          $('.l-toast').toast('show')
+          this.isLoading = false
+        })
+    },
+    changeNumber (num) {
+      if (num >= 21) {
+        this.productNum = 20
+        this.$bus.$emit('push-messages', this.messages[3])
+        $('.l-toast').toast('show')
+      } else if (num <= 1) {
+        this.productNum = 1
+        this.$bus.$emit('push-messages', this.messages[3])
+        $('.l-toast').toast('show')
+      } else {
+        this.productNum = num
+      }
     },
     getCart () { // 取得購物車資料
       this.isLoading = true
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.get(url)
         .then(res => {
-          // console.log('cart', res)
-          this.isLoading = false
           this.carts = res.data.data
+          this.isLoading = false
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
     },
     updateQuantity (quantity) { // 更新數量
@@ -196,8 +242,13 @@ export default {
     const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/product/${id}`
     this.$http.get(url) // 取得當前產品資料
       .then((res) => {
-        this.isLoading = false
         this.product = res.data.data
+        this.isLoading = false
+      })
+      .catch(() => {
+        this.$bus.$emit('push-messages', this.messages[0])
+        $('.l-toast').toast('show')
+        this.isLoading = false
       })
     this.getCart()
   },

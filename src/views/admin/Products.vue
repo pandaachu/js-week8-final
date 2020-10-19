@@ -119,7 +119,13 @@ export default {
       products: [],
       // openModal 的變數
       isNew: false,
-      loadingBtn: ''
+      loadingBtn: '',
+      messages: [
+        {
+          name: '失敗',
+          content: '出現錯誤'
+        }
+      ]
     }
   },
   props: ['token'],
@@ -178,6 +184,11 @@ export default {
             } // 把 temProduct 清除，避免重覆觸發
             $('#productModal').modal('hide')
           }
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
     }
   },

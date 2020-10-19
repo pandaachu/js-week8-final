@@ -35,7 +35,7 @@
 </template>
 
 <script>
-// /* global $ */
+/* global $ */
 import { gsap } from 'gsap'
 export default {
   name: 'CollectionOil',
@@ -53,7 +53,13 @@ export default {
         }
       },
       products: [],
-      isLoading: false
+      isLoading: false,
+      messages: [
+        {
+          name: '失敗',
+          content: '出現錯誤'
+        }
+      ]
     }
   },
   methods: {
@@ -61,9 +67,13 @@ export default {
       this.isLoading = true
       this.$http.get(`${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`)
         .then((res) => {
-          // console.log(res)
-          this.isLoading = false
           this.products = res.data.data
+          this.isLoading = false
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
     },
     // mouse enter autoplay stop

@@ -89,6 +89,7 @@
 </template>
 
 <script>
+/* global $ */
 export default {
   name: 'Cart',
   data () {
@@ -106,8 +107,16 @@ export default {
       },
       messages: [
         {
+          name: '失敗',
+          content: '出現錯誤'
+        },
+        {
           name: '刪除成功',
-          content: ''
+          content: '已刪除商品'
+        },
+        {
+          name: '加入成功',
+          content: '已加入購物車'
         }
       ]
     }
@@ -120,13 +129,13 @@ export default {
       // 取得遠端資料
       this.$http.get(url)
         .then(res => {
-          // console.log(res);
-          this.isLoading = false // 讀取完關閉 isLoading
           this.products = res.data.data
+          this.isLoading = false
         })
-        .catch(error => {
-          console.log(error)
-          this.isLoading = false // 讀取失敗時關閉 isLoading, 不然會一直在 loading 畫面
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
     },
     addToCart (id, quantity = 1) { // 加入購物車，帶入商品 id 及數量
@@ -139,17 +148,21 @@ export default {
       // console.log(cart);
       this.$http.post(url, cart)
         .then(res => {
-          this.isLoading = false
-          // console.log(res)
+          this.$bus.$emit('push-messages', this.messages[2])
+          $('.l-toast').toast('show')
           this.getCart()
+          this.isLoading = false
         })
         .catch(error => {
-          this.isLoading = false
           // axios 固定的寫法，否則 error 訊息不會出現
           console.log(error.response)
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
     },
     getProduct (id) { // 單一產品資料取出
+      this.isLoading = true
       this.status.loadingItem = id // 把產品 id 存在 status.loadingItem
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/product/${id}`
       // console.log(id)
@@ -163,6 +176,12 @@ export default {
           // 方法二：this.$set(this.tempProduct, 'num' , 1;);
           // 存完資料把 modal 打開
           // $('#productModal').modal('show')
+          this.isLoading = false
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
     },
     getCart () { // 取得購物車資料
@@ -170,11 +189,15 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.get(url)
         .then(res => {
-          // console.log('cart', res)
-          this.isLoading = false
           this.carts = res.data.data
           this.updateTotal()
           this.calculateDiscount() // 取得購物車的時候才會做計算
+          this.isLoading = false
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
     },
     // 在取得購物車的時候才會做計算，刪除購物車的時候就沒有重計算
@@ -199,14 +222,15 @@ export default {
         .patch(url, cart)
         .then(res => {
           this.status.loadingUpdateCart = '' // 執行完時清空
-          this.isLoading = false
-          // console.log(res)
           this.getCart() // 更新完數量要重新取得購物車資料
+          this.isLoading = false
         })
         .catch(error => {
-          this.isLoading = false
           // axios 固定的寫法，否則 error 訊息不會出現
           console.log(error.response)
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
     },
     removeItem (id) {
@@ -215,13 +239,19 @@ export default {
       this.$http
         .delete(url)
         .then(res => {
-          this.isLoading = false
           this.getCart()
           this.$bus.$emit('get-cart')
           // 刪除成功訊息
           this.messages.content = res.data.message
           // console.log(this.messages.content)
+          this.$bus.$emit('push-messages', this.messages[1])
+          $('.l-toast').toast('show')
+          this.isLoading = false
+        })
+        .catch(() => {
           this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
     },
     deleteAllCartItem () {
@@ -229,10 +259,16 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping/all/product`
       this.$http.delete(url) // 以 axios.delete 的方法直接清空購物車後，關掉 loading 並刷新購物車
         .then(res => {
-          this.isLoading = false
           this.getCart()
           this.$bus.$emit('get-cart')
-          // console.log(response)
+          this.$bus.$emit('push-messages', this.messages[1])
+          $('.l-toast').toast('show')
+          this.isLoading = false
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
         // console.log(this.total_cost)
       this.cartTotal = 0
@@ -252,11 +288,9 @@ export default {
     // }
   },
   created () {
-    this.isLoading = true
     this.getProducts() // 要使用 this 去取得 getProducts()
     this.getCart()
     // this.calculateDiscount()
   }
 }
-
 </script>

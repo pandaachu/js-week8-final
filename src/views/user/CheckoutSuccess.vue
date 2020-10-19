@@ -66,6 +66,7 @@
 </template>
 
 <script>
+/* global $ */
 export default {
   name: 'CheckoutSuccess',
   data () {
@@ -81,19 +82,15 @@ export default {
       },
       messages: [
         {
-          name: '加入失敗 - 重複加入',
-          content: '已有這筆訂單在購物車'
+          name: '失敗',
+          content: '出現錯誤'
         },
         {
           name: '訂單成功',
-          content: ''
+          content: '已建立訂單'
         }
       ],
       id: this.$route.params.id
-      // status: {
-      //   loadingItem: '', // 要預先定義 loadingItem, 不然會出錯
-      //   loadingUpdateCart: ''
-      // }
     }
   },
   methods: {
@@ -120,37 +117,19 @@ export default {
     getOrders () {
       this.isLoading = true
       const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders`
-      this.$http.get(api).then((res) => {
-        this.isLoading = false
-        // console.log('orders', res)
-        this.orders = res.data.data
-        this.getThisOrder()
-        this.updateTotal()
-      }).catch(() => {
-        this.isLoading = false
-      })
-    },
-    // getCart () { // 取得購物車資料
-    //   this.isLoading = true
-    //   const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
-    //   this.$http.get(url)
-    //     .then(res => {
-    //       console.log('cart', res)
-    //       this.isLoading = false
-    //       this.carts = res.data.data
-    //       this.updateTotal()
-    //       this.calculateDiscount() // 取得購物車的時候才會做計算
-    //     })
-    // },
-    calculateDiscount () {
-      this.discount = 0
-      this.originCartTotal = 0
-      this.tempOrders.forEach((item) => {
-        this.discount += item.product.origin_price - item.product.price
-        this.originCartTotal += item.product.origin_price
-      })
-      // console.log(this.discount)
-      // console.log(this.originCartTotal)
+      this.$http
+        .get(api)
+        .then((res) => {
+          this.orders = res.data.data
+          this.getThisOrder()
+          this.updateTotal()
+          this.isLoading = false
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
+        })
     }
   },
   created () {
