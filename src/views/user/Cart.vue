@@ -280,8 +280,8 @@ export default {
       this.discount = 0
       this.originCartTotal = 0
       this.carts.forEach((item) => {
-        this.discount += item.product.origin_price - item.product.price
-        this.originCartTotal += item.product.origin_price
+        this.discount += (item.product.origin_price - item.product.price) * item.quantity
+        this.originCartTotal += item.product.origin_price * item.quantity
       })
       // console.log(this.discount)
       // console.log(this.originCartTotal)

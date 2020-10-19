@@ -153,8 +153,10 @@ export default {
     updateTotal () {
       // 累加總金額，先歸零後重新計算
       this.cartTotal = 0
+      this.discount = 0
       this.carts.forEach((item) => {
         this.cartTotal += item.product.price * item.quantity
+        this.discount += (item.product.origin_price - item.product.price) * item.quantity
       })
     },
     getCart () { // 取得購物車資料
@@ -164,7 +166,7 @@ export default {
         .then(res => {
           this.carts = res.data.data
           this.updateTotal()
-          this.calculateDiscount() // 取得購物車的時候才會做計算
+          // this.calculateDiscount() // 取得購物車的時候才會做計算
           // 把購物車資料推送到 navbar 購物車 icon
           this.$bus.$emit('get-cart')
           this.isLoading = false
@@ -198,17 +200,17 @@ export default {
           $('.l-toast').toast('show')
           this.isLoading = false
         })
-    },
-    calculateDiscount () {
-      this.discount = 0
-      this.originCartTotal = 0
-      this.carts.forEach((item) => {
-        this.discount += item.product.origin_price - item.product.price
-        this.originCartTotal += item.product.origin_price
-      })
-      // console.log(this.discount)
-      // console.log(this.originCartTotal)
     }
+    // calculateDiscount () {
+    //   this.discount = 0
+    //   // this.originCartTotal = 0
+    //   this.carts.forEach((item) => {
+    //     this.discount += item.product.origin_price - item.product.price
+    //     // this.originCartTotal += item.product.origin_price
+    //   })
+    //   // console.log(this.discount)
+    //   // console.log(this.originCartTotal)
+    // }
   },
   created () {
     this.updateTotal()

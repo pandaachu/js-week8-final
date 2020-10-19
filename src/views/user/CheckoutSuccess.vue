@@ -100,7 +100,7 @@ export default {
       this.discount = 0
       this.tempOrders.products.forEach((item) => {
         this.cartTotal += item.product.price * item.quantity
-        this.discount += item.product.origin_price - item.product.price
+        this.discount += (item.product.origin_price - item.product.price) * item.quantity
       })
       // console.log(this.cartTotal)
     },
