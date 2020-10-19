@@ -277,10 +277,8 @@ export default {
 //     this.$http
 //       .get(url)
 //       .then((res) => {
-//         console.log(res)
 //       })
 //     this.$bus.$on('onEvent', (para) => {
-//       console.log('觸發 Event Bus', para)
 //     })
 //   }
 // }

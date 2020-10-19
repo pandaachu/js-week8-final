@@ -102,15 +102,12 @@ export default {
         this.cartTotal += item.product.price * item.quantity
         this.discount += (item.product.origin_price - item.product.price) * item.quantity
       })
-      // console.log(this.cartTotal)
     },
     // 抓下結帳後的訂單資料
     getThisOrder () {
       this.orders.forEach((item) => {
         if (item.id === this.id) {
           this.tempOrders = item
-          // console.log(this.tempOrders)
-          // console.log(item.id)
         }
       })
     },

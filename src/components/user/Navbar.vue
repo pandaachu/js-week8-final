@@ -62,7 +62,6 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.get(url)
         .then((res) => {
-          // console.log('cart', res)
           this.carts = res.data.data
           this.isLoading = false
         })

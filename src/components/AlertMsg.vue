@@ -37,7 +37,6 @@ export default {
   },
   created () {
     this.$bus.$on('push-messages', (message) => {
-      // console.log(message)
       this.message = message
       setTimeout(() => {
         $('.toast').toast('hide')

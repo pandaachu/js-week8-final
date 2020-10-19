@@ -36,7 +36,8 @@
       </div>
     </div>
     <div class="container">
-      <router-view :token="token" v-if="checkSuccess"/>
+      <!-- <router-view :token="token" v-if="checkSuccess"/> -->
+      <router-view v-if="checkSuccess"/>
       <!-- 當驗證沒有問題，checkSuccess = true ，再跑下面的區塊 -->
     </div>
   </div>

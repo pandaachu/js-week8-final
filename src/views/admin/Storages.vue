@@ -153,7 +153,6 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/storage?page=${num}`
       this.$http.get(url)
         .then(res => {
-          // console.log(res)
           this.storages = res.data.data
           this.pagination = res.data.meta.pagination
           this.isLoading = false
@@ -167,7 +166,6 @@ export default {
     openModelDel (status, item) {
       this.status = status
       $('#deleteModal').modal('show')
-      // console.log(item)
       // this.tempStorage = { ...item } // 把陣列從 [1,2,3,4,5] 轉換成 1,2,3,4,5
       this.tempStorage = item
     },
@@ -196,7 +194,6 @@ export default {
           this.selected.push(element.value)
         }
       })
-      // console.log('selected a', this.selected)
     },
     delSlected () {
       this.isLoading = true
@@ -208,11 +205,9 @@ export default {
       //     this.selected.push(element.value)
       //   }
       // })
-      // console.log(this.selected)
       // 刪除選擇的圖片
       this.selected.forEach(item => {
         const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/storage/${item}`
-        // console.log(url)
         this.$http.delete(url)
           .then(() => {
             this.$bus.$emit('push-messages', this.messages[1])
@@ -222,7 +217,6 @@ export default {
       })
       $('#deleteModal').modal('hide')
       this.getStorages()
-      // console.log(this.selected)
     }
   },
   created () {

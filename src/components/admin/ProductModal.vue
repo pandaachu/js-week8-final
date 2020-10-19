@@ -175,8 +175,7 @@ export default {
           this.$emit('update')
           this.isLoading = false
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
           this.$bus.$emit('push-messages', this.messages[0])
           $('.l-toast').toast('show')
           this.isLoading = false
@@ -208,7 +207,6 @@ export default {
         }
       })
         .then(response => {
-          // console.log(response)
           // 接到參數後關閉 loading 圖示
           this.status.fileUploading = false
           // 把路徑帶到畫面

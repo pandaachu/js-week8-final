@@ -35,7 +35,6 @@ export default {
   methods: {
     updatePage (num) {
       // 要知道點的是哪個，所以上面要帶上 -> updatePage(i) ，這裡用 num 接收
-      // console.log(num)
       this.$emit('update', num)
     }
   }

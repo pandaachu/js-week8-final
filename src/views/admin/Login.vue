@@ -66,7 +66,6 @@ export default {
       this.$http
         .post(api, this.user)
         .then(response => {
-          // console.log(response); // 取得遠端傳回來的 response
           const token = response.data.token // 把 token 存起來
           const expired = response.data.expired // 把 到期日 存起來
           // 儲存 cookie，new Date(expired * 1000)是固定的寫法，時間格式的轉換，path=/ -> 可寫可不寫
@@ -79,8 +78,7 @@ export default {
           // axios 是非同步行為，因此如果要正確儲存 token，轉址的步驟要放在 axios 裡，否則轉址會比 axios 先進行，結果不會進行 axios 的步驟
           this.isLoading = false
         })
-        .catch(error => {
-          console.log(error)
+        .catch(() => {
           this.$bus.$emit('push-messages', this.messages[0])
           $('.l-toast').toast('show')
           this.isLoading = false

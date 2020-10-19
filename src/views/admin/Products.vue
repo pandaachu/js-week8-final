@@ -146,7 +146,6 @@ export default {
           // 列表的資料有缺 description，所以要重新取得單一產品資料
           // 這裡不能用 const
           var url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product/${item.id}`
-          // console.log(item);
           this.$http.get(url)
             .then(res => {
               this.temProduct = res.data.data

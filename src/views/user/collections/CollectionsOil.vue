@@ -89,8 +89,6 @@ export default {
     this.getProducts()
   },
   mounted () {
-    // console.log('Current Swiper instance object', this.swiper)
-    // this.swiper.slideTo(3, 1000, false)
     gsap.from('.l-collection__content', {
       css: {
         backgroundColor: 'transparent'
@@ -109,8 +107,6 @@ export default {
   },
   computed: {
     collectionFilter () {
-      // const products = this.products
-      // console.log(this.products)
       const oilCollection = this.products.filter(item => {
         return item.category === '香精油'
       })

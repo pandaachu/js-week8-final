@@ -284,7 +284,6 @@ export default {
     },
     openCouponModal (status, coupon) {
       this.status = status // 把上面的 status 帶下來存在 this.status 以此更換 modal title
-      // console.log(coupon)
       switch (status) {
         case 'created':
           this.tempCoupon = {} // 新增時清空 tempCoupon
@@ -293,10 +292,10 @@ export default {
         case 'edit': {
           this.tempCoupon = { ...coupon } // 展開運算子
           // 使用 split 切割相關時間戳
-          // console.log(this.tempCoupon.deadline.datetime) // 2020-10-31 12:04:56
+          // this.tempCoupon.deadline.datetime // 2020-10-31 12:04:56
           const deadlineAt = this.tempCoupon.deadline.datetime.split(' '); // 分割日期時間
           [this.deadline_date, this.deadline_time] = deadlineAt // 日期
-          // console.log(deadlineAt) // "2020-10-31", "12:04:56"
+          // deadlineAt // "2020-10-31", "12:04:56"
           $('#couponModal').modal('show')
           break
         }
@@ -336,7 +335,6 @@ export default {
     },
     delCoupon (id) {
       this.isLoading = true
-      // console.log(id)
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupon/${id}`
       this.$http.delete(url)
         .then(() => {

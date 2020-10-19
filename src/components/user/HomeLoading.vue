@@ -22,7 +22,6 @@ export default {
     this.$http
       .get(url)
       .then((res) => {
-        // console.log(res)
         gsap.to('.load-line', 0.5, {
           width: '100%',
           ease: Quart.easeOut

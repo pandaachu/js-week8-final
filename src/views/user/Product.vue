@@ -182,7 +182,6 @@ export default {
     // 加入購物車後要觸發另外的元件更新資料 -> $bus.$emit
     // navbar 的購物車 icon 用 $bus.$on 接收
     addToCart () {
-      // console.log(this.productAddToCart)
       this.isLoading = true
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.$http.post(url, this.productAddToCart)
@@ -228,13 +227,11 @@ export default {
     },
     updateQuantity (quantity) { // 更新數量
       this.productAddToCart.quantity = quantity
-      // console.log(quantity)
     }
   },
   created () {
     this.isLoading = true
     // 取得產品 id
-    // console.log(this.$route.params.id)
     // 屬性 $route
     // 方法 $router
     const id = this.$route.params.id

@@ -34,7 +34,6 @@ export default {
     this.$http.get(`${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`)
       .then((res) => {
         this.isLoading = false
-        // console.log(res)
       })
   }
 }

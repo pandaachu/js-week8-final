@@ -67,10 +67,8 @@ export default {
   },
   created () {
     this.isLoading = true
-    // console.log(this.$route.params.id)
     const id = this.$route.params.id
     const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/orders/${id}`
-    // this.getOrder()
     this.$http.get(url)
       .then((res) => {
         this.order = res.data.data

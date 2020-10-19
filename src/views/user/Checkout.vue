@@ -186,7 +186,6 @@ export default {
             // 跳出提示訊息
             // $('#orderModal').modal('show')
             // 重新渲染購物車
-            // console.log('成功')
             this.getCart()
             this.$router.push({
               path: `/checkout-success/${response.data.data.id}`

@@ -148,7 +148,6 @@ export default {
         product: id,
         quantity: quantity // ES6 的寫法: quantity
       }
-      // console.log(cart);
       this.$http.post(url, cart)
         .then(res => {
           this.$bus.$emit('push-messages', this.messages[2])
@@ -168,10 +167,8 @@ export default {
       this.isLoading = true
       this.status.loadingItem = id // 把產品 id 存在 status.loadingItem
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/product/${id}`
-      // console.log(id)
       this.$http.get(url)
         .then(res => {
-          // console.log(res)
           this.status.loadingItem = '' // 清空
           this.tempProduct = res.data.data
           // 沒有辦法直接寫入的時候，可以使用這兩種方法把值寫進去
@@ -220,7 +217,6 @@ export default {
         product: id,
         quantity: quantity // ES6 的寫法: quantity
       }
-      // console.log(cart);
       this.$http
         .patch(url, cart)
         .then(res => {
@@ -246,7 +242,6 @@ export default {
           this.$bus.$emit('get-cart')
           // 刪除成功訊息
           this.messages.content = res.data.message
-          // console.log(this.messages.content)
           this.$bus.$emit('push-messages', this.messages[1])
           $('.l-toast').toast('show')
           this.isLoading = false
@@ -273,7 +268,6 @@ export default {
           $('.l-toast').toast('show')
           this.isLoading = false
         })
-        // console.log(this.total_cost)
       this.cartTotal = 0
     },
     calculateDiscount () {
@@ -283,12 +277,7 @@ export default {
         this.discount += (item.product.origin_price - item.product.price) * item.quantity
         this.originCartTotal += item.product.origin_price * item.quantity
       })
-      // console.log(this.discount)
-      // console.log(this.originCartTotal)
     }
-    // sendOrder () {
-    //   alert("訂單完成")
-    // }
   },
   created () {
     this.getProducts() // 要使用 this 去取得 getProducts()
