@@ -5,7 +5,6 @@
         <router-link
           to="/"
           class="logo navbar-brand position-absolute text-secondary d-flex m-0"
-          href="#"
         >
           <Logo class="mr-3"></Logo>
           FOREST

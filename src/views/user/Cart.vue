@@ -20,7 +20,7 @@
               href="#"
               class="position-absolute"
               style="top: 16px; right: 16px;"
-              @click="removeItem(item.product.id)"
+              @click.prevent="removeItem(item.product.id)"
             >
               <i class="fas fa-times"></i>
             </a>

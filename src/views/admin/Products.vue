@@ -4,7 +4,7 @@
     <Loading :active.sync="isLoading"></Loading>
     <h2 class="text-primary">產品列表</h2>
     <div class="text-right mt-4">
-        <button @click="openModal('new')" class="btn btn-primary">
+        <button @click="openModal('new')" type="button" class="btn btn-primary">
           建立新的產品
         </button>
       </div>

@@ -3,9 +3,10 @@
     <Loading :active.sync="isLoading" />
     <div class="text-right mt-4">
       <button
-        class="btn btn-primary"
         :disabled="selected.length <= 0"
         @click.prevent="openModelDel('delStorages')"
+        class="btn btn-primary"
+        type="button"
       >
         刪除選擇的圖片
       </button>
@@ -43,6 +44,7 @@
                 <button
                   class="btn btn-outline-danger"
                   @click.prevent="openModelDel('delStorage',item)"
+                  type="button"
                 >
                   刪除
                 </button>

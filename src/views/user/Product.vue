@@ -126,6 +126,7 @@
             <button
               class="btn btn-dark btn-block rounded-0 py-3 letter-spacing-m"
               @click="addToCart ()"
+              type="button"
               >
               加入購物車
             </button>

@@ -7,7 +7,7 @@
             <Logo class="mr-3"></Logo>
             FOREST
           </router-link>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAdimn" aria-controls="navbarNavAdimn" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse bg-white custom-header-md-open" id="navbarNavAdimn">
@@ -71,8 +71,6 @@ export default {
       // 外層已經把 token 儲存，所以外層就不用再寫一次了
       // 但是要把 token 從外層傳到內層，使用 props
       this.token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
-      this.$http.defaults.headers.common.Authorization = `Bearer ${this.token}`
-
       const api = `${process.env.VUE_APP_APIPATH}/auth/check`
       // 發送 api 來檢查
       this.$http.post(api, {
@@ -82,6 +80,7 @@ export default {
       // then & catch 都要做
         .then(res => {
           this.checkSuccess = true
+          this.$http.defaults.headers.common.Authorization = `Bearer ${this.token}`
         })
         .catch(error => {
           console.log(error.response)
