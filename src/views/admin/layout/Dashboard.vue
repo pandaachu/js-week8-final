@@ -18,9 +18,9 @@
               <li class="nav-item">
                 <router-link to="/admin/orders" class="nav-link">訂單列表</router-link>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <router-link to="/admin/coupons" class="nav-link">優惠卷</router-link>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <router-link to="/admin/storages" class="nav-link">圖片管理</router-link>
               </li>
